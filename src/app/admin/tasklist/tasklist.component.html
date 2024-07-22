@@ -1,0 +1,33 @@
+<div *ngIf="user.roles?.includes('ROLE_ADMIN')">ADMIN</div>
+<div *ngIf="user.roles?.includes('ROLE_EMPLOYEE')">EMPLOYEE</div>
+<div *ngIf="user.roles?.includes('ROLE_CLIENT')">CLIENT</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th class="text-center" scope="col">#</th>
+      <th class="text-center" scope="col">Reférence</th>
+      <th class="text-center" scope="col">Date de dépot</th>
+      <th class="text-center" scope="col">Date de réglement</th>
+      <th class="text-center" scope="col">Date de retour</th>
+      <th class="text-center" scope="col">Montant</th>
+      <th class="text-center" scope="col">Status</th>
+      <th class="text-center" scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let row of arrayCommandes" let i="index">
+      <th scope="row">{{ row.id }}</th>
+      <td class="text-center">{{ row.ref }}</td>
+      <td class="text-center">{{ row.filingDate | date : "shortDate" }}</td>
+      <td class="text-center">{{ row.paymentDate | date : "shortDate" }}</td>
+      <td class="text-center">{{ row.returnDate | date : "shortDate" }}</td>
+      <td class="text-center">100 <span>€</span></td>
+      <td class="text-center">En cours</td>
+      <td class="text-center">
+        <button type="button" class="btn btn-success mx-1">Détail</button>
+        <button type="button" class="btn btn-danger mx-1">Facture</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

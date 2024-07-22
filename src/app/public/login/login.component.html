@@ -1,0 +1,75 @@
+<!-- <div class="login-container">
+  <form (ngSubmit)="login()" #loginform="ngForm" action="" class="login-form">
+    <h1 class="h3 mb-3 font-weight-normal text-center">Me connecter</h1>
+    <div class="form-group">
+      <label for="inputEmail">Votre email</label>
+      <input
+        type="email"
+        id="inputEmail"
+        class="form-control"
+        placeholder="Email address"
+        required
+        autofocus
+      />
+    </div>
+    <div class="form-group">
+      <label for="inputPassword">Mots de passe</label>
+      <input value="Emma" type="text" id="inputPassword" class="form-control" placeholder="Password" required />
+    </div>
+     <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" id="rememberMe" />
+      <label class="form-check-label" for="rememberMe">Remember me</label>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">
+      Me connecter
+    </button>
+    <a routerLink="/register" class="btn btn-lg btn-primary btn-block">
+      s'inscrire
+    </a>
+
+    <p class="mt-5 mb-3 text-muted text-center">&copy; 2024</p>
+  </form>
+
+    <div class="container">
+  <h2>Se connecter</h2>
+  <form
+    (ngSubmit)="login()"
+    #loginform="ngForm"
+    action=""
+    class="d-flex flex-column container"
+  >
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input
+        #username="ngModel"
+        name="username"
+        matInput
+        placeholder="Email"
+        [(ngModel)]="authRequest.username"
+        required
+      />
+      <mat-error *ngIf="!username.valid">Veuiller entrer un userName</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input
+        #password="ngModel"
+        name="password"
+        matInput
+        placeholder="Password"
+        [(ngModel)]="authRequest.password"
+        required
+      />
+      <mat-error *ngIf="!password.valid">Veuiller entrer un email</mat-error>
+    </mat-form-field>
+
+    <div *ngIf="error">
+      <p class="text-danger">Invalid credentials</p>
+      {{ error }}
+    </div>
+
+    <button id="btn-connect" [disabled]="!loginform.valid" class="btn btn-success" type="submit">Soummetre</button>
+
+  </form>
+</div> -->

@@ -1,0 +1,84 @@
+<section id="cathegorie">
+  <h4>Choisissez un service</h4>
+  <select [(ngModel)]="selectedServicesId" (change)="selectedService($event)">
+    <option value="Tout les services" selected>Tout les services</option>
+    <!-- @for (item of listCathegorise; track item.id) { -->
+    <option *ngFor="let service of arrayServices" [value]="service.id">
+      {{ service.name }}
+    </option>
+    <!-- } -->
+  </select>
+</section>
+
+<section id="container-article-depot">
+  <h4>Choisissez vos articles pour ce service</h4>
+  <div class="d-flex justify-content-between align-items-center">
+    <div
+      *ngFor="let cathegory of arrayCategorySelectedService"
+      class="card-cathegory"
+      (click)="selectedCathegorie(cathegory)"
+    >
+      <h5>{{ cathegory.name }}</h5>
+      <img
+        src="../../../assets/image/articles/Chemise-homme.jpg"
+        alt="{{ cathegory.name }}"
+      />
+      <!-- <app-quantity-selector></app-quantity-selector> -->
+    </div>
+  </div>
+</section>
+<!--Article
+    <section id="cathegorie">
+        <h4>Selectionnez une Cathegorie d'articles</h4>
+        <select [(ngModel)]="selectedcathegorieId" (change)="onCathegorieChange()">
+            @for (item of listCathegorise; track item.id) {
+            <option [value]="item.id">{{item.titre}}</option>
+            }
+        </select>
+    </section>
+    <section id="article">
+        <h4>Cliquez sur un article</h4>
+        <div>
+            @for (item of listACS; track item.id) {
+            <app-articles [articleId]="item.id"></app-articles>
+            }
+        </div>
+    </section>
+    <section id="cathegorie">
+        <h4>Selectionnez une Cathegorie d'articles</h4>
+        <select [(ngModel)]="selectedcathegorieId" (change)="onCathegorieChange()">
+            @for (item of listCathegorise; track item.id) {
+            <option [value]="item.id">{{item.titre}}</option>
+            }
+        </select>
+    </section>-->
+<!--Prestation
+        <select title="selectArticle" name="article" id="article-select" [(ngModel)]="selectedArticleId"
+            (change)="onArticleChange()">
+            @for (item of listArticles; track item.id) {
+            <option [value]="item.id">{{item.titre}}</option>
+            }
+        </select>
+
+    <section id="prestation">
+        <h4>Cathegorie des articles</h4>
+        <select title="selectPrestation" name="prestation" id="prestation-select" [(ngModel)]="selectedPrestationId"
+            (change)="onPrestationChange()">
+            @for (item of listPrestations; track item.id) {
+            <option [value]="item.id">{{item.titre}}</option>
+            }
+        </select>
+    </section>
+
+     <mat-form-field>
+    <mat-label>Sélectionner un service</mat-label>
+    <mat-select (change)="selectedService($event)">
+      <mat-option *ngFor="let service of services?.['hydra:member']" [value]="service.name">
+        {{ service.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <ng-template #loading>
+    <p>Chargement des services...</p>
+  </ng-template> -->

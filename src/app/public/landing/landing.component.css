@@ -1,0 +1,166 @@
+/*CSS BASE*/
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h2 {
+  font-size: 20px;
+  color: #009fdd;
+}
+
+h3,
+h2 {
+  font-weight: bold;
+}
+
+/*SECTION INTRODUCTION*/
+section#introduction {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  padding: 20px
+}
+
+section#introduction div {
+  display: flex;
+  flex-direction: column;
+}
+
+section#introduction div image {
+  object-fit: cover;
+  width: 300px;
+  height: auto;
+}
+
+section#introduction div div {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+section#introduction div div p {
+  padding: 2rem;
+}
+
+
+/*SECTION OFFERT*/
+section#offert {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px
+}
+
+section#offert div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px
+}
+
+section#offert div.prestation {
+  border: 1px solid #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+}
+
+section#offert div h3 {
+
+  margin: 0px;
+}
+
+section#offert div.prestation div {
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+section#offert div.prestation div p {
+  padding: 20px
+}
+
+/*SECTION SERVICES*/
+section#services {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+section#services div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+
+section#services div div.card-service {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid gray;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  padding: 0.5rem;
+  margin: 10px;
+  height: fit-content;
+  width: 300px;
+}
+
+section#services div.card-service img {
+  object-fit: cover;
+  object-position: center;
+  width: 150px;
+  height: 150px;
+
+}
+
+section#services div.card-service p {
+  font-size: large;
+
+}
+
+@media screen and (min-width: 991px) {
+  section#introduction div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+
+
+  section#introduction div div {}
+
+
+
+  section#offert div {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  section#offert div.prestation {
+    width: 300px;
+    max-height: fit-content;
+  }
+
+  section#services div {
+    flex-direction: row;
+    flex-wrap: wrap;
+
+  }
+
+
+}

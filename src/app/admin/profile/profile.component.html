@@ -1,0 +1,246 @@
+<mat-toolbar color="primary">
+  <span>User Registration Form</span>
+</mat-toolbar>
+
+<div class="form-container">
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>First Name</mat-label>
+      <input matInput formControlName="firstname" [aria-label="user.firstname" ]>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Last Name</mat-label>
+      <input matInput formControlName="lastname" [aria-label="user.firstname">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Date of Birth</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="dateborn" [aria-label="user.firstname">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" [aria-label="user.firstname">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Mobile Phone</mat-label>
+      <input matInput formControlName="mobilephone" [aria-label="user.firstname">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Phone</mat-label>
+      <input matInput formControlName="phone" [aria-label="user.firstname">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Roles</mat-label>
+      <mat-select formControlName="roles" multiple>
+        <mat-option value="admin">Admin</mat-option>
+        <mat-option value="user">User</mat-option>
+        <mat-option value="guest">Guest</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Address Number</mat-label>
+      <input matInput formControlName="numadrs" type="number" [aria-label="user.firstname">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Street</mat-label>
+      <input matInput formControlName="street" [aria-label="user.firstname">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>City</mat-label>
+      <input matInput formControlName="city" [aria-label="user.firstname">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Zip Code</mat-label>
+      <input matInput formControlName="zipcode" [aria-label="user.firstname">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Country</mat-label>
+      <input matInput formControlName="country" [aria-label="user.firstname">
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="!userForm.valid">Submit</button>
+  </form>
+</div>
+
+<!-- <section class="border border-1 p-2 m-2">
+  <h1>Mes informations</h1>
+  <form id="profile-form">
+    <div class="form-group mb-3">
+      <label for="genre" class="form-label" formControlName="genre"
+        >Civilité:</label
+      >
+      <select name="genre" id="genre" class="form-control">
+        <option value="madame">Madame</option>
+        <option value="mademoiselle">Mademoiselle</option>
+        <option value="monsieur">Monsieur</option>
+      </select>
+    </div>
+    <div class="form-group mb-3">
+      <label for="firstname" class="form-label">Nom* :</label>
+      <input
+        id="firstname"
+        type="text"
+        class="form-control"
+        formControlName="firstname"
+        aria-label="Nom"
+        (N)
+        required
+      />
+    </div>
+    <div class="form-group mb-3">
+      <label for="lastname" class="form-label">Prénom* :</label>
+      <input
+        id="lastname"
+        type="text"
+        class="form-control"
+        formControlName="lastname"
+      />
+    </div>
+    <div class="form-group mb-3">
+      <label for="age" class="form-label">Date de naissance :</label>
+      <input id="age" type="date" class="form-control" formControlName="age" />
+    </div>
+    <div class="form-group mb-3">
+      <label for="phone" class="form-label">Téléphone :</label>
+      <input
+        id="phone"
+        type="phone"
+        class="form-control"
+        formControlName="phone"
+        aria-label="Téléphone"
+      />
+    </div>
+    <section>
+      <div class="form-group mb-3">
+        <label for="email" class="form-label">Email* :</label>
+        <input
+          id="email"
+          type="email"
+          class="form-control"
+          formControlName="email"
+        />
+      </div>
+      <div class="form-group mb-3">
+        <label for="pwd" class="form-label">Mot de passe :</label>
+        <input
+          id="pwd"
+          type="password"
+          class="form-control"
+          formControlName="pwd"
+        />
+      </div>
+    </section>
+    <section id="BillingAndDeliveryAdrs" class="address">
+      <h2>Adresse de livraison et facturation</h2>
+      <div id="divCheckbox">
+        <input
+          (change)="onAdrsChange()"
+          type="checkbox"
+          id="isBillingAndDeliveryAdrs"
+          name="isBillingAndDeliveryAdrs"
+          checked
+        />
+        <label for="isdeliveryadrs" class="form-label">
+          Décochez la case si l'adresse de livraison est différente de l'adresse
+          de facturation.
+        </label>
+      </div>
+      <div>
+        <label for="numStreetBilling" class="form-label">N° :</label>
+        <input
+          id="numStreetBilling"
+          type="text"
+          class="form-control"
+          formControlName="numStreetBilling"
+        />
+      </div>
+      <div>
+        <label for="StreetBilling" class="form-label"
+          >Nom de rue/voie/avenue :</label
+        >
+        <input
+          id="StreetBilling"
+          type="text"
+          class="form-control"
+          formControlName="numStreetBilling"
+        />
+      </div>
+      <div>
+        <label for="zipCodeBilling" class="form-label">Code postal :</label>
+        <input
+          id="zipCodeBilling"
+          type="text"
+          class="form-control"
+          formControlName="zipCodeBilling"
+        />
+      </div>
+      <div>
+        <label for="cityBilling" class="form-label">Ville :</label>
+        <input
+          id="cityBilling"
+          type="text"
+          class="form-control"
+          formControlName="cityBilling"
+        />
+      </div>
+    </section>
+
+    <section *ngIf="AdressIschecked" id="DeliveryAdrs" class="adress">
+      <h1>Adresse de livraison</h1>
+      <div>
+        <label for="numStreetDelivery" class="form-label">N° :</label>
+        <input
+          id="numStreetDelivery"
+          type="text"
+          class="form-control"
+          formControlName="numStreetDelivery"
+        />
+      </div>
+      <div>
+        <label for="StreetDelivery" class="form-label"
+          >Nom de rue/voie/avenue :</label
+        >
+        <input
+          id="StreetDelivery"
+          type="text"
+          class="form-control"
+          formControlName="numStreetDelivery"
+        />
+      </div>
+
+      <div>
+        <label for="zipCodeDelivery" class="form-label">Code postal :</label>
+        <input
+          id="zipCodeDelivery"
+          type="text"
+          class="form-control"
+          formControlName="zipCodeDelivery"
+        />
+      </div>
+      <div>
+        <label for="cityDelivery" class="form-label">Ville :</label>
+        <input
+          id="cityDelivery"
+          type="text"
+          class="form-control"
+          formControlName="cityDelivery"
+        />
+      </div>
+    </section>
+    <button type="submit" class="center btn-primary p-2 m-2">
+      Valider mes informations
+    </button>
+  </form>
+</section> -->

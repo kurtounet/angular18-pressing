@@ -1,0 +1,304 @@
+admin
+	sidebar
+        liste employé
+		page des item non assigne a un employé
+
+        page profile
+		page contact
+manager
+	sidebar
+		liste employé
+		liste
+employe
+	sidebar
+		page des tache
+		page profile
+        page contact
+client
+	sidebar
+		page dépot
+		page des commandes
+		page panier stocker dans le local storage
+		page profile
+		page contact
+
+
+
+
+    app
+    admin
+        cart
+            cart.component.css
+            cart.component.html
+            cart.component.spec.ts
+            cart.component.ts
+        contact
+            contact.component.css
+            contact.component.html
+            contact.component.spec.ts
+            contact.component.ts
+        dashboard
+            dashboard.component.css
+            dashboard.component.html
+            dashboard.component.spec.ts
+            dashboard.component.ts
+        home
+            home.component.css
+            home.component.html
+            home.component.spec.ts
+            home.component.ts
+        orderlist
+            orderlist.component.css
+            orderlist.component.html
+            orderlist.component.spec.ts
+            orderlist.component.ts
+        page-depot
+            page-depot.component.css
+            page-depot.component.html
+            page-depot.component.spec.ts
+            page-depot.component.ts
+        paiement
+            paiement.component.css
+            paiement.component.html
+            paiement.component.spec.ts
+            paiement.component.ts
+        panier
+            panier.component.css
+            panier.component.html
+            panier.component.spec.ts
+            panier.component.ts
+        profile
+            profile.component.css
+            profile.component.html
+            profile.component.spec.ts
+            profile.component.ts
+        quantity-selector
+            quantity-selector.component.css
+            quantity-selector.component.html
+            quantity-selector.component.spec.ts
+            quantity-selector.component.ts
+        settings
+            settings.component.css
+            settings.component.html
+            settings.component.spec.ts
+            settings.component.ts
+        sidebar
+            sidebar.component.css
+            sidebar.component.html
+            sidebar.component.spec.ts
+            sidebar.component.ts
+        tasklist
+            tasklist.component.css
+            tasklist.component.html
+            tasklist.component.spec.ts
+            tasklist.component.ts
+        userlist
+            userlist.component.css
+            userlist.component.html
+            userlist.component.spec.ts
+            userlist.component.ts
+        admin-routing.module.ts
+        admin.module.ts
+    components
+        footer
+            footer.component.css
+            footer.component.html
+            footer.component.spec.ts
+            footer.component.ts
+        header
+            header.component.css
+            header.component.html
+            header.component.spec.ts
+            header.component.ts
+    environments
+        environment.development.ts
+        environment.ts
+    interface
+        all.model.ts
+        article.model.ts
+        category.model.ts
+        client.model.ts
+    models
+        auth-request.spec.ts
+        auth-request.ts
+        auth-response.spec.ts
+        auth-response.ts
+        cart.model.ts
+        category.model..ts
+        client.model.ts
+        commande.model.ts
+        employee.model.ts
+        item.model.ts
+        itemStatus.model.ts
+        service.model.ts
+        user.model.ts
+    public
+        header
+            header.component.css
+            header.component.html
+            header.component.spec.ts
+            header.component.ts
+        landing
+            landing.component.css
+            landing.component.html
+            landing.component.spec.ts
+            landing.component.ts
+        login
+            login.component.css
+            login.component.html
+            login.component.spec.ts
+            login.component.ts
+        pagecontact
+            pagecontact.component.css
+            pagecontact.component.html
+            pagecontact.component.spec.ts
+            pagecontact.component.ts
+        pagepresentation
+            pagepresentation.component.css
+            pagepresentation.component.html
+            pagepresentation.component.spec.ts
+            pagepresentation.component.ts
+        publicmaincontent
+            publicmaincontent.component.css
+            publicmaincontent.component.html
+            publicmaincontent.component.spec.ts
+            publicmaincontent.component.ts
+        public-routing.module.ts
+        public.module.ts
+    security
+        guards
+            admin.guard.spec.ts
+            admin.guard.ts
+        interceptors
+            auth.interceptor.spec.ts
+            auth.interceptor.ts
+        services
+    services
+        auth.service.spec.ts
+        auth.service.ts
+        cart.service.spec.ts
+        cart.service.ts
+        category.service.spec.ts
+        category.service.ts
+        client.service.spec.ts
+        client.service.ts
+        commande.service.spec.ts
+        commande.service.ts
+        employee.service.spec.ts
+        employee.service.ts
+        item-status.service.spec.ts
+        item-status.service.ts
+        item.service.spec.ts
+        item.service.ts
+        service.service.spec.ts
+        service.service.ts
+        user.service.spec.ts
+        user.service.ts
+    app.component.css
+    app.component.html
+    app.component.spec.ts
+    app.component.ts
+    app.config.server.ts
+    app.config.ts
+    app.routes.ts
+assets
+    admin
+        commande.png
+        depot-cart.svg
+        email.svg
+        home.svg
+        left-arrow.svg
+        list-order.svg
+        menuburger_icon.svg
+        profil.svg
+        right-arrow.svg
+        settings.svg
+        shopping-cart-euro.svg
+        shopping-cart.svg
+        trash.svg
+        user.png
+    image
+        articles
+            115-home_default.jpg
+            116-home_default.jpg
+            124-home_default.jpg
+            125-home_default.jpg
+            126-home_default.jpg
+            127-home_default.jpg
+            128-home_default.png
+            129-home_default.png
+            148-home_default.png
+            149-home_default.png
+            150-home_default.png
+            151-home_default.png
+            152-home_default.png
+            153-home_default.png
+            154-home_default.png
+            155-home_default.png
+            156-home_default.png
+            157-home_default.png
+            158-home_default.png
+            159-home_default.png
+            160-home_default.png
+            161-home_default.png
+            162-home_default.png
+            163-home_default.png
+            164-home_default.png
+            165-home_default.png
+            167-home_default.png
+            blazer.png
+            Blouse-Chemisier.jpg
+            Chemise-homme.jpg
+            combinaison.jpg
+            costume.jpg
+            cravate.jpg
+            foulard.jpg
+            jupe.jpg
+            manteau.jpg
+            pantalon.png
+            pull.png
+            robe-coute.png
+            robe-longue.png
+            robe.png
+        site
+            landing-page-pressing.webp
+        add-to-cart.png
+        chandail.png
+        close-x.svg
+        facebook.svg
+        instagram.svg
+        left-arrow.svg
+        logo.png
+        menuburger_icon.svg
+        poubelle.png
+        profile.svg
+        right-arrow.svg
+        settings.svg
+        shopping-cart.svg
+        twitter.svg
+        wash.svg
+    asec.svg
+favicon.ico
+index.html
+main.server.ts
+main.ts
+styles.css
+PS F:\angular-pressing>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

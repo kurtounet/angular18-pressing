@@ -1,0 +1,76 @@
+<aside class="sidebar">
+  <nav>
+    <ul>
+      <h6 *ngIf="roles.includes('ROLE_ADMIN')">Espace Admin</h6>
+      <h6 *ngIf="roles.includes('ROLE_EMPLOYEE')">Espace Employé</h6>
+      <h6 *ngIf="roles.includes('ROLE_CLIENT')">Espace client</h6>
+      <li>
+        <div id="close">
+          <img src="./assets/image/close-x.svg" alt="Fermer" />
+        </div>
+      </li>
+
+      <li>
+        <div (click)="logout()">Déconnexion</div>
+      </li>
+      <li>
+        <a routerLink="/admin/dashboard/home">
+          <img src="./assets/admin/home.svg" alt="Accueil" />
+          <p>Accueil</p>
+        </a>
+      </li>
+      <!-- admin -->
+      <li *ngIf="roles.includes('ROLE_ADMIN')">
+        <a routerLink="/admin/dashboard/orderlist"><img src="./assets/admin/commande.png" alt="Les Commandes" />
+          <p>Les Commandes</p>
+        </a>
+      </li>
+      <li *ngIf="roles.includes('ROLE_ADMIN')">
+        <a routerLink="/admin/dashboard/tasklist"><img src="./assets/admin/shopping-cart.svg" alt="Faire un dépot" />
+          <p>Les tâches</p>
+        </a>
+      </li>
+      <li *ngIf="roles.includes('ROLE_ADMIN')">
+        <a routerLink="/admin/dashboard/userlist"><img src="./assets/admin/user.png" alt="Faire un dépot" />
+          <p>Utilisateurs</p>
+        </a>
+      </li>
+      <!-- Employé -->
+      <li *ngIf="roles.includes('ROLE_EMPLOYEE')">
+        <a routerLink="/admin/dashboard/tasklist"><img src="./assets/admin/commande.png" alt="Liste des tâches" />
+          <p>Mes tâches</p>
+        </a>
+      </li>
+      <!-- Client -->
+      <li *ngIf="roles.includes('ROLE_CLIENT')">
+        <a routerLink="/admin/dashboard/depot"><img src="./assets/admin/shopping-cart.svg" alt="Faire un dépot" />
+          <p>Faire un dépot</p>
+        </a>
+      </li>
+      <li *ngIf="roles.includes('ROLE_CLIENT')">
+        <a routerLink="/admin/dashboard/orderlist"><img src="./assets/admin/list-order.svg" alt="Mes commandes" />
+          <p>Mes commandes</p>
+        </a>
+      </li>
+      <li *ngIf="roles.includes('ROLE_CLIENT')">
+        <a routerLink=" /admin/dashboard/shopping-cart"><img src="./assets/admin/shopping-cart-euro.svg"
+            alt="Mon panier" />
+          <p>Mon panier</p>
+        </a>
+      </li>
+      <!-- Commun -->
+      <li>
+        <a routerLink="/admin/dashboard/profil" class="link"><img src="./assets/admin/profil.svg"
+            alt="Mes Informations" />
+          <p>Mes Informations</p>
+        </a>
+      </li>
+      <li>
+        <a routerLink="contact" class="link">
+          <img src="./assets/admin/email.svg" alt="Nous Contactez" />
+          <p>Nous Contactez</p>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</aside>

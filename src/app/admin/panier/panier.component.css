@@ -1,0 +1,134 @@
+/* Styles pour le conteneur d'article dans la boucle */
+.body-panier {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  align-content: center;
+
+}
+
+.panier {
+  /* border: 2px solid #2e78cc; */
+  width: 50vw;
+}
+
+.bar-commande-article {
+  display: flex;
+  /* Utilisation de flexbox pour une mise en page horizontale */
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  /* Espace entre les éléments enfants */
+  align-items: start
+  /* Alignement des éléments enfants en haut */
+  border: 1px solid ghostwhite;
+  padding: 10px;
+  margin: 10px;
+
+}
+
+/* Styles pour les détails de l'article */
+.div-article,
+.div-Prestation,
+.div-addPrestation,
+.quantite-article,
+.div-addpanier {
+  flex: 1;
+  /* Chaque élément prend une largeur égale dans le conteneur */
+  margin-left: 15px;
+  /* Marge à droite pour l'espacement */
+}
+
+.inputText {  
+  /* Chaque élément prend une largeur égale dans le conteneur */
+  width: 1vw;
+  text-align: center;
+  font-size: medium;
+}
+
+.btn-quantity-moins,
+.btn-quantity-plus {
+  background-color: #2e78cc;
+  color: beige;
+  width: 3vw;
+  height: 100%;
+}
+
+/* Styles pour la quantité et les boutons */
+.div-quantite {
+  display: flex;
+  /* Utilisation de flexbox pour aligner les éléments en ligne */
+  /* Alignement vertical au centre */
+  width: 4vw;
+  height: 4%;
+
+}
+
+/* styles des préstations commander */
+.liste-commande-article:hover {
+  /*background-color: ghostwhite;*/
+  border-radius: 10px;
+  border: 1px solid #c0392b;
+
+}
+
+.liste-commande-article {
+  /*display: block;*/
+  margin: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  /* Ajoute une ombre à la boîte */
+  padding: 15px;
+  /* Ajoute un espace intérieur pour la lisibilité */
+  width: 40vw;
+}
+
+.Article-commander {
+  align-content: center;
+  margin-bottom: 10px;
+  /* Ecart entre les article */
+}
+
+.commande-articles {
+  font-size: 16px;
+}
+
+.liste-Prestation {
+  margin-top: 5px;
+}
+
+.liste-Prestation-commander {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #2e78cc;
+  /* Bordure verte */
+  padding: 5px;
+}
+
+.Prestation-commander {
+  flex: 2;
+}
+
+.prix-Prestation {
+  flex: 1;
+}
+
+.sup-Prestation {
+  flex: 1;
+  text-align: end;
+
+}
+
+/* Style facultatif pour les boutons de suppression */
+.sup-Prestation img {
+  cursor: pointer;
+
+}
+
+.sup-Prestation img:hover {
+  background-color: #c0392b;
+  border-radius: 50%;
+  color: #e74c3c;
+  /* Rouge */
+}

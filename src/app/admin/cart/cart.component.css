@@ -1,0 +1,12 @@
+.trash {
+    object-fit: contain;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.cartProduct {
+    object-fit: contain;
+    width: 50px;
+    height: 50px;
+}

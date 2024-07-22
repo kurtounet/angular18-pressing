@@ -1,0 +1,45 @@
+/*
+form {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: 500px;
+}
+
+form div {
+    display: flex;
+    flex-direction: column;
+}
+
+form div input,
+label,
+textarea,
+select {
+    font-size: 16px;
+    margin-bottom: 10px;
+    height: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+form div label {
+    padding: 2px;
+    border: 0;
+}
+
+form div textarea {
+    height: 150px;
+}
+
+form div select {
+    height: 30px;
+}
+
+form button {
+    background-color: #007bff;
+    color: #fff;
+    margin-top: 10px;
+    font-size: 16px;
+    height: 50px;
+}*/
