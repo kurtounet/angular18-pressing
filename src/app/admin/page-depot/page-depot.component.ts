@@ -12,7 +12,7 @@ import { CategoryService } from '../../services/category.service';
 import { Category, CategoryCollection } from '../../models/category.model.';
 import { AuthService } from '../../services/auth.service';
 import { QuantitySelectorComponent } from '../quantity-selector/quantity-selector.component';
-import { CartItem, CartService } from '../../services/cart.service';
+import { CartService } from '../../services/cart.service';
 
 
 interface Card {
@@ -23,10 +23,7 @@ interface Card {
   standalone: true,
   imports: [
     NgForOf,
-    CommonModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatInputModule,
+    CommonModule,    
     FormsModule,
     QuantitySelectorComponent],
   selector: 'app-page-depot',
@@ -80,11 +77,11 @@ export class PageDepotComponent implements OnInit {
     //this.cart.addToCart(category);
   }
   addCart(category: any) {
-    this.cart.addToCart(category);
+   // this.cart.addToCart(category);
     console.log(this.cart);
   }
   removeCart(category: any) {
-    this.cart.removeFromCart(category);
+   // this.cart.removeFromCart(category);
     console.log(this.cart);
   }
 }

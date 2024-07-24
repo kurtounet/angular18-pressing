@@ -1,28 +1,53 @@
 <div class="container mt-3">
-    <h2>Votre Panier</h2>
-    <div *ngIf="items.length === 0">
-        <p>Votre panier est vide.</p>
-    </div>
-    <div class="card mb-3" *ngFor="let item of items">
-        <div class="card-body row d-flex justify-content-between">
-            <div class="col-auto"><img src="https://via.placeholder.com/50" alt="{{ item.name }}"
-                    class="img-fluid cartProduct"></div>
-            <div class="col-auto">
-                <div class="col">
-                    <h5 class="card-title">{{ item.name }}</h5>
-                    <p class="card-text">{{ item.description }}</p>
-                </div>
-                <div class="d-flex-column">
-                    <button class="btn btn-secondary" (click)="changeQuantity(item, -1)">-</button>
-                    <span class="px-2">{{ item.quantity }}</span>
-                    <button class="btn btn-secondary" (click)="changeQuantity(item, 1)">+</button>
-                    <span class="badge bg-primary rounded-pill">{{ item.price }} €</span>
-                </div>
-            </div>
-            <div>
-                <img src="assets/admin/trash.svg" alt="{{ item.name }}" class="img-fluid trash"
-                    (click)="removeFromCart(item)">
-            </div>
-
+  <h2>Votre Panier</h2>
+  <div *ngIf="cart.length === 0">
+    <p>Votre panier est vide.</p>
+  </div>
+  <div *ngIf="cart.length > 0">
+    <div class="card mb-3" *ngFor="let item of cart">
+      <div class="card-body row d-flex justify-content-between">
+        <div class="col-auto">
+          <img
+            src="https://via.placeholder.com/50"
+            alt="{{ item }}"
+            class="img-fluid cartProduct"
+          />
         </div>
+        <div class="col-auto">
+          <div class="col">
+            <h5 class="card-title">vêtement : {{ item }}</h5>
+            <p class="card-text">service :{{ item }}</p>
+          </div>
+          <div class="d-flex-column">
+            <app-quantity-selector
+              [inQuantity]="item.quantity"
+              (quantityChange)="returnQuantity($event)"
+            ></app-quantity-selector>
+            <!-- <button
+              class="btn btn-secondary"
+              (click)="changeQuantity(item, -1)"
+            >
+              -
+            </button>
+            <span class="px-2">{{ item.quantity }}</span>
+            <button class="btn btn-secondary" (click)="changeQuantity(item, 1)">
+              +
+            </button>
+            <span class="badge bg-primary rounded-pill"
+              >{{ item.price }} €</span
+            >
+          </div> -->
+          </div>
+          <div>
+            <img
+              src="assets/admin/trash.svg"
+              alt="{{ item }}"
+              class="img-fluid trash"
+              (click)="removeFromCart(item)"
+            />
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+</div>

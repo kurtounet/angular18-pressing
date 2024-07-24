@@ -1,5 +1,5 @@
-import { Component, inject, Input } from '@angular/core';
-import { CartService, CartItem } from '../../services/cart.service';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { CartService} from '../../services/cart.service';
 import { MatButtonModule, } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 @Component({
@@ -11,28 +11,30 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 })
 export class QuantitySelectorComponent {
 
-  // @Input() item!: CartItem;
-  item = { name: 'Product Name', quantity: '1' };
+   @Input() inQuantity: number = 0;
+   @Output() changeQuantity  = new EventEmitter(); 
+  //@Output() numberChange: EventEmitter<number> = new EventEmitter();
+  changeQuantity(quantity: number) {
+    this.changeQuantity.emit(quantity);
+  }
+  
+
+ 
   constructor(private cartService: CartService) { }
-  decreaseQuantity() {
-    const quantity = parseInt(this.item.quantity, 10);
+  decreaseQuantity(quantity: number) {
+    //const quantity = parseInt(this.item.quantity, 10);
     if (quantity > 1) {
-      this.item.quantity = (quantity - 1).toString();
-    }
+       quantity--;
+    }else{
+      quantity = 1;
+    }   
+    this.changeQuantity(quantity);
   }
-  increaseQuantity() {
-    const quantity = parseInt(this.item.quantity, 10);
-    this.item.quantity = (quantity + 1).toString();
+  increaseQuantity(quantity: number) {
+    quantity++;
+    //const quantity = parseInt(this.item.quantity, 10);
+    //this.item.quantity = (quantity + 1).toString();
+    this.changeQuantity(quantity);
   }
-  updateQuantity(event: Event) {
-    const inputElement = event.target as HTMLInputElement;
-    let value = inputElement.value;
-
-    if (!value || isNaN(parseInt(value, 10)) || parseInt(value, 10) < 1) {
-      value = '1';
-    }
-
-    this.item.quantity = value;
-    inputElement.value = this.item.quantity;
-  }
+  
 }

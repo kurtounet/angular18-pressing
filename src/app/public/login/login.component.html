@@ -29,8 +29,8 @@
 
     <p class="mt-5 mb-3 text-muted text-center">&copy; 2024</p>
   </form>
-
-    <div class="container">
+-->
+<div class="container">
   <h2>Se connecter</h2>
   <form
     (ngSubmit)="login()"
@@ -69,7 +69,13 @@
       {{ error }}
     </div>
 
-    <button id="btn-connect" [disabled]="!loginform.valid" class="btn btn-success" type="submit">Soummetre</button>
-
+    <button
+      id="btn-connect"
+      [disabled]="!loginform.valid"
+      class="btn btn-success"
+      type="submit"
+    >
+      Soummetre
+    </button>
   </form>
-</div> -->
+</div>
