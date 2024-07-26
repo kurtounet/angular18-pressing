@@ -35,7 +35,7 @@ export class DashboardComponent {
   ngOnInit(): void {
     this.authService.getAuthCurrentUser().subscribe(data => {
       this.roles = data.roles;
-      console.log(this.roles);
+     
     });
   }
 

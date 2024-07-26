@@ -1,5 +1,5 @@
 export interface itemCart {
-  itemCartId: number;  
+  id: number;  
   categoryId: number;
   serviceId: number;
   quantity: number; 

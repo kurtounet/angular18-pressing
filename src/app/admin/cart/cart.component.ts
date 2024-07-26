@@ -22,11 +22,22 @@ export class CartComponent implements OnInit {
   //   { name: 'Produit 2', description: 'Description du produit 2', price: 20, quantity: 2 }
   // ];
 
-  removeFromCart(item: any) {
-   // this.items = this.items.filter(i => i !== item);
+   removeItemCart(id: number) {
+    this.cartService.removeItem(id);
+    console.log(this.cartService.cart);
   }
-
-  changeQuantity(item: any, change: number) {
+ clearCart(category: any) {
+   this.cartService.clearCart();
+   
+  }
+  changeQuantity(event: any) {
+    let qty = event.target.value;
+    // const { item, quantity, change } = event;
+    // const index = this.cart.findIndex(i => i === item);
+    // if (index !== -1) {
+      
+    // }
+    console.log(qty)
     /*
     const index = this.items.findIndex(i => i === item);
     if (index !== -1) {
@@ -41,7 +52,6 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
      this.cart = this.cartService.getCart();
-     console.log(this.cart);
-
+     //console.log(this.cart);
    }
 }

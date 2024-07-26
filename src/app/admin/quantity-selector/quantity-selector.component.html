@@ -1,10 +1,5 @@
 <div class="quantity-control">
-  <button mat-raised-button color="primary" (click)="decreaseQuantity()" aria-label="Decrease quantity">-</button>
-
-  <mat-form-field appearance="outline">
-    <input matInput type="text" [value]="item.quantity" (input)="updateQuantity($event)"
-      [attr.aria-label]="'Quantité de ' + item.name">
-  </mat-form-field>
-
-  <button mat-raised-button color="primary" (click)="increaseQuantity()" aria-label="Increase quantity">+</button>
+  <button (click)="decrementQuantity()">-</button>
+  <input type="number" name="quantity" [(ngModel)]="inQuantity">
+  <button (click)="incrementQuantity()">+</button>
 </div>

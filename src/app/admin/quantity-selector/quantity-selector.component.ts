@@ -1,40 +1,42 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { CartService} from '../../services/cart.service';
-import { MatButtonModule, } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
+
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-quantity-selector',
   standalone: true,
-  imports: [MatButtonModule, MatFormFieldModule],
+  imports: [FormsModule],
   templateUrl: './quantity-selector.component.html',
   styleUrl: './quantity-selector.component.css'
 })
 export class QuantitySelectorComponent {
 
-   @Input() inQuantity: number = 0;
-   @Output() changeQuantity  = new EventEmitter(); 
-  //@Output() numberChange: EventEmitter<number> = new EventEmitter();
-  changeQuantity(quantity: number) {
-    this.changeQuantity.emit(quantity);
-  }
-  
+  private cartService = inject(CartService);
 
- 
-  constructor(private cartService: CartService) { }
-  decreaseQuantity(quantity: number) {
-    //const quantity = parseInt(this.item.quantity, 10);
-    if (quantity > 1) {
-       quantity--;
-    }else{
-      quantity = 1;
-    }   
-    this.changeQuantity(quantity);
+   @Input() inQuantity!: number;
+   @Output() quantity  = new EventEmitter(); 
+ // @Output() numberChange: EventEmitter<number> = new EventEmitter();
+  
+  
+  ngOnInit():void{
+    this.inQuantity = this.inQuantity; 
   }
-  increaseQuantity(quantity: number) {
-    quantity++;
-    //const quantity = parseInt(this.item.quantity, 10);
-    //this.item.quantity = (quantity + 1).toString();
-    this.changeQuantity(quantity);
+  changeQuantity(qty: number) {
+    this.changeQuantity
+    this.quantity.emit(qty);
   }
   
+  decrementQuantity() {   
+    if (this.inQuantity > 1) {
+       this.inQuantity--;
+    }else{
+      this.inQuantity = 1;
+    }   
+    this.changeQuantity(this.inQuantity);
+  }
+  incrementQuantity() {    
+    this.inQuantity++;       
+    this.changeQuantity(this.inQuantity);
+  }
+ 
 }
