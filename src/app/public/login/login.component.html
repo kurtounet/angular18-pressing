@@ -29,38 +29,21 @@
 
     <p class="mt-5 mb-3 text-muted text-center">&copy; 2024</p>
   </form>
-
-    <div class="container">
+-->
+<div class="container">
   <h2>Se connecter</h2>
-  <form
-    (ngSubmit)="login()"
-    #loginform="ngForm"
-    action=""
-    class="d-flex flex-column container"
-  >
+  <form (ngSubmit)="login()" #loginform="ngForm" action="" class="d-flex flex-column container">
     <mat-form-field>
       <mat-label>Email</mat-label>
-      <input
-        #username="ngModel"
-        name="username"
-        matInput
-        placeholder="Email"
-        [(ngModel)]="authRequest.username"
-        required
-      />
+      <input #username="ngModel" name="username" matInput placeholder="Email" [(ngModel)]="authRequest.username"
+        required />
       <mat-error *ngIf="!username.valid">Veuiller entrer un userName</mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Password</mat-label>
-      <input
-        #password="ngModel"
-        name="password"
-        matInput
-        placeholder="Password"
-        [(ngModel)]="authRequest.password"
-        required
-      />
+      <input #password="ngModel" name="password" matInput placeholder="Password" [(ngModel)]="authRequest.password"
+        required />
       <mat-error *ngIf="!password.valid">Veuiller entrer un email</mat-error>
     </mat-form-field>
 
@@ -72,4 +55,4 @@
     <button id="btn-connect" [disabled]="!loginform.valid" class="btn btn-success" type="submit">Soummetre</button>
 
   </form>
-</div> -->
+</div>
