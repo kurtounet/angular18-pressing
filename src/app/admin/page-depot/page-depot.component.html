@@ -1,31 +1,33 @@
-<section id="cathegorie">
-  <h4>Choisissez un service</h4>
-  <select [(ngModel)]="selectedServicesId" (change)="selectedService($event)">
-    <option value="Tout les services" selected>Tout les services</option>
-    <!-- @for (item of listCathegorise; track item.id) { -->
-    <option *ngFor="let service of arrayServices" [value]="service.id">
-      {{ service.name }}
-    </option>
-    <!-- } -->
-  </select>
-</section>
+<section class="container">
+  <section id="cathegorie">
+    <h4>Choisissez un service</h4>
+    <select [(ngModel)]="selectedServicesId" (change)="selectedService($event)">
+      <option value="Tout les services" selected>Tout les services</option>
+      <!-- @for (item of listCathegorise; track item.id) { -->
+      <option *ngFor="let service of arrayServices" [value]="service.id">
+        {{ service.name }}
+      </option>
+      <!-- } -->
+    </select>
+  </section>
+  <section class="d-flex justify-content-between align-items-center">
+    <div class="col-md-6" id="container-article-depot">
+      <h4>Choisissez vos articles pour ce service</h4>
+      <div class="d-flex justify-content-between align-items-center">
+        <div *ngFor="let cathegory of arrayCategorySelectedService" class="card-cathegory">
+          <h5>{{ cathegory.name }}</h5>
+          <h5>{{ cathegory.id }}</h5>
 
-<section id="container-article-depot">
-  <h4>Choisissez vos articles pour ce service</h4>
-  <div class="d-flex justify-content-between align-items-center">
-    <div
-      *ngFor="let cathegory of arrayCategorySelectedService"
-      class="card-cathegory"
-      (click)="selectedCathegorie(cathegory)"
-    >
-      <h5>{{ cathegory.name }}</h5>
-      <img
-        src="../../../assets/image/articles/Chemise-homme.jpg"
-        alt="{{ cathegory.name }}"
-      />
-      <!-- <app-quantity-selector></app-quantity-selector> -->
+          <img src="../../../assets/image/articles/Chemise-homme.jpg" alt="{{ cathegory.name }}" />
+          <app-quantity-selector [inQuantity]="quantity" (outQuantity)="getQuantity($event)"></app-quantity-selector>
+          <button (click)="addToCart(cathegory.id)">Ajouter au panier</button>
+        </div>
+      </div>
     </div>
-  </div>
+    <div class="col-md-6">
+      <app-cart></app-cart>
+    </div>
+  </section>
 </section>
 <!--Article
     <section id="cathegorie">

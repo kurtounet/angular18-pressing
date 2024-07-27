@@ -1,23 +1,23 @@
 export interface Item {
   id: number;
-  service: string;
-  commande: string;
-  itemStatus: string;
-  detailItem: string;
+  service: string  | null;
+  commande: string  | null;
+  itemStatus: string | null;
+  detailItem: string | null;
   price: number;
   quantity: number;
-  employee: string;
+  employee: string | null;
 }
-export class Item {
-  id: number = 0;
-  service: string = '';
-  commande: string = '';
-  itemStatus: string = '';
-  detailItem: string = '';
-  price: number = 0;
-  quantity: number = 0;
-  employee: string = '';
-}
+// export class Item {
+//   id: number = 0;
+//   service: string = '';
+//   commande: string = '';
+//   itemStatus: string = '';
+//   detailItem: string = '';
+//   price: number = 0;
+//   quantity: number = 0;
+//   employee: string = '';
+// }
 
 /*
 "id": 1,
