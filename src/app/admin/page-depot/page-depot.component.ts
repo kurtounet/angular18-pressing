@@ -1,14 +1,10 @@
-import { Component,OnInit } from '@angular/core';
-
- 
+import { Component,OnInit } from '@angular/core'; 
 import { ServiceService } from '../../services/service.service';
 import { Service} from '../../models/service.model';
 import { CommonModule, NgForOf } from '@angular/common';
-import { FormsModule } from '@angular/forms';
- 
+import { FormsModule } from '@angular/forms'; 
 import { CategoryService } from '../../services/category.service';
-import { Category, CategoryCollection } from '../../models/category.model.';
- 
+import { Category, CategoryCollection } from '../../models/category.model.'; 
 import { QuantitySelectorComponent } from '../quantity-selector/quantity-selector.component';
 import { CartService } from '../../services/cart.service';
 import { CartComponent } from '../cart/cart.component';
