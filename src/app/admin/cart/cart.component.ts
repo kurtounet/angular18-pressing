@@ -15,8 +15,8 @@ import { QuantitySelectorComponent } from '../quantity-selector/quantity-selecto
 export class CartComponent implements OnInit {
   cartService = inject(CartService);
   cart: itemCart[] = [];
- 
-  
+
+
   // items = [
   //   { name: 'Produit 1', description: 'Description du produit 1', price: 10, quantity: 1 },
   //   { name: 'Produit 2', description: 'Description du produit 2', price: 20, quantity: 2 }
@@ -26,16 +26,16 @@ export class CartComponent implements OnInit {
     this.cartService.removeItem(id);
     console.log(this.cartService.cart);
   }
- clearCart(category: any) {
+  clearCart(category: any) {
    this.cartService.clearCart();
-   
+
   }
   changeQuantity(event: any) {
     let qty = event.target.value;
     // const { item, quantity, change } = event;
     // const index = this.cart.findIndex(i => i === item);
     // if (index !== -1) {
-      
+
     // }
     console.log(qty)
     /*

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
-import { CartService} from '../../services/cart.service';
+import { CartService } from '../../services/cart.service';
 
 import { FormsModule } from '@angular/forms';
 @Component({
@@ -11,32 +11,59 @@ import { FormsModule } from '@angular/forms';
 })
 export class QuantitySelectorComponent {
 
-  private cartService = inject(CartService);
+  // private cartService = inject(CartService);
 
-   @Input() inQuantity!: number;
-   @Output() quantity  = new EventEmitter(); 
- // @Output() numberChange: EventEmitter<number> = new EventEmitter();
-  
-  
-  ngOnInit():void{
-    this.inQuantity = this.inQuantity; 
+  // @Input() inQuantity!: number;
+  // @Output() outQuantity = new EventEmitter();
+  // // @Output() numberChange: EventEmitter<number> = new EventEmitter();
+
+  // quantity!: number;
+
+  // ngOnInit(): void {
+  //   this.quantity = this.inQuantity;
+  // }
+
+  // changeQuantity(event: any) {
+  //   this.quantity = parseInt(event.target.value, 10);
+  //   this.outQuantity.emit(this.quantity);
+  // }
+
+  // decrementQuantity() {
+  //   if (this.quantity > 0) {
+  //     this.quantity--;
+  //     this.outQuantity.emit(this.quantity);
+  //   }
+  //   // this.changeQuantity(this.inQuantity);
+  // }
+  // incrementQuantity() {
+  //   this.quantity++;
+  //   this.outQuantity.emit(this.quantity);
+  // }
+
+  @Input() inQuantity: number = 1;
+  @Output() outQuantity = new EventEmitter<number>();
+
+  quantity: number = 1;
+
+  ngOnInit() {
+    this.quantity = this.inQuantity;
   }
-  changeQuantity(qty: number) {
-    this.changeQuantity
-    this.quantity.emit(qty);
+
+  decrease() {
+    if (this.quantity > 0) {
+      this.quantity--;
+      this.outQuantity.emit(this.quantity);
+    }
   }
-  
-  decrementQuantity() {   
-    if (this.inQuantity > 1) {
-       this.inQuantity--;
-    }else{
-      this.inQuantity = 1;
-    }   
-    this.changeQuantity(this.inQuantity);
+
+  increase() {
+    this.quantity++;
+    this.outQuantity.emit(this.quantity);
   }
-  incrementQuantity() {    
-    this.inQuantity++;       
-    this.changeQuantity(this.inQuantity);
+
+  onInputChange(value: any) {
+    this.quantity = parseInt(value, 10);
+    this.outQuantity.emit(this.quantity);
   }
- 
+
 }

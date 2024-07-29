@@ -1,103 +1,86 @@
-import { Component,OnInit } from '@angular/core'; 
+import { Component, OnInit } from '@angular/core';
 import { ServiceService } from '../../services/service.service';
-import { Service} from '../../models/service.model';
+import { Service } from '../../models/service.model';
 import { CommonModule, NgForOf } from '@angular/common';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
 import { CategoryService } from '../../services/category.service';
-import { Category, CategoryCollection } from '../../models/category.model.'; 
+
 import { QuantitySelectorComponent } from '../quantity-selector/quantity-selector.component';
 import { CartService } from '../../services/cart.service';
 import { CartComponent } from '../cart/cart.component';
 import { itemCart } from '../../models/itemCart.model';
+import { Category } from '../../models/category.model.';
 
-
-interface Card {
-  id: number;
-  title: string;
-}
 @Component({
   standalone: true,
   imports: [
     NgForOf,
-    CommonModule,    
+    CommonModule,
     FormsModule,
     QuantitySelectorComponent,
     CartComponent,
-],
+  ],
   selector: 'app-page-depot',
   templateUrl: './page-depot.component.html',
-  styleUrl: './page-depot.component.css'
+  styleUrls: ['./page-depot.component.css']
 })
 export class PageDepotComponent implements OnInit {
   constructor(
-    private dataService: ServiceService,
-    private categotyService: CategoryService,
+    private serviceService: ServiceService,
+    private categoryService: CategoryService,
     private serviceCart: CartService
-
   ) { }
-  itemCartInitial: itemCart = { id: 0, categoryId: 0, serviceId: 0, quantity: 0, price: 0 };
-  //itemCartCurrent: itemCart = itemCartInitial;
-  quantity: number = 1;
-   
-  arrayServices: Service[] = [];
-  oneService: Service | null = null;
-  categorySelectedService: Category[] = [];
-  categories: CategoryCollection | null = null;
 
+  quantity: number = 2;
+
+  arrayServices: Service[] = [];
   arrayCategorySelectedService: Category[] = [];
   selectedServicesId: number = 0;
   selectedCategoryId: number = 0;
+
   ngOnInit(): void {
     this.getAllServices();
   }
+
   getAllServices() {
-    this.dataService.getAllServices().subscribe(data => {
+    this.serviceService.getAllServices().subscribe(data => {
       this.arrayServices = data;
     });
   }
 
-  getServiceById(id: string) {
-    this.dataService.getServiceById(id).subscribe(data => {
-      // this.oneService = data;
+  getCategoriesServiceById(id: number) {
+    this.serviceService.getServiceById(id.toString()).subscribe(data => {
       this.arrayCategorySelectedService = data['Category'];
-      console.log(this.arrayCategorySelectedService);
     });
   }
 
-  // loadCategories() {
-  //   this.categotyService.getAllCategories().subscribe(data => {
-  //     this.categories = data;
-  //     // console.log(this.categories);
-  //   });
-  // }
   selectedService(event: any) {
-    this.getServiceById(event.target.value);
-    this.selectedServicesId = event.target.value ;  
-    console.log('Service selected: ' , this.selectedServicesId);
+    this.selectedServicesId = event.target.value;
+    this.getCategoriesServiceById(this.selectedServicesId);
   }
-  selectedCathegorie(event: any) {   
-    this.selectedCategoryId = event.target.value;
-    console.log('Cathegorie selected',this.selectedCategoryId);  
-     
-  }
-  addToCart(categoryid: number) {
-      this.serviceCart.addItem(      
-      categoryid,
-      this.selectedServicesId,       
+
+  addToCart(categoryId: number) {
+    this.serviceCart.addItem(
+      categoryId,
+      this.selectedServicesId,
       this.quantity,
-      0
-    );    
+      10
+    );
   }
- 
-  getQuantity(event: any) {
-    this.quantity = event.target.value;
-    console.log(this.quantity) ;        /*
-    const index = this.items.findIndex(i => i === item);
-    if (index !== -1) {
-      this.items[index].quantity += change;
-      if (this.items[index].quantity < 1) {
-        this.items[index].quantity = 1; // pour éviter les quantités négatives
-      }
-    }*/
+
+  updateQuantity(categoryId: number, newQuantity: number) {
+    this.quantity = newQuantity;
+    // console.log('updateQuantity', categoryId, 'newQuantity:', newQuantity);
+
+    // const category = this.arrayCategorySelectedService.find(cat => cat.id === categoryId);
+    // if (category) {
+    //   category.quantity = newQuantity;
+    // }
+  }
+
+  getQuantity(newQty: number) {
+
+    this.quantity = newQty;
+    console.log(this.quantity);
   }
 }

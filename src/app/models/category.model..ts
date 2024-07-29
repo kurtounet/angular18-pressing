@@ -4,6 +4,7 @@ export interface Category {
   parent: string,
   subcategories: [];
   image: string;
+  quantity: number;
 }
 
 export interface CategoryCollection {
@@ -11,7 +12,7 @@ export interface CategoryCollection {
   /*'@context': string;
   '@id': string;
   '@type': string;
-  'hydra:totalCategory': number; 
+  'hydra:totalCategory': number;
   'hydra:member': Category[];
    'hydra:view': {
     '@id': string;
