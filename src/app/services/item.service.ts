@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment'; 
@@ -10,7 +10,7 @@ import { Item, ItemCollection } from '../models/item.model';
 export class ItemService {
   private routeApi = `${environment.baseApiUrl}Items/`;
 
-  constructor(private httpClient: HttpClient) { }
+ httpClient = inject(HttpClient);
 
   getAllItems(): Observable<Item[]> {
     return this.httpClient.get<Item[]>(this.routeApi);

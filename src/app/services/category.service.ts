@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment'; // Corriger le nom du chemin si nécessaire
@@ -12,7 +12,8 @@ import { Category, CategoryCollection } from '../models/category.model.';
 export class CategoryService {
 
   private routeApi = `${environment.baseApiUrl}/categories`;
-  constructor(private httpClient: HttpClient) { }
+  
+  httpClient = inject(HttpClient);
   // Obtenir tous les Categorys
   getAllCategories(): Observable<CategoryCollection> {
     return this.httpClient.get<CategoryCollection>(this.routeApi);

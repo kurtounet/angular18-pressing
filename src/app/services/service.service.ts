@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { environment } from '../environments/environment'; // Corriger le nom du chemin si nécessaire
@@ -12,7 +12,7 @@ import { catchError, Observable, retry, throwError } from "rxjs";
 export class ServiceService {
 
   private routeApi = `${environment.baseApiUrl}/services`;
-  constructor(private httpClient: HttpClient) { }
+httpClient = inject(HttpClient);
 
   // Obtenir tous les services
   getAllServices(): Observable<any> {

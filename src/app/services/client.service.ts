@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment'; // Corriger le nom du chemin si nécessaire
@@ -14,8 +14,7 @@ export class ClientService {
 
   private routeApi = `${environment.baseApiUrl}/clients`; // Utiliser un slash à la fin pour les chemins
 
-  constructor(private httpClient: HttpClient) { } // Injection correcte du HttpClient
-
+ httpClient = inject(HttpClient);
   // Obtenir tous les Clients
   getAllClients(): Observable<ClientCollection> {
     return this.httpClient.get<ClientCollection>(this.routeApi);

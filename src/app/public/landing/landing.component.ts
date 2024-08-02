@@ -1,6 +1,6 @@
-import { Component, OnInit, Pipe } from '@angular/core';
+import { Component, OnDestroy, OnInit, Pipe } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { ServiceService } from '../../services/service.service';
 import { Service, ServiceCollection } from '../../models/service.model';
 
@@ -15,19 +15,21 @@ import { Service, ServiceCollection } from '../../models/service.model';
 
   ],
 })
-export class LandingComponent implements OnInit {
+export class LandingComponent implements OnInit, OnDestroy {
   servicesList: Service[] | null = null;
   oneService: Service | null = null;
   constructor(private ServiceService: ServiceService) { }
   listCategories: any[] = [];
-
+  flowdata: Subscription | null = null;
   ngOnInit() {
-    this.loadService();
+    this.getAllServices(); //this.loadService();
   }
-  loadService() {
-    this.ServiceService.getAllServices().subscribe(data => {
-      this.servicesList = data;
-     // console.log(this.servicesList);
+  ngOnDestroy() {
+    this.flowdata?.unsubscribe();
+  }
+  getAllServices() {
+    this.flowdata = this.ServiceService.getAllServices().subscribe(data => {
+      this.servicesList = data.slice(0,4);     
     });
   }
 

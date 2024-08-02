@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, Observable, retry, throwError } from 'rxjs';
 import { AuthRequest } from '../models/auth-request';
@@ -11,12 +11,10 @@ import { User } from '../models/user.model';
 })
 export class AuthService {
 
-  constructor(
-    private httpClient: HttpClient,
-    private router: Router,
-  ) {
+  httpClient = inject(HttpClient);
+  router = inject(Router); 
 
-  }
+ 
   public roles: Array<string> = [];
   urlApiAuth: string = environment.baseApiUrl + "/login_check";
 

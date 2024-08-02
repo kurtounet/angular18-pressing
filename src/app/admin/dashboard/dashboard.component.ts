@@ -1,12 +1,8 @@
-import { Component } from '@angular/core';
-import { HeaderComponent } from '../../public/header/header.component';
+import { Component, inject } from '@angular/core'; 
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { RouterModule } from '@angular/router';
-import { SidebarComponent } from '../sidebar/sidebar.component';
-import { UserService } from '../../services/user.service';
-import { IUser, User } from '../../models/user.model';
-
-import { ServiceService } from '../../services/service.service';
+import { SidebarComponent } from '../sidebar/sidebar.component'; 
+import { IUser, User } from '../../models/user.model'; 
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 @Component({
@@ -23,9 +19,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent {
-  constructor(
-    private authService: AuthService,
-    private userService: UserService) { }
+  authService = inject(AuthService);
 
   roles: Array<string> = [];
   user: User | null = null;

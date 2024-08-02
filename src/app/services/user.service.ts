@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment'; // Corriger le nom du chemin si nécessaire
@@ -10,7 +10,7 @@ import { IUser, User} from '../models/user.model';
 export class UserService {
   private routeApi = `${environment.baseApiUrl}/users`;
 
-  constructor(private httpClient: HttpClient) { }
+ httpClient = inject(HttpClient);
 
   getAllUsers(): Observable<any> {
     return this.httpClient.get<any>(this.routeApi);

@@ -1,1 +1,44 @@
-<p>pagecontact works!</p>
+<div class="row m-4">
+  <h1 class="mb-4">Contact</h1>
+
+  <form id="contact-form" (ngSubmit)="onSubmit()" [formGroup]="contactForm" class="needs-validation">
+    <div class="form-group mb-3">
+      <label for="subject" class="form-label">Sélectionnez un Sujet :</label>
+      <select name="prestation" id="subject" class="form-select" formControlName="subject"
+        (change)="activeOtherSubject($event)">
+        <option value="prestation1">Prestation 1</option>
+        <option value="prestation2">Prestation 2</option>
+        <option value="prestation3">Prestation 3</option>
+        <option value="prestation4">Prestation 4</option>
+        <option value="prestation5">Prestation 5</option>
+        <option value="Autre">Autre</option>
+      </select>
+    </div>
+    @if(otherSubject){
+    <div class="form-group mb-3">
+      <label for="othersubject" class="form-label">Autre Sujet :</label>
+      <input id="othersubject" type="text" class="form-control" formControlName="othersubject" />
+    </div>
+    }
+
+    <div class="form-group mb-3">
+      <label for="firstname" class="form-label">Nom :</label>
+      <input id="firstname" type="text" class="form-control" formControlName="firstname" />
+    </div>
+    <div class="form-group mb-3">
+      <label for="lastname" class="form-label">Prénom :</label>
+      <input id="lastname" type="text" class="form-control" formControlName="lastname" />
+    </div>
+    <div class="form-group mb-3">
+      <label for="email" class="form-label">Email :</label>
+      <input id="email" type="email" class="form-control" formControlName="email" />
+    </div>
+    <div class="form-group mb-3">
+      <label for="message" class="form-label">Message :</label>
+      <textarea id="message" class="form-control" formControlName="message"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!contactForm.valid">
+      Envoyer
+    </button>
+  </form>
+</div>
