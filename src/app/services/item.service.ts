@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../environments/environment'; // Corriger le nom du chemin si nécessaire
+import { environment } from '../environments/environment'; 
 import { Item, ItemCollection } from '../models/item.model';
 
 @Injectable({

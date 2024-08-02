@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Article } from '../../interface/article.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { DataService } from '../../service/data.service';
+
+import { ServiceService } from '../../services/service.service';
 
 //import { FormsModule } from '@angular/forms';
 @Component({
@@ -11,7 +12,7 @@ import { DataService } from '../../service/data.service';
   styleUrls: ['./panier.component.css']
 })
 export class PanierComponent {
-  constructor(private dataService: DataService) { }
+  constructor(private ServiceService: ServiceService) { }
 
   ListeArticlesDansPanier: Article[] = [
     {

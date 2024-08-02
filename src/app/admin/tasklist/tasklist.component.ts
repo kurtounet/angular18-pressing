@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { ItemService } from '../../services/item.service';
 
 @Component({
   selector: 'app-tasklist',
@@ -7,6 +8,12 @@ import { Component } from '@angular/core';
   templateUrl: './tasklist.component.html',
   styleUrl: './tasklist.component.css'
 })
-export class TasklistComponent {
-
+export class TasklistComponent implements OnInit {
+  itemService=Inject(ItemService);
+  ngOnInit(): void {
+    
+  }
+  getAllItems(): void {
+    this.itemService.getAllItems(); 
+  }
 }
