@@ -1,27 +1,35 @@
 <header class="header">
+  @if(isLoggedIn){
   <div>
-    <img src="./assets/admin/left-arrow.svg" alt="Retour" class="image" />
+    <img src="./assets/image/logo.png" alt="" class="logo" />
     <div class="div-cart-burger">
       <div id="div-cart">
         <div id="div-cart-img">
-          <img class="image" id="cart" src="./assets/admin/shopping-cart.svg" alt="Menu" (click)="toggleMenu()" />
+          <img id="burger" src="./assets/image/shopping-cart.svg" alt="Menu" (click)="toggleMenu()" />
           <p>Panier</p>
         </div>
         <span>1</span>
       </div>
       <div id="div-menu ">
-        <img class="image" id="burger" src="./assets/admin/menuburger_icon.svg" alt="Menu" (click)="toggleMenu()" />
+        <img id="burger" src="./assets/image/menuburger_icon.svg" alt="Menu" (click)="toggleMenu()" />
         <p>Menu</p>
       </div>
     </div>
   </div>
-  <nav>
-    <a routerLink="/landing" class="link">Accueil </a>
-    <a routerLink="/admin/dashboard" class="link">Dashboard </a>
-    <a routerLink="/page-depot" class="link">Déposer vos articles</a>
-    <a routerLink="/cart" class="link">Panier</a>
-    <a routerLink="/formulaire" class="link">formulaire</a>
-    <a routerLink="/paiement" class="link">paiement</a>
-    <a href="/login" class="link">Login</a>
+
+  <nav id="nav-menu" [class.menu-open]="menuOpen">
+    <div (click)="toggleMenu()">
+      <img id="close" src="./assets/image/close-x.svg" alt="Fermer" />
+    </div>
+    <a routerLink="/accueil" class="link">Accueil </a>
+    <a routerLink="/presentation" class="link">Présentation </a>
+    <a routerLink="/nous-contactez" class="link">Nous contactez </a>
+    <a routerLink="/login" class="link">Se connecter</a>
+    <!-- /*
+    <a routerLink="/admin/dashboard/home" class="link">Dashboard </a>
+    <a routerLink="/admin/dashboard/depot" class="link">Déposer vos articles</a>
+    <a routerLink="/admin/dashboard/panier" class="link">Panier</a>
+    <a routerLink="/admin/dashboard/paiement" class="link">paiement</a> -->
   </nav>
+  }
 </header>

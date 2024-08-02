@@ -1,10 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-pagecontact',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,CommonModule],
   templateUrl: './pagecontact.component.html',
   styleUrl: './pagecontact.component.css'
 })
@@ -18,7 +19,7 @@ export class PagecontactComponent {
     othersubject: new FormControl('', {validators:[Validators.required]}),
     firstname: new FormControl('', {validators:[Validators.required]}),
     lastname: new FormControl('', {validators:[Validators.required]}),
-    email: new FormControl('', {validators:[Validators.required, Validators.email]}),
+    email: new FormControl('', {validators:[ Validators.email]}),
     message: new FormControl('', {validators:[Validators.required]}),   
 
   });

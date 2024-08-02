@@ -1,14 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { NgModule } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { HttpClientModule, withFetch } from '@angular/common/http';
-
-
+import { Component} from '@angular/core'; 
+import { RouterOutlet } from '@angular/router'; 
 //import { AuthGuard } from './security/guards/auth.guard';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgModel } from '@angular/forms';
+import { FooterComponent } from './public/footer/footer.component';
+import { HeaderComponent } from './public/header/header.component';
 
 @Component({
   selector: 'app-root',
@@ -19,17 +15,10 @@ import { FormsModule, NgModel } from '@angular/forms';
     RouterOutlet,
     HeaderComponent,
     FooterComponent,
-    HttpClientModule,
-
-    //HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
-
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-
-
-  title = 'hackaton';
-
+  title = 'Pressing Prestige';
 }

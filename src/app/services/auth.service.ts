@@ -13,7 +13,7 @@ export class AuthService {
 
   httpClient = inject(HttpClient);
   router = inject(Router); 
-
+  isLoggedIn: boolean = false;
  
   public roles: Array<string> = [];
   urlApiAuth: string = environment.baseApiUrl + "/login_check";
@@ -35,6 +35,7 @@ export class AuthService {
     return user ? JSON.parse(user) : null;
   }
 
+   
   public getUserRoles(): Array<string> {
     return this.roles;
   }
@@ -48,7 +49,6 @@ export class AuthService {
   authentication(authRequest: AuthRequest): Observable<AuthResponse> {
     //console.log(this.apiAuth);
     return this.httpClient.post<AuthResponse>(this.urlApiAuth, authRequest);
-
   }
   logOut() {
     localStorage.removeItem('token');
