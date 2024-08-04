@@ -44,7 +44,7 @@
         Le téléphone fixe doit être numérique.
       </div>
     </div>
-    <div class="form-group mb-3">
+    <!-- <div class="form-group mb-3">
       <label for="roles">Rôles</label>
       <select id="roles" class="form-control" formControlName="roles" multiple>
         <option value="admin">Admin</option>
@@ -53,7 +53,7 @@
       <div *ngIf="signupForm.get('roles')?.touched && signupForm.get('roles')?.invalid" class="text-danger">
         Au moins un rôle est requis.
       </div>
-    </div>
+    </div> -->
     <div class="form-group mb-3">
       <label for="numadrs">Numéro d'adresse</label>
       <input id="numadrs" type="number" class="form-control" formControlName="numadrs" />
@@ -62,9 +62,9 @@
       </div>
     </div>
     <div class="form-group mb-3">
-      <label for="street">Rue</label>
-      <input id="street" type="text" class="form-control" formControlName="street" />
-      <div *ngIf="signupForm.get('street')?.touched && signupForm.get('street')?.invalid" class="text-danger">
+      <label for="adrs">Rue</label>
+      <input id="adrs" type="text" class="form-control" formControlName="adrs" />
+      <div *ngIf="signupForm.get('adrs')?.touched && signupForm.get('adrs')?.invalid" class="text-danger">
         La rue est requise.
       </div>
     </div>

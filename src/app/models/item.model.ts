@@ -1,7 +1,9 @@
-export interface Item {
+import { ICommande } from "./commande.model";
+
+export interface Iitem {
   id: number;
-  service: string  | null;
-  commande: string  | null;
+  service: string | null;
+  commande: string | null;
   itemStatus: string | null;
   detailItem: string | null;
   price: number;
@@ -31,19 +33,19 @@ export interface Item {
 */
 
 
-export interface ItemCollection {
-  '@context': string;
-  '@id': string;
-  '@type': string;
-  'hydra:totalItems': number;
-  'hydra:member': Item[];
-  'hydra:view': {
-    '@id': string;
-    '@type': string;
-    'hydra:first': string;
-    'hydra:last': string;
-    'hydra:next'?: string;
-    'hydra:previous'?: string;
-  }
-}
+// export interface ItemCollection {
+//   '@context': string;
+//   '@id': string;
+//   '@type': string;
+//   'hydra:totalItems': number;
+//   'hydra:member': Iitem[];
+//   'hydra:view': {
+//     '@id': string;
+//     '@type': string;
+//     'hydra:first': string;
+//     'hydra:last': string;
+//     'hydra:next'?: string;
+//     'hydra:previous'?: string;
+//   }
+// }
 

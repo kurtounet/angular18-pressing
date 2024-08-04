@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment'; // Corriger le nom du chemin si nécessaire
-import { Commande, CommandeCollection } from '../models/commande.model';
+import { ICommande } from '../models/commande.model';
 
 
 
@@ -16,23 +16,23 @@ export class CommandeService {
   httpClient = inject(HttpClient);// Injection correcte du HttpClient
 
   // Obtenir tous les Commandes
-  getAllCommandes(): Observable<any> {
-    return this.httpClient.get<any>(this.routeApi);
+  getAllCommandes(): Observable<ICommande[]> {
+    return this.httpClient.get<ICommande[]>(this.routeApi);
   }
 
   // Obtenir un Commande par ID
-  getCommandeById(id: string): Observable<Commande> {
-    return this.httpClient.get<Commande>(`${this.routeApi}/${id}`);
+  getCommandeById(id: string): Observable<ICommande> {
+    return this.httpClient.get<ICommande>(`${this.routeApi}/${id}`);
   }
 
   // Créer un nouveau Commande
-  postCommande(body: Commande): Observable<Commande> {
-    return this.httpClient.post<Commande>(this.routeApi, body);
+  postCommande(body: ICommande): Observable<ICommande> {
+    return this.httpClient.post<ICommande>(this.routeApi, body);
   }
 
   // Mettre à jour un Commande par ID
-  patchCommande(id: string, body: Commande): Observable<Commande> {
-    return this.httpClient.patch<Commande>(`${this.routeApi}/${id}`, body);
+  patchCommande(id: string, body: ICommande): Observable<ICommande> {
+    return this.httpClient.patch<ICommande>(`${this.routeApi}/${id}`, body);
   }
 
   // Supprimer un Commande par ID

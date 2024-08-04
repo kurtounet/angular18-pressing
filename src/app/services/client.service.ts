@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment'; // Corriger le nom du chemin si nécessaire
 import { Client, ClientCollection } from '../models/client.model';
+import { ICommande } from '../models/commande.model';
 
 
 
@@ -14,10 +15,13 @@ export class ClientService {
 
   private routeApi = `${environment.baseApiUrl}/clients`; // Utiliser un slash à la fin pour les chemins
 
- httpClient = inject(HttpClient);
+  httpClient = inject(HttpClient);
   // Obtenir tous les Clients
   getAllClients(): Observable<ClientCollection> {
     return this.httpClient.get<ClientCollection>(this.routeApi);
+  }
+  getClientCommandesById(id: number): Observable<ICommande[]> {
+    return this.httpClient.get<ICommande[]>(this.routeApi);
   }
 
   // Obtenir un Client par ID

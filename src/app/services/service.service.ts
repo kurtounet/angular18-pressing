@@ -20,7 +20,7 @@ httpClient = inject(HttpClient);
   }
 
   // Obtenir un service par ID
-  getServiceById(id: string): Observable<Service> {
+  getServiceById(id: number): Observable<Service> {
     return this.httpClient.get<Service>(`${this.routeApi}/${id}`);
   }
 

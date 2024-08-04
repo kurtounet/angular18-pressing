@@ -9,6 +9,7 @@ import { CartComponent } from './cart/cart.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ContactComponent } from './contact/contact.component';
 import { OrderlistComponent } from './orderlist/orderlist.component';
+import { TasklistComponent } from './tasklist/tasklist.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
       { path: 'home', component: HomeComponent },
       { path: 'depot', component: PageDepotComponent },
       { path: 'orderlist', component: OrderlistComponent },
+      { path: 'tasklist', component: TasklistComponent },
       { path: 'cart', component: CartComponent },
       { path: 'profil', component: ProfileComponent },
       { path: 'contact', component: ContactComponent },

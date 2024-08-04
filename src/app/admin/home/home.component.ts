@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { UserService } from '../../services/user.service';
@@ -17,15 +17,12 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit {
-  constructor(
-    private authService: AuthService,
-    private userService: UserService
-  ) { }
+  authService = inject(AuthService);
   user: any | null = null;
   ngOnInit(): void {
-    this.loadUser();
+    this.getAuthCurrentUser();
   }
-  loadUser() {
+  getAuthCurrentUser() {
     this.authService.getAuthCurrentUser().subscribe(data => {
       this.user = data;
     });

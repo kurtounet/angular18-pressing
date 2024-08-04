@@ -1,7 +1,7 @@
-import { Component, Pipe } from '@angular/core';
+import { Component, inject, Pipe } from '@angular/core';
 import { DatePipe, NgFor, NgIf } from '@angular/common';
 import { CommandeService } from '../../services/commande.service';
-import { Commande, CommandeCollection } from '../../models/commande.model';
+import { CommandeCollection, ICommande } from '../../models/commande.model';
 import { ClientService } from '../../services/client.service';
 import { User } from '../../models/user.model';
 import { Client } from '../../models/client.model';
@@ -14,16 +14,17 @@ import { Client } from '../../models/client.model';
   imports: [NgFor, NgIf, DatePipe]
 })
 export class OrderlistComponent {
-  commandes: CommandeCollection | null = null;
-  arrayCommandes: Commande[] = [];
-  constructor(
-    private commandeService: CommandeService,
-    private clientService: ClientService
-  ) { }
-  user: User = new  User();
+
+  arrayCommandes: ICommande[] = [];
+
+  commandeService = inject(CommandeService);
+  clientService = inject(ClientService);
+
+  user: User = new User();
   //client: Client = new Client();
   ngOnInit(): void {
-    //Récupérer le user de local storage
+
+    // //Récupérer le user de local storage
     const userString = localStorage.getItem('user');
     console.log(userString);
     //Verifier si userString n'est pas null
@@ -45,19 +46,19 @@ export class OrderlistComponent {
 
   loadAllCommande() {
     this.commandeService.getAllCommandes().subscribe(data => {
-      this.commandes = data;
-      console.log(this.commandes);
+      this.arrayCommandes = data;
+      console.log(this.arrayCommandes);
     });
   }
   getClientCommande() {
     this.clientService.getClientById(this.user.id).subscribe(data => {
       this.arrayCommandes = data['commande'];
-      console.log(this.arrayCommandes);
+      console.log('CLIENT', this.arrayCommandes);
     });
   }
   loadEmployeeCommande() {
     this.clientService.getClientById(this.user.id).subscribe(data => {
-     // this.arrayCommandes = data['commande'];
+      // this.arrayCommandes = data['commande'];
       console.log(data);
     });
   }

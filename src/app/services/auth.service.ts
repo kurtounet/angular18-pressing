@@ -5,16 +5,18 @@ import { catchError, Observable, retry, throwError } from 'rxjs';
 import { AuthRequest } from '../models/auth-request';
 import { AuthResponse } from '../models/auth-response';
 import { environment } from '../environments/environment';
-import { User } from '../models/user.model';
+import { IUser, User } from '../models/user.model';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
   httpClient = inject(HttpClient);
-  router = inject(Router); 
+  router = inject(Router);
+
+
   isLoggedIn: boolean = false;
- 
+
   public roles: Array<string> = [];
   urlApiAuth: string = environment.baseApiUrl + "/login_check";
 
@@ -35,7 +37,7 @@ export class AuthService {
     return user ? JSON.parse(user) : null;
   }
 
-   
+
   public getUserRoles(): Array<string> {
     return this.roles;
   }
@@ -43,11 +45,10 @@ export class AuthService {
   public setUserRoles(roles: Array<string>): void {
     this.roles = roles;
   }
-  getAuthCurrentUser(): Observable<any> {
-    return this.httpClient.get(`${environment.baseApiUrl}/currentuser`);
+  getAuthCurrentUser(): Observable<IUser> {
+    return this.httpClient.get<IUser>(`${environment.baseApiUrl}/currentuser`);
   }
   authentication(authRequest: AuthRequest): Observable<AuthResponse> {
-    //console.log(this.apiAuth);
     return this.httpClient.post<AuthResponse>(this.urlApiAuth, authRequest);
   }
   logOut() {

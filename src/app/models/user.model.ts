@@ -1,6 +1,6 @@
- 
- 
- export interface IUser {
+
+
+export interface IUser {
   id: number,
   firstname: string,
   lastname: string,
@@ -10,11 +10,11 @@
   phone: string,
   roles: string[],
   numadrs: number,
-  street: string,
+  adrs: string,
   city: string,
   zipcode: string,
   country: string
-}  
+}
 /*
 export interface UserCollection {
   '@context': string;
@@ -32,7 +32,7 @@ export interface UserCollection {
   }
 }
 */
- 
+
 export class User {
   id?: number;
   firstname?: string;
@@ -43,7 +43,7 @@ export class User {
   phone?: string;
   roles?: string[];
   numadrs?: number;
-  street?: string;
+  adrs?: string;
   city?: string;
   zipcode?: string;
   country?: string;
@@ -57,7 +57,7 @@ export class User {
     mobilephone?: string,
     phone?: string,
     numadrs?: number,
-    street?: string,
+    adrs?: string,
     city?: string,
     zipcode?: string,
     country?: string,
@@ -72,11 +72,11 @@ export class User {
     this.phone = phone;
     this.roles = roles;
     this.numadrs = numadrs;
-    this.street = street;
+    this.adrs = adrs;
     this.city = city;
     this.zipcode = zipcode;
     this.country = country;
-  } 
+  }
   /*
     setLocalStorageToken(token: string) {
       return localStorage.setItem('token', this.token);

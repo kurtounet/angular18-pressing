@@ -1,9 +1,9 @@
-import { Commande } from "./commande.model";
+import { ICommande } from "./commande.model";
 import { User } from "./user.model";
 
 export interface Client {
-  user: User;   
-  commande: Commande[];
+  user: User;
+  commande: ICommande[];
 
 }
 

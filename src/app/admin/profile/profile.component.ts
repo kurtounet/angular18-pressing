@@ -1,16 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject, Inject, OnInit } from '@angular/core';
 import { NgIf } from '@angular/common';
+import { IUser, User } from '../../models/user.model';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormControl } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
+import { error } from 'console';
 import { UserService } from '../../services/user.service';
-import { User } from '../../models/user.model';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatToolbarModule } from '@angular/material/toolbar';
 @Component({
   standalone: true,
   selector: 'app-profile',
@@ -19,76 +13,67 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   imports: [
     NgIf,
     ReactiveFormsModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatIconModule,
-    MatButtonModule,
-    MatToolbarModule
   ]
 })
-export class ProfileComponent {
-  AdressIschecked = false;
-  user: User | null = null;
-  userForm: FormGroup;
-  constructor(
-    private userService: UserService,
-    private fb: FormBuilder
-  ) {
-    this.userForm = this.fb.group({
-      id: [null, Validators.required],
-      firstname: ['', Validators.required],
-      lastname: ['', Validators.required],
-      dateborn: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      mobilephone: ['', Validators.required],
-      phone: [''],
-      roles: [[], Validators.required],
-      numadrs: [null, Validators.required],
-      street: ['', Validators.required],
-      city: ['', Validators.required],
-      zipcode: ['', Validators.required],
-      country: ['', Validators.required]
-    });
-  }
+export class ProfileComponent implements OnInit {
 
-  onSubmit() {
-    if (this.userForm.valid) {
-      console.log(this.userForm.value);
-    }
-  }
+  AdressIschecked = false;
+  user: IUser | null = null;
+  authService = inject(AuthService);
+  userService = inject(UserService);
+
+  public profileForm: FormGroup = new FormGroup({
+    id: new FormControl(null),  // Optionnel, peut être généré automatiquement
+    firstname: new FormControl('', { validators: [Validators.required] }),
+    lastname: new FormControl('', { validators: [Validators.required] }),
+    dateborn: new FormControl('', { validators: [Validators.required] }),
+    email: new FormControl('', { validators: [Validators.required, Validators.email] }),
+    mobilephone: new FormControl('', { validators: [Validators.required, Validators.pattern('^[0-9]*$')] }),
+    phone: new FormControl('', { validators: [Validators.pattern('^[0-9]*$')] }),
+    numadrs: new FormControl(null, { validators: [Validators.required] }),
+    adrs: new FormControl('', { validators: [Validators.required] }),
+    city: new FormControl('', { validators: [Validators.required] }),
+    zipcode: new FormControl('', { validators: [Validators.required] }),
+    country: new FormControl('', { validators: [Validators.required] })
+  });
+
+
 
   ngOnInit(): void {
-    this.loadUser();
-
+    this.getProfileUser();
   }
-  loadUser() {
-    this.userService.getUserById('1').subscribe(data => {
-      this.user = data;
-      this.userForm.patchValue({
-        id: this.user.id,
-        firstname: this.user.firstname,
-        lastname: this.user.lastname,
-        dateborn: this.user.dateborn,
-        email: this.user.email,
-        mobilephone: this.user.mobilephone,
-        phone: this.user.phone,
-        roles: this.user.roles,
-        numadrs: this.user.numadrs,
-        street: this.user.street,
-        city: this.user.city,
-        zipcode: this.user.zipcode,
-        country: this.user.country
-      });
+  getProfileUser() {
+    this.authService.getAuthCurrentUser().subscribe({
+      next: (data: IUser) => {
+        if (data && data.dateborn) {
+          const formattedDate = new Date(data.dateborn).toISOString().split('T')[0];
+          data.dateborn = formattedDate;
+        }
+        this.profileForm.patchValue(data);
+      },
+      error: (error) => {
+        console.error(error);
+      }
     });
+  }
+  onSubmit() {
+    if (this.profileForm.valid) {
+      this.user = this.profileForm.value;
+      this.userService.patchUser(this.user?.id, this.user).subscribe({
+        next: (data: IUser) => {
+          console.log('DATA', data);
+        },
+        error: (error) => {
+          console.error(error);
+        }
+      })
+    } else {
+      this.profileForm.markAllAsTouched(); // Pour afficher les erreurs
+    }
   }
   onAdrsChange() {
     this.AdressIschecked = !this.AdressIschecked;
   }
-
-
 
 }
 

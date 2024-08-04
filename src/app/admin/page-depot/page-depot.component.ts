@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ServiceService } from '../../services/service.service';
 import { Service } from '../../models/service.model';
 import { CommonModule, NgForOf } from '@angular/common';
@@ -25,11 +25,12 @@ import { Category } from '../../models/category.model.';
   styleUrls: ['./page-depot.component.css']
 })
 export class PageDepotComponent implements OnInit {
-  constructor(
-    private serviceService: ServiceService,
-    private categoryService: CategoryService,
-    private serviceCart: CartService
-  ) { }
+
+
+  serviceService = inject(ServiceService);
+  categoryService = inject(CategoryService);
+  serviceCart = inject(CartService);
+
 
   quantity: number = 2;
 
@@ -49,7 +50,7 @@ export class PageDepotComponent implements OnInit {
   }
 
   getCategoriesServiceById(id: number) {
-    this.serviceService.getServiceById(id.toString()).subscribe(data => {
+    this.serviceService.getServiceById(id).subscribe(data => {
       this.arrayCategorySelectedService = data['Category'];
     });
   }

@@ -41,7 +41,7 @@ export class LoginComponent {
     this.login();
   }
   login() {
-    this.isLoading = true;
+    
     // ADMIN
     // this.authRequest.username = 'marc.johnson@gmail.com';
     // this.authRequest.password = 'Marc';
@@ -54,9 +54,9 @@ export class LoginComponent {
     this.authService.authentication(this.authRequest).subscribe({
       next: (data: AuthResponse) => {
         this.authService.setLocalStorageToken(data.token);
-        // this.authService.getAuthCurrentUser().subscribe(data => {
-        //   //this.authService.setLocalStorageUser(data);
-        // });
+        this.authService.getAuthCurrentUser().subscribe(data => {
+          this.authService.setLocalStorageUser(data);
+        });
         this.router.navigate(["/admin/dashboard"]);
       },
       error: (error) => {

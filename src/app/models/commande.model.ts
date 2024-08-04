@@ -1,13 +1,13 @@
-export interface Commande {
+export interface ICommande {
   id: number;
-  ref:string;  
-  client: string;  
+  ref: string;
+  client: string;
   filingDate: Date;
   paymentDate: Date;
   returnDate: Date;
 }
 export interface CommandeCollection {
-  arrayCommandes: Commande[];
+  arrayCommandes: ICommande[];
   /*
   '@context': string;
   '@id': string;
