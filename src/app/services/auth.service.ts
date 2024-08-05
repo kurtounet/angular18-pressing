@@ -6,19 +6,20 @@ import { AuthRequest } from '../models/auth-request';
 import { AuthResponse } from '../models/auth-response';
 import { environment } from '../environments/environment';
 import { IUser, User } from '../models/user.model';
+import { IToken } from '../models/auth';
+import { jwtDecode } from 'jwt-decode';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  httpClient = inject(HttpClient);
+  urlApiAuth: string = environment.authUrl;
+  
+  http = inject(HttpClient);
   router = inject(Router);
-
-
   isLoggedIn: boolean = false;
 
   public roles: Array<string> = [];
-  urlApiAuth: string = environment.baseApiUrl + "/login_check";
 
   public setLocalStorageToken(token: string): void {
     localStorage.setItem("token", token);
@@ -27,6 +28,9 @@ export class AuthService {
   public getLocalStorageToken(): string | null {
     return localStorage.getItem("token");
   }
+  //  getToken(): string | null {
+  //   return localStorage.getItem('token');
+  // }
 
   public setLocalStorageUser(user: User): void {
     localStorage.setItem("user", JSON.stringify(user));
@@ -46,16 +50,42 @@ export class AuthService {
     this.roles = roles;
   }
   getAuthCurrentUser(): Observable<IUser> {
-    return this.httpClient.get<IUser>(`${environment.baseApiUrl}/currentuser`);
+    return this.http.get<IUser>(`${environment.baseApiUrl}/currentuser`);
   }
-  authentication(authRequest: AuthRequest): Observable<AuthResponse> {
-    return this.httpClient.post<AuthResponse>(this.urlApiAuth, authRequest);
+  
+
+  isLogged(): boolean {
+    const token = this.getLocalStorageToken();
+     
+    if (!token) return false;
+    try {
+      const decodedToken = jwtDecode<IToken>(token);
+      return decodedToken.exp > Date.now() / 1000;
+    } catch (error) {
+      return false;
+    }
+  }
+
+
+//  authentication(authRequest: AuthRequest): Observable<AuthResponse> {
+//     return this.http.post<AuthResponse>(this.urlApiAuth, authRequest);
+//   }
+ login(credentials: { username: string; password: string }): Observable<IToken> {
+  console.log('login:',credentials)
+  console.log('url:',this.urlApiAuth)
+    return this.http.post<IToken>(`${this.urlApiAuth}`, credentials);
   }
   logOut() {
     localStorage.removeItem('token');
     this.setUserRoles([]);
     this.router.navigate(["/login"]);
   }
+    /*
+  logout(): void {
+    localStorage.removeItem('token');
+    this.router.navigate(['login']);
+  }
+  */
 
   private handleLoginError(error: HttpErrorResponse) {
     if (error.status === 0) {

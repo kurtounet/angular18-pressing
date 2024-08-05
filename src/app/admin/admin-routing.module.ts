@@ -12,21 +12,21 @@ import { OrderlistComponent } from './orderlist/orderlist.component';
 import { TasklistComponent } from './tasklist/tasklist.component';
 
 const routes: Routes = [
-  {
-    path: 'dashboard',
-    component: DashboardComponent,
-    children: [
-      { path: '', component: HomeComponent },
-      { path: 'home', component: HomeComponent },
-      { path: 'depot', component: PageDepotComponent },
-      { path: 'orderlist', component: OrderlistComponent },
-      { path: 'tasklist', component: TasklistComponent },
-      { path: 'cart', component: CartComponent },
-      { path: 'profil', component: ProfileComponent },
-      { path: 'contact', component: ContactComponent },
+  // {
+  //   path: 'dashboard',
+  //   component: DashboardComponent,
+  //   children: [
+  //     { path: '', component: HomeComponent },
+  //     { path: 'home', component: HomeComponent },
+  //     { path: 'depot', component: PageDepotComponent },
+  //     { path: 'orderlist', component: OrderlistComponent },
+  //     { path: 'tasklist', component: TasklistComponent },
+  //     { path: 'cart', component: CartComponent },
+  //     { path: 'profil', component: ProfileComponent },
+  //     { path: 'contact', component: ContactComponent },
 
-    ]
-  }
+  //   ]
+  // }
 ]
 /* OK  */
 @NgModule({

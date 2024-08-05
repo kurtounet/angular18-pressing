@@ -1,13 +1,24 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <div formGroupName="credentials">
+    <label for="username">Votre email</label>
+    <input id="username" formControlName="username" type="email">
+    <label for="password">Votre mots de passe</label>
+    <input id="password" type="password" formControlName="password">
+  </div>
+  <button type="submit" [disabled]="loginForm.invalid">Login</button>
+</form>
+
+
 <!-- <div class="login-container">
   <form (ngSubmit)="login()" #loginform="ngForm" action="" class="login-form">
     <h1 class="h3 mb-3 font-weight-normal text-center">Me connecter</h1>
     <div class="form-group">
-      <label for="inputEmail">Votre email</label>
+      <label for="inputusername">Votre username</label>
       <input
-        type="email"
-        id="inputEmail"
+        type="username"
+        id="inputusername"
         class="form-control"
-        placeholder="Email address"
+        placeholder="username address"
         required
         autofocus
       />
@@ -30,12 +41,12 @@
     <p class="mt-5 mb-3 text-muted text-center">&copy; 2024</p>
   </form>
 -->
-<div class="container">
+<!-- <div class="container">
   <h2>Se connecter</h2>
   <form (ngSubmit)="login()" #loginform="ngForm" action="" class="d-flex flex-column container">
     <mat-form-field>
-      <mat-label>Email</mat-label>
-      <input #username="ngModel" name="username" matInput placeholder="Email" [(ngModel)]="authRequest.username"
+      <mat-label>username</mat-label>
+      <input #username="ngModel" name="username" matInput placeholder="username" [(ngModel)]="authRequest.username"
         required />
       <mat-error *ngIf="!username.valid">Veuiller entrer un userName</mat-error>
     </mat-form-field>
@@ -44,7 +55,7 @@
       <mat-label>Password</mat-label>
       <input #password="ngModel" name="password" matInput placeholder="Password" [(ngModel)]="authRequest.password"
         required />
-      <mat-error *ngIf="!password.valid">Veuiller entrer un email</mat-error>
+      <mat-error *ngIf="!password.valid">Veuiller entrer un username</mat-error>
     </mat-form-field>
 
     <div *ngIf="error">
@@ -56,4 +67,4 @@
       Soummetre
     </button>
   </form>
-</div>
+</div> -->
