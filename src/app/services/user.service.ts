@@ -21,6 +21,7 @@ export class UserService {
   }
 
   postUser(body: User): Observable<IUser> {
+    console.log(body);
     return this.httpClient.post<IUser>(this.routeApi, body);
   }
 

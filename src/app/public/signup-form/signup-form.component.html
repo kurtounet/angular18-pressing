@@ -1,6 +1,7 @@
 <div class="container mt-4">
   <h1 class="mb-4">Inscription</h1>
-  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="needs-validation">
     <div class="form-group mb-3">
       <label for="firstname">Prénom</label>
       <input id="firstname" type="text" class="form-control" formControlName="firstname" />
