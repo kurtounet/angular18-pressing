@@ -50,67 +50,68 @@
     </button>
   </form>
 </div> -->
-<div class="row m-4">
-  <h1 class="mb-4">Contact</h1>
+<div class="d-flex vh-100">
+  <div class="row m-auto w-75">
+    <h1 class="mb-4">Contact</h1>
 
-  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="needs-validation">
-    <div class="form-group mb-3">
-      <label for="subject" class="form-label">Sélectionnez un Sujet :</label>
-      <select id="subject" class="form-select" formControlName="subject" (change)="activeOtherSubject($event)">
-        <option value="">Choisissez...</option>
-        <option value="commande">commande</option>
-        <option value="retours">Réclamations et Retours</option>
-        <option value="service">Services et Tarifs</option>
-        <option value="probleme">Problème de Service</option>
-        <option value="special">Partenariats et Offres Spéciales</option>
-        <option value="autre">Autre sujet</option>
-      </select>
-      <div *ngIf="contactForm.get('subject')?.touched && contactForm.get('subject')?.invalid" class="text-danger">
-        Veuillez sélectionner un sujet.
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="needs-validation">
+      <div class="form-group mb-3">
+        <label for="subject" class="form-label">Sélectionnez un Sujet :</label>
+        <select id="subject" class="form-select" formControlName="subject" (change)="activeOtherSubject($event)">
+          <option value="">Choisissez...</option>
+          <option value="commande">Commande</option>
+          <option value="retours">Réclamations et Retours</option>
+          <option value="service">Services et Tarifs</option>
+          <option value="probleme">Problème de Service</option>
+          <option value="special">Partenariats et Offres Spéciales</option>
+          <option value="autre">Autre sujet</option>
+        </select>
+        <div *ngIf="contactForm.get('subject')?.touched && contactForm.get('subject')?.invalid" class="text-danger">
+          Veuillez sélectionner un sujet.
+        </div>
       </div>
-    </div>
 
-    <div *ngIf="otherSubject" class="form-group mb-3">
-      <label for="othersubject" class="form-label">Autre Sujet :</label>
-      <input id="othersubject" type="text" class="form-control" formControlName="othersubject" />
-
-    </div>
-
-    <div class="form-group mb-3">
-      <label for="firstname" class="form-label">Nom :</label>
-      <input id="firstname" type="text" class="form-control" formControlName="firstname" />
-      <div *ngIf="contactForm.get('firstname')?.touched && contactForm.get('firstname')?.invalid" class="text-danger">
-        Le nom est requis.
+      <div *ngIf="otherSubject" class="form-group mb-3">
+        <label for="othersubject" class="form-label">Autre Sujet :</label>
+        <input id="othersubject" type="text" class="form-control" formControlName="othersubject" />
       </div>
-    </div>
 
-    <div class="form-group mb-3">
-      <label for="lastname" class="form-label">Prénom :</label>
-      <input id="lastname" type="text" class="form-control" formControlName="lastname" />
-      <div *ngIf="contactForm.get('lastname')?.touched && contactForm.get('lastname')?.invalid" class="text-danger">
-        Le prénom est requis.
+      <div class="form-group mb-3">
+        <label for="firstname" class="form-label">Nom :</label>
+        <input id="firstname" type="text" class="form-control" formControlName="firstname" />
+        <div *ngIf="contactForm.get('firstname')?.touched && contactForm.get('firstname')?.invalid" class="text-danger">
+          Le nom est requis.
+        </div>
       </div>
-    </div>
 
-    <div class="form-group mb-3">
-      <label for="email" class="form-label">Email :</label>
-      <input id="email" type="email" class="form-control" formControlName="email" />
-      <div *ngIf="contactForm.get('email')?.touched && contactForm.get('email')?.invalid" class="text-danger">
-        <div *ngIf="contactForm.get('email')?.errors?.['required']">L'email est requis.</div>
-        <div *ngIf="contactForm.get('email')?.errors?.['email']">L'email n'est pas valide.</div>
+      <div class="form-group mb-3">
+        <label for="lastname" class="form-label">Prénom :</label>
+        <input id="lastname" type="text" class="form-control" formControlName="lastname" />
+        <div *ngIf="contactForm.get('lastname')?.touched && contactForm.get('lastname')?.invalid" class="text-danger">
+          Le prénom est requis.
+        </div>
       </div>
-    </div>
 
-    <div class="form-group mb-3">
-      <label for="message" class="form-label">Message :</label>
-      <textarea id="message" class="form-control" formControlName="message"></textarea>
-      <div *ngIf="contactForm.get('message')?.touched" class="text-danger">
-        Le message est requis.
+      <div class="form-group mb-3">
+        <label for="email" class="form-label">Email :</label>
+        <input id="email" type="email" class="form-control" formControlName="email" />
+        <div *ngIf="contactForm.get('email')?.touched && contactForm.get('email')?.invalid" class="text-danger">
+          <div *ngIf="contactForm.get('email')?.errors?.['required']">L'email est requis.</div>
+          <div *ngIf="contactForm.get('email')?.errors?.['email']">L'email n'est pas valide.</div>
+        </div>
       </div>
-    </div>
 
-    <button type="submit" class="btn btn-primary" [disabled]="!contactForm.valid">
-      Envoyer
-    </button>
-  </form>
+      <div class="form-group mb-3">
+        <label for="message" class="form-label">Message :</label>
+        <textarea id="message" class="form-control" formControlName="message"></textarea>
+        <div *ngIf="contactForm.get('message')?.touched" class="text-danger">
+          Le message est requis.
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100" [disabled]="!contactForm.valid">
+        Envoyer
+      </button>
+    </form>
+  </div>
 </div>
