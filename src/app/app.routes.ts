@@ -3,8 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 //import { AuthGuard } from './security/guards/auth.guard';
 /* SITE */
- 
- 
+
+
 import { Error404Component } from './public/error404/error404.component';
 import { PublicContentComponent } from './public/public-content/public-content.component';
 import { LandingComponent } from './public/landing/landing.component';
@@ -20,12 +20,13 @@ import { TasklistComponent } from './admin/tasklist/tasklist.component';
 import { CartComponent } from './admin/cart/cart.component';
 import { ProfileComponent } from './admin/profile/profile.component';
 import { ContactComponent } from './admin/contact/contact.component';
+import { authGuard } from './security/guards/admin.guard';
 
 
 export const routes: Routes = [
-    // { path: '', loadChildren: () => import('./public/public.module').then(m => m.PublicModule) },
-    // { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), },
-    { 
+  // { path: '', loadChildren: () => import('./public/public.module').then(m => m.PublicModule) },
+  // { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), },
+  {
     path: '', component: PublicContentComponent,
     children: [
       { path: '', component: LandingComponent }, // Root path should be empty
@@ -35,10 +36,10 @@ export const routes: Routes = [
       { path: 'login', component: LoginComponent },
       { path: 'signup', component: SignupFormComponent },
     ]
-    },
-    {
+  },
+  {
     path: 'admin/dashboard',
-    component: DashboardComponent,
+    component: DashboardComponent, canActivate: [authGuard],
     children: [
       { path: '', component: HomeComponent },
       { path: 'home', component: HomeComponent },
@@ -51,7 +52,7 @@ export const routes: Routes = [
 
     ]
   },
-    { path:'**', component: Error404Component }
-     
+  { path: '**', component: Error404Component }
+
 ];
 

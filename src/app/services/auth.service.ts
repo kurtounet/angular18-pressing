@@ -14,10 +14,11 @@ import { jwtDecode } from 'jwt-decode';
 export class AuthService {
 
   urlApiAuth: string = environment.authUrl;
-  
+
   http = inject(HttpClient);
   router = inject(Router);
   isLoggedIn: boolean = false;
+
 
   public roles: Array<string> = [];
 
@@ -52,14 +53,13 @@ export class AuthService {
   getAuthCurrentUser(): Observable<IUser> {
     return this.http.get<IUser>(`${environment.baseApiUrl}/currentuser`);
   }
-  
 
   isLogged(): boolean {
     const token = this.getLocalStorageToken();
-     
     if (!token) return false;
     try {
       const decodedToken = jwtDecode<IToken>(token);
+      this.setUserRoles(decodedToken.roles);
       return decodedToken.exp > Date.now() / 1000;
     } catch (error) {
       return false;
@@ -67,12 +67,10 @@ export class AuthService {
   }
 
 
-//  authentication(authRequest: AuthRequest): Observable<AuthResponse> {
-//     return this.http.post<AuthResponse>(this.urlApiAuth, authRequest);
-//   }
- login(credentials: { username: string; password: string }): Observable<IToken> {
-  console.log('login:',credentials)
-  console.log('url:',this.urlApiAuth)
+  //  authentication(authRequest: AuthRequest): Observable<AuthResponse> {
+  //     return this.http.post<AuthResponse>(this.urlApiAuth, authRequest);
+  //   }
+  login(credentials: { username: string; password: string }): Observable<IToken> {
     return this.http.post<IToken>(`${this.urlApiAuth}`, credentials);
   }
   logOut() {
@@ -80,12 +78,12 @@ export class AuthService {
     this.setUserRoles([]);
     this.router.navigate(["/login"]);
   }
-    /*
-  logout(): void {
-    localStorage.removeItem('token');
-    this.router.navigate(['login']);
-  }
-  */
+  /*
+logout(): void {
+  localStorage.removeItem('token');
+  this.router.navigate(['login']);
+}
+*/
 
   private handleLoginError(error: HttpErrorResponse) {
     if (error.status === 0) {

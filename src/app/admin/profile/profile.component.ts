@@ -45,18 +45,18 @@ export class ProfileComponent implements OnInit {
   }
   getProfileUser() {
     this.authService.getAuthCurrentUser().subscribe({
-      
+
       next: (data: IUser) => {
         console.log(data);
         if (data && data.dateborn) {
           let date = new Date(data.dateborn);
           if (date) { // Check if date is valid
             const formattedDate = date.toISOString().split('T')[0];
-           // data.dateborn = new Date(date, "yyyy-MM-dd");
+            // data.dateborn = new Date(date, "yyyy-MM-dd");
           }
         }
 
-        
+
         this.profileForm.patchValue(data);
       },
       error: (error) => {

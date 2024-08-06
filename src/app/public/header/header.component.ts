@@ -12,19 +12,19 @@ import { NgIf } from '@angular/common';
   imports: [RouterModule, NgIf],
 })
 export class HeaderComponent implements OnInit {
- menuOpen: boolean = false;
- isLoggedIn: boolean = false;
- authService = inject(AuthService);
-  ngOnInit(): void {    
+  menuOpen: boolean = false;
+  isLoggedIn: boolean = false;
+  authService = inject(AuthService);
+  ngOnInit(): void {
     this.testIsloggind();
   }
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
   }
-  testIsloggind() {    
-    if(this.authService.getLocalStorageToken()==="") {
+  testIsloggind() {
+    if (this.authService.getLocalStorageToken() === "") {
       this.isLoggedIn = false;
-    }else{
+    } else {
       this.isLoggedIn = true;
     }
   }

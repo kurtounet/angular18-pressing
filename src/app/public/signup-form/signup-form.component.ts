@@ -23,6 +23,7 @@ export class SignupFormComponent {
     dateborn: new FormControl(null),
     // dateborn: new FormControl(null, { validators: [Validators.required] }),
     email: new FormControl('anthony@gmail.com', { validators: [Validators.required, Validators.email] }),
+    password: new FormControl('nirvana', { validators: [Validators.required] }),
     mobilephone: new FormControl('0000000000', { validators: [Validators.required, Validators.pattern('^[0-9]*$')] }),
     phone: new FormControl('0000000000', { validators: [Validators.pattern('^[0-9]*$')] }),
     //roles: new FormControl([], { validators: [Validators.required] }),
@@ -37,6 +38,10 @@ export class SignupFormComponent {
 
     if (this.signupForm.valid) {
       let client = this.signupForm.value;
+      console.log(client);
+      // this.itemsService.postItem(item).subscribe(data => {
+      //   console.log('data', data);
+      // });
       this.clientService.postClient(client).subscribe({
         next: (data: IClient) => {
           console.log(data);

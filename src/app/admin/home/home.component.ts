@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
   user: any | null = null;
   ngOnInit(): void {
     this.getAuthCurrentUser();
-   // this.getAllItems();
+    // this.getAllItems();
     this.getAddItems();
     this.getAllItems();
   }
@@ -38,29 +38,25 @@ export class HomeComponent implements OnInit {
   getAllItems() {
     return this.itemsService.getAllItems().subscribe(data => {
       this.itemsList = data;
-      console.log(data);
+
     });
   }
   getAddItems() {
-
-     
-    let item: Iitem = 
+    let item: Iitem =
     {
-   // "@id": "/api/items/16",
-   // "@type": "Item",
-    "id": null,
-    "service": "/api/services/344",
-    "commande": "/api/commandes/91",
-    "itemStatus": "/api/item_statuses/86",
-    "detailItem": " Rien a signalé",
-    "price": 11.51,
-    "quantity": 5,
-    "employee": "/api/employees/130"
+      "id": null,
+      "service": "/api/services/32",
+      "commande": "/api/commandes/11",
+      "itemStatus": "/api/item_statuses/7",
+      "detailItem": " Rien a signalé",
+      "price": 11.51,
+      "quantity": 5,
+      "employee": "/api/employees/11"
     };
-    console.log(item);
-     this.itemsService.postItem(item).subscribe(data => {
-        console.log('data',data);
-      });
-     
+
+    this.itemsService.postItem(item).subscribe(data => {
+      // console.log('data', data);
+    });
+
   }
 }

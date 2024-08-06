@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment'; // Corriger le nom du chemin si nécessaire
-import {ClientCollection, IClient } from '../models/client.model';
+import { ClientCollection, IClient } from '../models/client.model';
 import { ICommande } from '../models/commande.model';
 
 
@@ -31,12 +31,7 @@ export class ClientService {
 
   // Créer un nouveau Client
   postClient(body: IClient): Observable<IClient> {
-     const headers = new HttpHeaders(
-      { 
-        'Content-Type': 'application/ld+json', 
-        'Accept': 'application/ld+json' }
-      );
-
+    const headers = new HttpHeaders({ 'Content-Type': 'application/ld+json' });
     return this.httpClient.post<IClient>(this.routeApi, body, { headers });
   }
 

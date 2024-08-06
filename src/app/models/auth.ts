@@ -5,5 +5,6 @@ export interface ICredentials {
 
 export interface IToken {
   token: string;
-  exp:number // temps d'expiration du token;
+  exp: number // temps d'expiration du token;
+  roles: string[];
 }
