@@ -1,9 +1,9 @@
 import { inject, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { map, Observable } from 'rxjs';
 import { environment } from '../environments/environment';
-import { Iitem } from '../models/item.model';
-
+import {Iitem } from '../models/item.model';
+import { IHydraCollection } from '../models/hydraCollection.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,15 +13,27 @@ export class ItemService {
   httpClient = inject(HttpClient);
 
   getAllItems(): Observable<Iitem[]> {
-    return this.httpClient.get<Iitem[]>(this.routeApi);
+    return this.httpClient.get<IHydraCollection<Iitem>>(this.routeApi).pipe(
+      map(response => response['hydra:member']),
+    );
   }
+  //  getAllServices(): Observable<IService[]> {
+  //   return this.httpClient.get<IHydraCollection<IService>>(this.routeApi).pipe(
+  //     map(response => response['hydra:member']),
+  //   );
+  // }
 
   getItemById(id: number): Observable<Iitem> {
     return this.httpClient.get<Iitem>(`${this.routeApi}/${id}`);
   }
 
   postItem(body: Iitem): Observable<Iitem> {
-    return this.httpClient.post<Iitem>(this.routeApi, body);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/ld+json',
+      //'Accept': 'application/ld+json',
+    })
+    console.log('POST',body);   
+    return this.httpClient.post<Iitem>(this.routeApi, body,{ headers });
   }
 
   patchItem(id: number, body: Iitem): Observable<Iitem> {

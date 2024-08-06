@@ -20,7 +20,8 @@ export class SignupFormComponent {
     //id: new FormControl(null),  // Optionnel, peut être généré automatiquement
     firstname: new FormControl('MOI', { validators: [Validators.required] }),
     lastname: new FormControl('Anthony', { validators: [Validators.required] }),
-    dateborn: new FormControl('27/11/1982', { validators: [Validators.required] }),
+    dateborn: new FormControl(null),
+    // dateborn: new FormControl(null, { validators: [Validators.required] }),
     email: new FormControl('anthony@gmail.com', { validators: [Validators.required, Validators.email] }),
     mobilephone: new FormControl('0000000000', { validators: [Validators.required, Validators.pattern('^[0-9]*$')] }),
     phone: new FormControl('0000000000', { validators: [Validators.pattern('^[0-9]*$')] }),

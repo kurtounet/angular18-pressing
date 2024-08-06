@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment'; // Corriger le nom du chemin si nécessaire
 import {ClientCollection, IClient } from '../models/client.model';
@@ -31,7 +31,13 @@ export class ClientService {
 
   // Créer un nouveau Client
   postClient(body: IClient): Observable<IClient> {
-    return this.httpClient.post<IClient>(this.routeApi, body);
+     const headers = new HttpHeaders(
+      { 
+        'Content-Type': 'application/ld+json', 
+        'Accept': 'application/ld+json' }
+      );
+
+    return this.httpClient.post<IClient>(this.routeApi, body, { headers });
   }
 
   // Mettre à jour un Client par ID

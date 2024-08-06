@@ -1,7 +1,7 @@
 import { ICommande } from "./commande.model";
 
 export interface Iitem {
-  id: number;
+  id: number| null;
   service: string | null;
   commande: string | null;
   itemStatus: string | null;
@@ -10,6 +10,8 @@ export interface Iitem {
   quantity: number;
   employee: string | null;
 }
+
+
 // export class Item {
 //   id: number = 0;
 //   service: string = '';

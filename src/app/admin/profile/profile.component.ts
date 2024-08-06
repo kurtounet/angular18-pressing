@@ -49,9 +49,14 @@ export class ProfileComponent implements OnInit {
       next: (data: IUser) => {
         console.log(data);
         if (data && data.dateborn) {
-          const formattedDate = new Date(data.dateborn).toISOString().split('T')[0];
-          data.dateborn = formattedDate;
+          let date = new Date(data.dateborn);
+          if (date) { // Check if date is valid
+            const formattedDate = date.toISOString().split('T')[0];
+           // data.dateborn = new Date(date, "yyyy-MM-dd");
+          }
         }
+
+        
         this.profileForm.patchValue(data);
       },
       error: (error) => {

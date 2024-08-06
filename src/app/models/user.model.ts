@@ -4,7 +4,7 @@ export interface IUser {
   id: number,
   firstname: string,
   lastname: string,
-  dateborn: string,
+  dateborn: Date,
   email: string,
   mobilephone: string,
   phone: string,

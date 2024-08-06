@@ -46,6 +46,7 @@ export class PageDepotComponent implements OnInit {
   getAllServices() {
     this.serviceService.getAllServices().subscribe(data => {
       this.arrayServices = data;
+      console.log(this.arrayServices);
     });
   }
 
