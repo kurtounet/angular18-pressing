@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit, Pipe } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Observable, Subscription } from 'rxjs';
 import { ServiceService } from '../../services/service.service';
-import { Service, ServiceCollection } from '../../models/service.model';
+import { IService} from '../../models/service.model';
 
 
 @Component({
@@ -16,8 +16,8 @@ import { Service, ServiceCollection } from '../../models/service.model';
   ],
 })
 export class LandingComponent implements OnInit, OnDestroy {
-  servicesList: Service[] | null = null;
-  oneService: Service | null = null;
+  servicesList: IService[] | null = null;
+  oneService: IService | null = null;
   constructor(private ServiceService: ServiceService) { }
   listCategories: any[] = [];
   flowdata: Subscription | null = null;

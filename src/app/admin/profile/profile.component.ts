@@ -41,10 +41,13 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProfileUser();
+
   }
   getProfileUser() {
     this.authService.getAuthCurrentUser().subscribe({
+      
       next: (data: IUser) => {
+        console.log(data);
         if (data && data.dateborn) {
           const formattedDate = new Date(data.dateborn).toISOString().split('T')[0];
           data.dateborn = formattedDate;

@@ -2,8 +2,9 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { environment } from '../environments/environment'; // Corriger le nom du chemin si nécessaire
-import { Service, ServiceCollection } from '../models/service.model';
-import { catchError, Observable, retry, throwError } from "rxjs";
+import { IService } from '../models/service.model';
+import { IHydraCollection } from '../models/hydraCollection.model';
+import { catchError, map, Observable, retry, throwError } from "rxjs";
 
 
 @Injectable({
@@ -15,23 +16,30 @@ export class ServiceService {
 httpClient = inject(HttpClient);
 
   // Obtenir tous les services
-  getAllServices(): Observable<any> {
-    return this.httpClient.get<any>(this.routeApi);
+  getAllServices(): Observable<IService[]> {
+    return this.httpClient.get<IHydraCollection<IService>>(this.routeApi).pipe(
+      map(response => response['hydra:member']),
+    );
   }
 
+  // fetchAll(): Observable<IService[]> {
+  //   return this.http.get<HydraCollection<IService>>(this.urlService + '/services').pipe(
+  //     map(response=> response['hydra:member'])
+  //   );
+
   // Obtenir un service par ID
-  getServiceById(id: number): Observable<Service> {
-    return this.httpClient.get<Service>(`${this.routeApi}/${id}`);
+  getServiceById(id: number): Observable<IService> {
+    return this.httpClient.get<IService>(`${this.routeApi}/${id}`);
   }
 
   // Créer un nouveau service
-  postService(body: Service): Observable<Service> {
-    return this.httpClient.post<Service>(this.routeApi, body);
+  postService(body: IService): Observable<IService> {
+    return this.httpClient.post<IService>(this.routeApi, body);
   }
 
   // Mettre à jour un service par ID
-  patchService(id: string, body: Service): Observable<Service> {
-    return this.httpClient.patch<Service>(`${this.routeApi}/${id}`, body);
+  patchService(id: string, body: IService): Observable<IService> {
+    return this.httpClient.patch<IService>(`${this.routeApi}/${id}`, body);
   }
 
   // Supprimer un service par ID

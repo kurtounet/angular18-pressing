@@ -3,6 +3,8 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
 import { IUser } from '../../models/user.model'; // Assurez-vous de mettre le bon chemin vers l'interface
 import { CommonModule } from '@angular/common';
 import { UserService } from '../../services/user.service';
+import { ClientService } from '../../services/client.service';
+import { IClient } from '../../models/client.model';
 @Component({
   selector: 'app-signup-form',
   standalone: true,
@@ -11,16 +13,17 @@ import { UserService } from '../../services/user.service';
   styleUrl: './signup-form.component.css'
 })
 export class SignupFormComponent {
-  userService = inject(UserService);
+  //userService = inject(UserService);
+  clientService = inject(ClientService);
 
   public signupForm: FormGroup = new FormGroup({
     //id: new FormControl(null),  // Optionnel, peut être généré automatiquement
-    firstname: new FormControl('Bossut', { validators: [Validators.required] }),
+    firstname: new FormControl('MOI', { validators: [Validators.required] }),
     lastname: new FormControl('Anthony', { validators: [Validators.required] }),
     dateborn: new FormControl('27/11/1982', { validators: [Validators.required] }),
     email: new FormControl('anthony@gmail.com', { validators: [Validators.required, Validators.email] }),
-    mobilephone: new FormControl('0661972538', { validators: [Validators.required, Validators.pattern('^[0-9]*$')] }),
-    phone: new FormControl('061972538', { validators: [Validators.pattern('^[0-9]*$')] }),
+    mobilephone: new FormControl('0000000000', { validators: [Validators.required, Validators.pattern('^[0-9]*$')] }),
+    phone: new FormControl('0000000000', { validators: [Validators.pattern('^[0-9]*$')] }),
     //roles: new FormControl([], { validators: [Validators.required] }),
     numadrs: new FormControl(10, { validators: [Validators.required] }),
     adrs: new FormControl('chemin de la paix', { validators: [Validators.required] }),
@@ -32,9 +35,9 @@ export class SignupFormComponent {
   onSubmit() {
 
     if (this.signupForm.valid) {
-      let user = this.signupForm.value;
-      this.userService.postUser(user).subscribe({
-        next: (data: IUser) => {
+      let client = this.signupForm.value;
+      this.clientService.postClient(client).subscribe({
+        next: (data: IClient) => {
           console.log(data);
         },
         error: (error) => {

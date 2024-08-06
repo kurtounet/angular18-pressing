@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment'; // Corriger le nom du chemin si nécessaire
 import { IUser, User } from '../models/user.model';
@@ -21,12 +21,15 @@ export class UserService {
   }
 
   postUser(body: User): Observable<IUser> {
-    console.log(body);
-    return this.httpClient.post<IUser>(this.routeApi, body);
+    const headers = new HttpHeaders({ 'Content-Type': 'application/ld+json' });
+    console.log('POST',body);
+    return this.httpClient.post<IUser>(this.routeApi, body, { headers });
   }
 
   patchUser(id: number | undefined, body: IUser | null): Observable<IUser> {
-    return this.httpClient.patch<IUser>(`${this.routeApi}/${id}`, body);
+    const headers = new HttpHeaders({ 'Content-Type': 'application/merge-patch+json', 'Accept': 'application/ld+json' });
+    console.log('PATCH',body);
+    return this.httpClient.patch<IUser>(`${this.routeApi}/${id}`, body, {headers});
   }
 
   deleteUser(id: string): Observable<void> {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceService } from '../../services/service.service';
-import { Service, ServiceCollection } from '../../models/service.model';
+import { IService} from '../../models/service.model';
 import { CommonModule, NgFor } from '@angular/common';
 
 @Component({
@@ -15,7 +15,7 @@ export class PagepresentationComponent implements OnInit {
     private serviceService: ServiceService
   ) { }
 
-  arrayServices: Service[]=[];
+  arrayServices: IService[]=[];
  // oneService: Service | null = null;
   //categorySelectedService: Category[]=[];
   //categories: CategoryCollection | null = null;

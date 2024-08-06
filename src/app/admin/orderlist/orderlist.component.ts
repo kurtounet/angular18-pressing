@@ -4,7 +4,7 @@ import { CommandeService } from '../../services/commande.service';
 import { CommandeCollection, ICommande } from '../../models/commande.model';
 import { ClientService } from '../../services/client.service';
 import { User } from '../../models/user.model';
-import { Client } from '../../models/client.model';
+import { IClient } from '../../models/client.model';
 @Component({
   standalone: true,
   selector: 'app-orderlist',

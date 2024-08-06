@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ServiceService } from '../../services/service.service';
-import { Service } from '../../models/service.model';
+import { IService } from '../../models/service.model';
 import { CommonModule, NgForOf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CategoryService } from '../../services/category.service';
@@ -34,7 +34,7 @@ export class PageDepotComponent implements OnInit {
 
   quantity: number = 2;
 
-  arrayServices: Service[] = [];
+  arrayServices: IService[] = [];
   arrayCategorySelectedService: Category[] = [];
   selectedServicesId: number = 0;
   selectedCategoryId: number = 0;
