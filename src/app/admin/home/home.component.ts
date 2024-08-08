@@ -27,8 +27,8 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.getAuthCurrentUser();
     // this.getAllItems();
-    this.getAddItems();
-    this.getAllItems();
+    // this.getAddItems();
+    // this.getAllItems();
   }
   getAuthCurrentUser() {
     this.authService.getAuthCurrentUser().subscribe(data => {

@@ -9,26 +9,35 @@ import { QuantitySelectorComponent } from '../quantity-selector/quantity-selecto
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css',
-  imports: [CommonModule,QuantitySelectorComponent],
+  imports: [CommonModule, QuantitySelectorComponent],
 
 })
 export class CartComponent implements OnInit {
   cartService = inject(CartService);
   cart: itemCart[] = [];
+  total: number = 0;
 
 
   // items = [
   //   { name: 'Produit 1', description: 'Description du produit 1', price: 10, quantity: 1 },
   //   { name: 'Produit 2', description: 'Description du produit 2', price: 20, quantity: 2 }
   // ];
-
-   removeItemCart(id: number) {
+  ngOnInit(): void {
+    this.cart = this.cartService.getCart();
+    //console.log(this.cart);
+  }
+  removeItemCart(id: number) {
     this.cartService.removeItem(id);
     console.log(this.cartService.cart);
   }
-  clearCart(category: any) {
-   this.cartService.clearCart();
-
+  clearCart(): void {
+    this.cart = this.cartService.clearCart();
+  }
+  validedOrder(): void {
+    if (this.cart.length > 0) {
+      this.cartService.validedOder();
+      this.cart = [];
+    }
   }
   changeQuantity(event: any) {
     let qty = event.target.value;
@@ -50,8 +59,8 @@ export class CartComponent implements OnInit {
 
 
 
-  ngOnInit(): void {
-     this.cart = this.cartService.getCart();
-     //console.log(this.cart);
-   }
+
+
+
+
 }

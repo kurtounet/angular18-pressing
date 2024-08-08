@@ -71,6 +71,7 @@ export class CartService {
   clearCart() {
     this.cart = [];
     this.saveCart();
+    return this.cart;
   }
 
   saveCart() {
@@ -83,6 +84,8 @@ export class CartService {
   //   });
   //   return totalQuantity;
   // }
-
+  validedOder() {
+    console.log('validedOder');
+  }
 
 }

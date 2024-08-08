@@ -31,7 +31,7 @@ export class PageDepotComponent implements OnInit {
   categoryService = inject(CategoryService);
   serviceCart = inject(CartService);
 
-
+  imagePlaceholder = 'https://placehold.co/600x400';
   quantity: number = 2;
 
   arrayServices: IService[] = [];
