@@ -38,9 +38,9 @@ export class HomeComponent implements OnInit {
   user: any | null = null;
   ngOnInit(): void {
     this.getAuthCurrentUser();
-    this.UpdateItem(this.item);
+   // this.UpdateItem(this.item);
    // this.getAddItems();
-    this.getAllItems();
+   // this.getAllItems();
   }
   getAuthCurrentUser() {
     this.authService.getAuthCurrentUser().subscribe(data => {

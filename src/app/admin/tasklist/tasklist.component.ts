@@ -5,6 +5,7 @@ import { Iitem } from '../../models/item.model';
 import { UserService } from '../../services/user.service';
 import { ItemStatusService } from '../../services/item-status.service';
 import { CommandeService } from '../../services/commande.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-tasklist',
@@ -18,15 +19,27 @@ export class TasklistComponent implements OnInit {
   userService = inject(UserService);
   itemStatusService = inject(ItemStatusService);
   commandeService = inject(CommandeService);
+  authService = inject(AuthService);
 
   arrayItems: Iitem[] = [];
+  userRoles: Array<string> = [];
+  
   ngOnInit(): void {
-    this.getAllItems();
+    this.userRoles = this.authService.getUserRoles();
+    //console.log(this.userRoles);
+    //this.getAllItems();
+    console.log('Item employee',this.getItemsEmployee());
   }
   getAllItems() {
     this.itemService.getAllItems().subscribe(data => {
       this.arrayItems = data;
       console.log(this.arrayItems.map(item => item.quantity));
+    });
+  }
+  getItemsEmployee() {
+    this.itemService.getItemsEmployees().subscribe(data => {
+      this.arrayItems = data;
+     console.log(this.arrayItems);
     });
   }
 }
