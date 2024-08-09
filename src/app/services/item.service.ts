@@ -29,11 +29,11 @@ export class ItemService {
   }
 
   postItem(body: Iitem): Observable<Iitem> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/ld+json' });;
-    return this.httpClient.post<Iitem>(this.routeApi, body, { headers });
+    //const headers = new HttpHeaders({ 'Content-Type': 'application/ld+json' });;
+    return this.httpClient.post<Iitem>(this.routeApi, body);
   }
 
-  patchItem(id: number, body: Iitem): Observable<Iitem> {
+  patchItem(id: number | null, body: Iitem): Observable<Iitem> {
     return this.httpClient.patch<Iitem>(`${this.routeApi}/${id}`, body);
   }
 

@@ -48,7 +48,9 @@ export class CartComponent implements OnInit {
     }*/
   }
 
-
+  validCommande() {
+    console.log('commande');
+  }
 
   ngOnInit(): void {
      this.cart = this.cartService.getCart();
