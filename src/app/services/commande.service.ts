@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment'; // Corriger le nom du chemin si nécessaire
 import { ICommande } from '../models/commande.model';
@@ -27,7 +27,8 @@ export class CommandeService {
 
   // Créer un nouveau Commande
   postCommande(body: ICommande): Observable<ICommande> {
-    return this.httpClient.post<ICommande>(this.routeApi, body);
+    const headers = new HttpHeaders({ 'Content-Type': 'application/ld+json' });;
+    return this.httpClient.post<ICommande>(this.routeApi, body, { headers });
   }
 
   // Mettre à jour un Commande par ID

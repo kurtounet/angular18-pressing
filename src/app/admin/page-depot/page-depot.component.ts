@@ -11,6 +11,9 @@ import { CartComponent } from '../cart/cart.component';
 import { itemCart } from '../../models/itemCart.model';
 import { Category } from '../../models/category.model.';
 import { environment } from '../../environments/environment';
+import { CommandeService } from '../../services/commande.service';
+import { ICommande } from '../../models/commande.model';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   standalone: true,
@@ -40,6 +43,8 @@ export class PageDepotComponent implements OnInit {
   serviceService = inject(ServiceService);
   categoryService = inject(CategoryService);
   serviceCart = inject(CartService);
+  serviceCommande = inject(CommandeService);
+  authService = inject(AuthService);
 
 
   //METHODS
@@ -87,5 +92,22 @@ export class PageDepotComponent implements OnInit {
 
     this.quantity = newQty;
     console.log(this.quantity);
+  }
+  addCommande() {
+    let clientId = this.authService.getLocalStorageUser();
+    console.log(clientId);
+    let Now = new Date();
+    // let commande: ICommande = {
+    //   id: null,
+    //   ref: null,
+    //   client: clientId,
+    //   filingDate: Now,
+    //   paymentDate: Now,
+    //   returnDate: Now
+
+    // }
+    // this.serviceCommande.postCommande(commande).subscribe(data => {
+    //   console.log(data);
+    // });
   }
 }
