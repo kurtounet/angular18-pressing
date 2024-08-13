@@ -10,6 +10,7 @@ import { CartService } from '../../services/cart.service';
 import { CartComponent } from '../cart/cart.component';
 import { itemCart } from '../../models/itemCart.model';
 import { Category } from '../../models/category.model.';
+import { environment } from '../../environments/environment';
 
 @Component({
   standalone: true,
@@ -19,26 +20,29 @@ import { Category } from '../../models/category.model.';
     FormsModule,
     QuantitySelectorComponent,
     CartComponent,
+
   ],
   selector: 'app-page-depot',
   templateUrl: './page-depot.component.html',
   styleUrls: ['./page-depot.component.css']
 })
 export class PageDepotComponent implements OnInit {
+  //VARIABLES
 
+  baseUrlImageCategories = environment.baseUrl + environment.assertsImageCategories;
+  quantity: number = 2;
+  arrayServices: IService[] = [];
+  arrayCategoriesOfSelectedService: Category[] = [];
+  selectedServicesId: number = 0;
+  selectedCategoryId: number = 0;
 
+  //INJECT DEPENDENCIES
   serviceService = inject(ServiceService);
   categoryService = inject(CategoryService);
   serviceCart = inject(CartService);
 
-  imagePlaceholder = 'https://placehold.co/600x400';
-  quantity: number = 2;
 
-  arrayServices: IService[] = [];
-  arrayCategorySelectedService: Category[] = [];
-  selectedServicesId: number = 0;
-  selectedCategoryId: number = 0;
-
+  //METHODS
   ngOnInit(): void {
     this.getAllServices();
   }
@@ -52,7 +56,7 @@ export class PageDepotComponent implements OnInit {
 
   getCategoriesServiceById(id: number) {
     this.serviceService.getServiceById(id).subscribe(data => {
-      this.arrayCategorySelectedService = data['Category'];
+      this.arrayCategoriesOfSelectedService = data['Category'];
     });
   }
 
@@ -73,7 +77,6 @@ export class PageDepotComponent implements OnInit {
   updateQuantity(categoryId: number, newQuantity: number) {
     this.quantity = newQuantity;
     // console.log('updateQuantity', categoryId, 'newQuantity:', newQuantity);
-
     // const category = this.arrayCategorySelectedService.find(cat => cat.id === categoryId);
     // if (category) {
     //   category.quantity = newQuantity;

@@ -43,10 +43,10 @@
   <section class="row">
     <div class="col-md-6">
       <h1>Article</h1>
-      <div *ngFor="let category of arrayCategorySelectedService" class="col">
+      <div *ngFor="let category of arrayCategoriesOfSelectedService" class="col">
         <div class="card m-2 p-2" style="width: fit-content;">
           <div class="d-flex flex-column justify-content-between align-items-center">
-            <img [src]="imagePlaceholder" class="card-img-top" alt="{{ category.name }}">
+            <img src="{{baseUrlImageCategories}}/{{category.image}}" class="card-img-top" alt="{{ category.name }}">
             <h5 class="card-title">{{ category.name }}</h5>
             <app-quantity-selector [inQuantity]="quantity"
               (outQuantity)="updateQuantity(category.id, $event)"></app-quantity-selector>

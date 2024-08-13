@@ -1,11 +1,14 @@
 # Angular Pressing
 
+"src/favicon.ico",
+              "src/assets"
+
 # USER
 
-admin: < admin@gmail.com >   pwd : Jean
-manager: < jane.doe@gmail.com > pwd: Jane
-client: < emma.wilson@gmail.com > pwd : Emma
-employee: < lucy.liu@gmail.com > pwd :Lucy
+admin: < <admin@gmail.com> >   pwd : Jean
+manager: < <jane.doe@gmail.com> > pwd: Jane
+client: < <emma.wilson@gmail.com> > pwd : Emma
+employee: < <lucy.liu@gmail.com> > pwd :Lucy
 
 # PROJET DU BUSINESS CASE POUR L'EXAMEN DE FORMATION DEVELOPPEUR WEB/WEB MOBILE
 
@@ -91,7 +94,8 @@ liste 3 services
 ## Espace Employee
 
 #### Page liste des taches
-route 
+
+route
 
 #### Page Profile
 

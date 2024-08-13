@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { NgIf } from '@angular/common';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-sidebar',
@@ -15,6 +16,7 @@ import { NgIf } from '@angular/common';
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent {
+  baseUrl = environment.baseUrl;
 
   constructor(
     private authService: AuthService,
