@@ -35,6 +35,9 @@ export class LoginComponent implements OnInit {
         (token) => {
           //console.log('Token received:', token); // Pour déboguer
           this.authService.setLocalStorageToken(token.token);
+          this.authService.getAuthCurrentUser().subscribe(data => {
+            this.authService.setLocalStorageUser(data);
+          })
           this.router.navigate(['/admin/dashboard']); // Redirection après connexion réussie
         },
         error => {

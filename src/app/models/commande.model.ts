@@ -1,10 +1,10 @@
 export interface ICommande {
   id: number | null;
   ref: string | null;
-  client: string;
-  filingDate: Date;
-  paymentDate: Date;
-  returnDate: Date;
+  client: number;
+  filingDate: string;
+  paymentDate: string;
+  returnDate: string;
 }
 export interface CommandeCollection {
   arrayCommandes: ICommande[];

@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ServiceService } from '../../services/service.service';
 import { IService } from '../../models/service.model';
-import { CommonModule, NgForOf } from '@angular/common';
+import { CommonModule, DatePipe, NgForOf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CategoryService } from '../../services/category.service';
 
@@ -23,8 +23,8 @@ import { AuthService } from '../../services/auth.service';
     FormsModule,
     QuantitySelectorComponent,
     CartComponent,
-
   ],
+  providers: [DatePipe],
   selector: 'app-page-depot',
   templateUrl: './page-depot.component.html',
   styleUrls: ['./page-depot.component.css']
@@ -45,6 +45,7 @@ export class PageDepotComponent implements OnInit {
   serviceCart = inject(CartService);
   serviceCommande = inject(CommandeService);
   authService = inject(AuthService);
+  datePipe = inject(DatePipe);
 
 
   //METHODS
@@ -93,21 +94,27 @@ export class PageDepotComponent implements OnInit {
     this.quantity = newQty;
     console.log(this.quantity);
   }
+  formatDateTime(date: Date): string | null {
+    return this.datePipe.transform(date, 'yyyy-MM-dd\'T\'HH:mm:ssZZZZZ'); // datePipe.transform(date, 'yyyy-MM-dd HH:mm:ss');
+  }
   addCommande() {
-    let clientId = this.authService.getLocalStorageUser();
-    console.log(clientId);
-    let Now = new Date();
-    // let commande: ICommande = {
-    //   id: null,
-    //   ref: null,
-    //   client: clientId,
-    //   filingDate: Now,
-    //   paymentDate: Now,
-    //   returnDate: Now
 
-    // }
-    // this.serviceCommande.postCommande(commande).subscribe(data => {
-    //   console.log(data);
-    // });
+    let formattedDate = this.formatDateTime(new Date());
+    //console.log(formattedDate); // Affiche la date au format PHP: '2024-08-13 10:45:00'
+    let clientId = this.authService.getLocalStorageUser().id;
+    console.log(clientId);
+
+    let commande: ICommande = {
+      id: null,
+      ref: '',
+      client: clientId,
+      filingDate: this.formatDateTime(new Date()) ?? '',
+      paymentDate: this.formatDateTime(new Date()) ?? '',
+      returnDate: this.formatDateTime(new Date()) ?? ''
+    }
+    console.log(commande);
+    this.serviceCommande.postCommande(commande).subscribe(data => {
+      console.log(data);
+    });
   }
 }

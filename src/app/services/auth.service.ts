@@ -33,11 +33,11 @@ export class AuthService {
   //   return localStorage.getItem('token');
   // }
 
-  public setLocalStorageUser(user: User): void {
+  public setLocalStorageUser(user: IUser): void {
     localStorage.setItem("user", JSON.stringify(user));
   }
 
-  public getLocalStorageUser(): User | null {
+  public getLocalStorageUser(): IUser {
     const user = localStorage.getItem("user");
     return user ? JSON.parse(user) : null;
   }
