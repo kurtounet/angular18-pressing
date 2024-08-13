@@ -57,7 +57,9 @@ export class CartComponent implements OnInit {
     }*/
   }
 
-
+  validCommande() {
+    console.log('commande');
+  }
 
 
 

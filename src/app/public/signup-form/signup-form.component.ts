@@ -24,6 +24,7 @@ export class SignupFormComponent {
     // dateborn: new FormControl(null, { validators: [Validators.required] }),
     email: new FormControl('anthony@gmail.com', { validators: [Validators.required, Validators.email] }),
     password: new FormControl('nirvana', { validators: [Validators.required] }),
+    secondpassword: new FormControl('nirvana', { validators: [Validators.required] }),
     mobilephone: new FormControl('0000000000', { validators: [Validators.required, Validators.pattern('^[0-9]*$')] }),
     phone: new FormControl('0000000000', { validators: [Validators.pattern('^[0-9]*$')] }),
     //roles: new FormControl([], { validators: [Validators.required] }),

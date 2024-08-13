@@ -31,8 +31,8 @@ export class ClientService {
 
   // Créer un nouveau Client
   postClient(body: IClient): Observable<IClient> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/ld+json' });
-    return this.httpClient.post<IClient>(this.routeApi, body, { headers });
+   // const headers = new HttpHeaders({ 'Content-Type': 'application/ld+json' });
+    return this.httpClient.post<IClient>(this.routeApi, body);
   }
 
   // Mettre à jour un Client par ID

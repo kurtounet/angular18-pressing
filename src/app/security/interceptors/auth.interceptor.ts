@@ -1,6 +1,6 @@
 
 
-import { HttpEvent, HttpHandlerFn, HttpInterceptorFn, HttpRequest } from '@angular/common/http';
+import { HttpEvent, HttpHandlerFn, HttpHeaders, HttpInterceptorFn, HttpRequest } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { catchError, Observable, throwError } from 'rxjs';
@@ -12,12 +12,21 @@ export function authInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn):
   if (token) {
     req = req.clone({
       setHeaders: {
-        Authorization: `Bearer ${token}`,
-
+        Authorization: `Bearer ${token}` 
+        //'Content-Type': 'application/ld+json'
+        //'Content-Type': 'application/merge-patch+json'        
+        // 'Accept': 'application/ld+json',
       }
     });
   }
+  // if (!token) { 
+  //   return next(req)
+  // }
+  // const headers = new HttpHeaders({ Authorization: token});
 
+  //   const newReq = req.clone({
+  //     headers
+  //   })
   return next(req).pipe(
     catchError(error => {
       if (error.status === 401) {
