@@ -1,7 +1,7 @@
 export interface ICommande {
   id: number | null;
   ref: string | null;
-  client: number;
+  client: string | null;
   filingDate: string;
   paymentDate: string;
   returnDate: string;

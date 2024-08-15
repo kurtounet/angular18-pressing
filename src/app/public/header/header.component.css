@@ -1,153 +1,153 @@
 header {
-    color: #0c0c0c;
-    font-size: medium;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    align-content: center;
+  color: #0c0c0c;
+  font-size: medium;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
 }
 
 .col {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 header div {
-    width: 100%;
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
 }
 
 header div div#div-cart-burger {
-    border: 1px solid #000;
-    width: fit-content;
-    display: flex;
-    align-items: baseline;
-    /*align-content: center;*/
+  border: 1px solid #000;
+  width: fit-content;
+  display: flex;
+  align-items: baseline;
+  /*align-content: center;*/
 }
 
 header div div#div-cart-burger div#div-menu {
-    border: 2px solid #009fdd;
-    border-radius: 5px;
-    width: fit-content;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /*align-content: center;*/
-    justify-content: flex-end;
-    padding: 2px;
+  border: 2px solid #009fdd;
+  border-radius: 5px;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /*align-content: center;*/
+  justify-content: flex-end;
+  padding: 2px;
 }
 
 header div div#div-cart {
-    width: fit-content;
-    display: flex;
-    align-items: start;
-    /*justify-content: flex-end;*/
-    padding: 5px;
+  width: fit-content;
+  display: flex;
+  align-items: start;
+  /*justify-content: flex-end;*/
+  padding: 5px;
 }
 
 header div div#div-cart-img {
-    width: fit-content;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /*align-content: center;*/
-    justify-content: flex-start;
-    padding: 5px;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /*align-content: center;*/
+  justify-content: flex-start;
+  padding: 5px;
 }
 
 header div div#div-cart-img img {
-    object-fit: cover;
-    width: 25px;
+  object-fit: cover;
+  width: 25px;
 }
 
 header div div#div-cart span {
-    background-color: #dd2c00;
-    border-radius: 50%;
+  background-color: #dd2c00;
+  border-radius: 50%;
 
 }
 
 
 
 header nav#nav-menu div {
-    display: flex;
-    justify-content: right;
-    padding: 2rem;
+  display: flex;
+  justify-content: right;
+  padding: 2rem;
 }
 
 header nav#nav-menu div img#close {
-    width: 2rem;
-    height: 2rem;
+  width: 2rem;
+  height: 2rem;
 }
 
 header nav#nav-menu a {
-    display: block;
-    font-size: large;
-    color: #ffffff;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 2rem;
+  display: block;
+  font-size: large;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 2rem;
 }
 
 header nav#nav-menu {
-    border-radius: 8px;
-    width: 100%;
-    background-color: #009fdd;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: stretch;
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-    z-index: 100;
+  border-radius: 8px;
+  width: 100%;
+  background-color: #009fdd;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: stretch;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: 100;
 }
 
 
 header nav#nav-menu.menu-open {
-    transform: translateX(0);
+  transform: translateX(0);
 }
 
 @media screen and (min-width: 768px) {
 
-    header {
-        align-items: center;
-    }
+  header {
+    align-items: center;
+  }
 
-    header div {
-        width: fit-content;
-    }
+  header div {
+    width: fit-content;
+  }
 
-    header div div#divmenu {
-        display: none;
-    }
+  header div div#divmenu {
+    display: none;
+  }
 
-    header nav#nav-menu {
-        flex-direction: row;
-        align-items: flex-end;
-        justify-content: space-around;
-        border-radius: 0px;
-        position: relative;
-        left: 100%;
-    }
+  header nav#nav-menu {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-around;
+    border-radius: 0px;
+    position: relative;
+    left: 100%;
+  }
 
-    header nav#nav-menu a {
-        display: block;
-        padding: 0.5rem;
-        width: fit-content;
-    }
+  header nav#nav-menu a {
+    display: block;
+    padding: 0.5rem;
+    width: fit-content;
+  }
 
-    header nav#nav-menu div {
-        display: none;
-        padding: 0;
-        margin: 0;
+  header nav#nav-menu div {
+    display: none;
+    padding: 0;
+    margin: 0;
 
-    }
+  }
 
 
 

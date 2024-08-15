@@ -23,24 +23,24 @@ export class HomeComponent implements OnInit {
   itemsService = inject(ItemService);
   itemsList: Iitem[] = [];
 
-  item: Iitem =
-    {
-      "id": 16,
-      "service": "/api/services/341",
-      "commande": "/api/commandes/91",
-      "itemStatus": "/api/item_statuses/86",
-      "detailItem": " Item change",
-      "price": 11.51,
-      "quantity": 5,
-      "employee": "/api/employees/123"
-    };
+  // item: Iitem =
+  //   {
+  //     "id": 16,
+  //     "service": "/api/services/341",
+  //     "commande": "/api/commandes/91",
+  //     "itemStatus": "/api/item_statuses/86",
+  //     "detailItem": " Item change",
+  //     "price": 11.51,
+  //     "quantity": 5,
+  //     "employee": "/api/employees/123"
+  //   };
 
   user: any | null = null;
   ngOnInit(): void {
     this.getAuthCurrentUser();
-   // this.UpdateItem(this.item);
-   // this.getAddItems();
-   // this.getAllItems();
+    // this.UpdateItem(this.item);
+    // this.getAddItems();
+    // this.getAllItems();
   }
   getAuthCurrentUser() {
     this.authService.getAuthCurrentUser().subscribe(data => {
@@ -58,10 +58,9 @@ export class HomeComponent implements OnInit {
       console.log('data', data);
     });
   }
-  AddItem() { 
-    this.itemsService.postItem(this.item).subscribe(data => {
-       console.log('data', data);
-    });
-
-  }
+  // AddItem() {
+  //   this.itemsService.postItem(this.item).subscribe(data => {
+  //      console.log('data', data);
+  //   });
+  // }
 }

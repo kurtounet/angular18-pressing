@@ -1,32 +1,41 @@
 <div *ngIf="userRoles?.includes('ROLE_ADMIN')">ADMIN</div>
 <div *ngIf="userRoles?.includes('ROLE_EMPLOYEE')">EMPLOYEE</div>
 
-tâckesh
+
 <table class="table">
   <thead>
     <tr>
-      <th class="text-center" scope="col">#</th>
-      <th class="text-center" scope="col">Reférence commande</th>
-      <th class="text-center" scope="col">Service</th>
-      <th class="text-center" scope="col">Quantité</th>
-      <th class="text-center" scope="col">Employer</th>
-      <th class="text-center" scope="col">Montant</th>
-      <th class="text-center" scope="col">Status</th>
-      <th class="text-center" scope="col"></th>
+      <th class="text-center">#</th>
+      <th class="text-center">Reférence commande</th>
+      <th class="text-center">Service</th>
+      <th class="text-center">Catégorie</th>
+      <th class="text-center">Quantité</th>
+      <th class="text-center" *ngIf="userRoles?.includes('ROLE_ADMIN')">Employer</th>
+      <th class="text-center" *ngIf="userRoles?.includes('ROLE_ADMIN')">Montant</th>
+      <th class="text-center">Status</th>
+      <th class="text-center"></th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let row of arrayItems" let i="index">
       <th scope="row">{{ row.id }}</th>
-      <td class="text-center">{{ row.commande }}</td>
-      <td class="text-center">{{ row.service }}</td>
+      <td class="text-center">{{ row.commande?.ref }}</td>
+      <td class="text-center">{{ row.service?.name }}</td>
+      <td class="text-center">{{ row.category?.name }}</td>
       <td class="text-center">{{ row.quantity }}</td>
-      <td class="text-center">{{ row.employee}}</td>
-      <td class="text-center">{{ row.price}} <span>€</span></td>
-      <td class="text-center">{{ row.itemStatus}}</td>
+      <td class="text-center" *ngIf="userRoles?.includes('ROLE_ADMIN')">{{ row.employee }}</td>
+      <td class="text-center" *ngIf="userRoles?.includes('ROLE_ADMIN')">{{ row.price}} <span>€</span></td>
+
       <td class="text-center">
-        <button type="button" class="btn btn-success mx-1">Détail</button>
-        <button type="button" class="btn btn-danger mx-1">Facture</button>
+        <!-- <select [(ngModel)]="selectedStatusId" (change)="selectedStatus($event)">
+          <option *ngFor="let status of arrayItemStatus" [value]="status.id">
+            {{ status.name }}
+          </option>
+        </select> -->
+        {{ row.itemStatus?.name }}
+      </td>
+      <td class="text-center">
+        <button type="button" class="btn btn-primary mx-1">Valider</button>
       </td>
     </tr>
   </tbody>

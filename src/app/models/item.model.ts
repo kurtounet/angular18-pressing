@@ -1,12 +1,16 @@
+import { ICategory } from "./category.model.";
 import { ICommande } from "./commande.model";
+import { IitemStatus } from "./itemStatus.model";
+import { IService } from "./service.model";
 
 export interface Iitem {
   id: number | null;
-  service: string | null;
-  commande: string | null;
-  itemStatus: string | null;
+  service: IService | null;
+  commande: ICommande | null;
+  category: ICategory | null;
+  itemStatus: IitemStatus | null;
   detailItem: string | null;
-  price: number;
+  price: number | null;
   quantity: number;
   employee: string | null;
 }

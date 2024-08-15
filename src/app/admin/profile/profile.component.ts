@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormControl } 
 import { AuthService } from '../../services/auth.service';
 import { error } from 'console';
 import { UserService } from '../../services/user.service';
+import { Router } from '@angular/router';
 @Component({
   standalone: true,
   selector: 'app-profile',
@@ -21,6 +22,7 @@ export class ProfileComponent implements OnInit {
   user: IUser | null = null;
   authService = inject(AuthService);
   userService = inject(UserService);
+  router = inject(Router);
 
   public profileForm: FormGroup = new FormGroup({
     id: new FormControl(null),  // Optionnel, peut être généré automatiquement
@@ -47,16 +49,13 @@ export class ProfileComponent implements OnInit {
     this.authService.getAuthCurrentUser().subscribe({
 
       next: (data: IUser) => {
-        console.log(data);
         if (data && data.dateborn) {
           let date = new Date(data.dateborn);
           if (date) { // Check if date is valid
             const formattedDate = date.toISOString().split('T')[0];
-            // data.dateborn = new Date(date, "yyyy-MM-dd");
+
           }
         }
-
-
         this.profileForm.patchValue(data);
       },
       error: (error) => {
@@ -69,7 +68,7 @@ export class ProfileComponent implements OnInit {
       this.user = this.profileForm.value;
       this.userService.patchUser(this.user?.id, this.user).subscribe({
         next: (data: IUser) => {
-          console.log('DATA', data);
+          this.router.navigate(['/admin/dashboard/Home']);
         },
         error: (error) => {
           console.error(error);

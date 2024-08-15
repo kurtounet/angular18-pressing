@@ -1,12 +1,12 @@
-import { Category } from "./category.model.";
+import { ICategory } from "./category.model.";
 
 export interface IService {
   id: number;
   name: string;
   description: string;
   price: number;
-  image: string;   
-  Category:Category[]
+  image: string;
+  Category: ICategory[]
 }
 
 // export interface ServiceCollection {

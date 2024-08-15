@@ -9,7 +9,7 @@ import { QuantitySelectorComponent } from '../quantity-selector/quantity-selecto
 import { CartService } from '../../services/cart.service';
 import { CartComponent } from '../cart/cart.component';
 import { itemCart } from '../../models/itemCart.model';
-import { Category } from '../../models/category.model.';
+import { ICategory } from '../../models/category.model.';
 import { environment } from '../../environments/environment';
 import { CommandeService } from '../../services/commande.service';
 import { ICommande } from '../../models/commande.model';
@@ -35,7 +35,7 @@ export class PageDepotComponent implements OnInit {
   baseUrlImageCategories = environment.baseUrl + environment.assertsImageCategories;
   quantity: number = 2;
   arrayServices: IService[] = [];
-  arrayCategoriesOfSelectedService: Category[] = [];
+  arrayCategoriesOfSelectedService: ICategory[] = [];
   selectedServicesId: number = 0;
   selectedCategoryId: number = 0;
 
@@ -98,7 +98,6 @@ export class PageDepotComponent implements OnInit {
     return this.datePipe.transform(date, 'yyyy-MM-dd\'T\'HH:mm:ssZZZZZ'); // datePipe.transform(date, 'yyyy-MM-dd HH:mm:ss');
   }
   addCommande() {
-
     let formattedDate = this.formatDateTime(new Date());
     //console.log(formattedDate); // Affiche la date au format PHP: '2024-08-13 10:45:00'
     let clientId = this.authService.getLocalStorageUser().id;
@@ -107,7 +106,7 @@ export class PageDepotComponent implements OnInit {
     let commande: ICommande = {
       id: null,
       ref: '',
-      client: clientId,
+      client: '/api/clients/' + clientId,
       filingDate: this.formatDateTime(new Date()) ?? '',
       paymentDate: this.formatDateTime(new Date()) ?? '',
       returnDate: this.formatDateTime(new Date()) ?? ''

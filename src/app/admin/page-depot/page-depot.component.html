@@ -31,6 +31,7 @@
 </section> -->
 <button (click)="addCommande()">Add commande</button>
 <section class="container">
+
   <section id="cathegorie">
     <h4>Choisissez un service</h4>
     <select [(ngModel)]="selectedServicesId" (change)="selectedService($event)">
@@ -40,6 +41,7 @@
       </option>
     </select>
   </section>
+
   <section class="row">
     <div class="col-md-6">
       <h1>Article</h1>

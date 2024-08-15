@@ -17,16 +17,17 @@ export class ItemService {
       map(response => response['hydra:member']),
     );
   }
+  getAllItemsNoAssigned(): Observable<Iitem[]> {
+    return this.httpClient.get<Iitem[]>(`${this.routeApi}${'/noassigned'}`)
+  }
 
   getItemCommandesById(id: number): Observable<Iitem[]> {
     return this.httpClient.get<IHydraCollection<Iitem>>(this.routeApi).pipe(
       map(response => response['hydra:member']),
     );
   }
-  getItemsEmployees(): Observable<Iitem[]> {
-    return this.httpClient.get<IHydraCollection<Iitem>>(`${this.routeApi}${'/employee'}`).pipe(
-      map(response => response['hydra:member']),
-    );
+  getItemsEmployee(): Observable<Iitem[]> {
+    return this.httpClient.get<Iitem[]>(`${this.routeApi}${'/employees'}`)
   }
 
   getItemById(id: number): Observable<Iitem> {

@@ -1,11 +1,11 @@
 # Angular Pressing
 
 "src/favicon.ico",
-              "src/assets"
+"src/assets"
 
 # USER
 
-admin: < <admin@gmail.com> >   pwd : Jean
+admin: < <admin@gmail.com> >pwd : Jean
 manager: < <jane.doe@gmail.com> > pwd: Jane
 client: < <emma.wilson@gmail.com> > pwd : Emma
 employee: < <lucy.liu@gmail.com> > pwd :Lucy
@@ -26,6 +26,36 @@ API
 - Faire avec les catégories parent
 - -
 
+**Espace**| **Page**| **Route**|
+|-|-|-|
+| **inscription** | |PATCH /api/check_login |
+| **Login** | | /api/check_login |
+| **Visiteur** | Landing page (fait) | /api/services |
+| | Présentation des services (fait) | /api/services |
+| **Espace Utilisateur** | **Espace Client** | |
+| | Page dépôt | |
+| | Processus de dépôt : Choix du service | GET /api/services |
+| | Processus de dépôt : Choix des articles ManyToMany | GET /api/articles |
+| | Processus de dépôt : Choix de la quantité | /api/services |
+| | Processus de dépôt : Valider le dépôt | POST /api/items |
+| | Page liste commandes | /api/commande/user/{id} |
+| | Page panier | Stocker dans le localStorage |
+| | Page Profile | /api/user/{id} |
+| | Page contact | /api/contact/ |
+| **Espace Admin** | Page liste des utilisateurs | /api/users |
+| | Page liste commandes | |
+| | Page liste des tâches | |
+| | Page Profile | |
+| **Espace Employé** | Page liste des tâches | /api/employee/{id}/task/ |
+| | Page Profile | /api/users/{id} |
+| | Page contact | |
+| **Employé - Admin** | Liste des commandes pour l'employé | |
+| **Admin** | Admin | |
+| | Liste de commandes | /api/commandes |
+| | Liste des utilisateurs | /api/user |
+| | Employé | |
+| | Client | |
+
 Faire une route pour
 
 # Page côté front
@@ -34,14 +64,14 @@ Faire une route pour
 >
 > routes: /api/check_login
   
-## Visiteur
+### Visiteur
 
-### Landing page
+#### Landing page (fait)
 
 liste 3 services
 > routes: /api/services
 >
-### Présentation des services
+#### Présentation des services (fait)
 >
 > routes: /api/services
 
@@ -52,36 +82,35 @@ liste 3 services
 >#### Page dépôt
 >
 >### Processuse de dépot
-    >
-    >- 1 Choix du service
-    >   - route: GET /api/services
-    >- 2 Choix des article ManyToMany entre SERVICE et ARTICLE
-    >   - routes: GET /api/articles
-    >- 3 Choix du quantité
-    >   - route: /api/services
-    >- 4 Valider le dépot
-    >   - route:POST /api/items
+ >
+ >- 1 Choix du service
+ >- route: GET /api/services
+ >- 2 Choix des article ManyToMany entre SERVICE et ARTICLE
+ >- routes: GET /api/articles
+ >- 3 Choix du quantité
+ >- route: /api/services
+ >- 4 Valider le dépot
+ >- route:POST /api/items
 
-### Page liste commandes
+#### Page liste commandes
 >
-> controller
-> route personnalisé : /api/commande/user/{id}
+> controller -> route personnalisé : /api/commande/user/{id}
 >
-### Page panier
+#### Page panier
 >
 > stocker dans le localStorage
 >
-### Page Profile
+#### Page Profile
 >
 > routes: /api/user/{id}
 >
-### Page  contact
+#### Page  contact
 
 > routes: /api/contact/
 >
 ## Espace Admin
 
-#### Page liste des ustilisateurs
+#### Page liste des utilisateurs
 >
 > routes: /api/users
 >
@@ -95,17 +124,15 @@ liste 3 services
 
 #### Page liste des taches
 
-route
+controller route /api/employee/{id}/task/
 
 #### Page Profile
 
+routes: /api/users/{id}
+
 #### Page contact
 
-### Espace Manager
-
-### Espace Employee
-
-## Employé - admin
+## Employé - Admin
 >
 > list des commande pour l'employer
 
@@ -131,373 +158,50 @@ route
 
 ## liste des routes de l'api
 
-GET
-/api/articles
-Retrieves the collection of Article resources.
-
-POST
-/api/articles
-Creates a Article resource.
-
-GET
-/api/articles/{id}
-Retrieves a Article resource.
-
-PUT
-/api/articles/{id}
-Replaces the Article resource.
-
-DELETE
-/api/articles/{id}
-Removes the Article resource.
-
-PATCH
-/api/articles/{id}
-Updates the Article resource.
-
-Category
-
-GET
-/api/categories
-Retrieves the collection of Category resources.
-
-POST
-/api/categories
-Creates a Category resource.
-
-GET
-/api/categories/{id}
-Retrieves a Category resource.
-
-PUT
-/api/categories/{id}
-Replaces the Category resource.
-
-DELETE
-/api/categories/{id}
-Removes the Category resource.
-
-PATCH
-/api/categories/{id}
-Updates the Category resource.
-
-Commande
-
-GET
-/api/commandes
-Retrieves the collection of Commande resources.
-
-POST
-/api/commandes
-Creates a Commande resource.
-
-GET
-/api/commandes/{id}
-Retrieves a Commande resource.
-
-PUT
-/api/commandes/{id}
-Replaces the Commande resource.
-
-DELETE
-/api/commandes/{id}
-Removes the Commande resource.
-
-PATCH
-/api/commandes/{id}
-Updates the Commande resource.
-
-ItemEtat
-
-GET
-/api/item_etats
-Retrieves the collection of ItemEtat resources.
-
-POST
-/api/item_etats
-Creates a ItemEtat resource.
-
-GET
-/api/item_etats/{id}
-Retrieves a ItemEtat resource.
-
-PUT
-/api/item_etats/{id}
-Replaces the ItemEtat resource.
-
-DELETE
-/api/item_etats/{id}
-Removes the ItemEtat resource.
-
-PATCH
-/api/item_etats/{id}
-Updates the ItemEtat resource.
-
-Item
-
-GET
-/api/items
-Retrieves the collection of Item resources.
-
-POST
-/api/items
-Creates a Item resource.
-
-GET
-/api/items/{id}
-Retrieves a Item resource.
-
-PUT
-/api/items/{id}
-Replaces the Item resource.
-
-DELETE
-/api/items/{id}
-Removes the Item resource.
-
-PATCH
-/api/items/{id}
-Updates the Item resource.
-
-Login Check
-
-POST
-/api/login_check
-Creates a user token.
-
-Material
-
-GET
-/api/materials
-Retrieves the collection of Material resources.
-
-POST
-/api/materials
-Creates a Material resource.
-
-GET
-/api/materials/{id}
-Retrieves a Material resource.
-
-PUT
-/api/materials/{id}
-Replaces the Material resource.
-
-DELETE
-/api/materials/{id}
-Removes the Material resource.
-
-PATCH
-/api/materials/{id}
-Updates the Material resource.
-
-Meansofpayment
-
-GET
-/api/meansofpayments
-Retrieves the collection of Meansofpayment resources.
-
-POST
-/api/meansofpayments
-Creates a Meansofpayment resource.
-
-GET
-/api/meansofpayments/{id}
-Retrieves a Meansofpayment resource.
-
-PUT
-/api/meansofpayments/{id}
-Replaces the Meansofpayment resource.
-
-DELETE
-/api/meansofpayments/{id}
-Removes the Meansofpayment resource.
-
-PATCH
-/api/meansofpayments/{id}
-Updates the Meansofpayment resource.
-
-ServiceStatus
-
-GET
-/api/service_statuses
-Retrieves the collection of ServiceStatus resources.
-
-POST
-/api/service_statuses
-Creates a ServiceStatus resource.
-
-GET
-/api/service_statuses/{id}
-Retrieves a ServiceStatus resource.
-
-PUT
-/api/service_statuses/{id}
-Replaces the ServiceStatus resource.
-
-DELETE
-/api/service_statuses/{id}
-Removes the ServiceStatus resource.
-
-PATCH
-/api/service_statuses/{id}
-Updates the ServiceStatus resource.
-
-Service
-
-GET
-/api/services
-Retrieves the collection of Service resources.
-
-POST
-/api/services
-Creates a Service resource.
-
-GET
-/api/services/{id}
-Retrieves a Service resource.
-
-PUT
-/api/services/{id}
-Replaces the Service resource.
-
-DELETE
-/api/services/{id}
-Removes the Service resource.
-
-PATCH
-/api/services/{id}
-Updates the Service resource.
-
-User
-
-GET
-/api/users
-Retrieves the collection of User resources.
-
-POST
-/api/users
-Creates a User resource.
-
-GET
-/api/users/{id}
-Retrieves a User resource.
-
-PUT
-/api/users/{id}
-Replaces the User resource.
-
-DELETE /api/users/{id} Removes the User resource.
-
-PATCH
-/api/users/{id}
-Updates the User resource.
-
-Schemas
-ArticleExpand allobject
-Article.jsonldExpand allobject
-CategoryExpand allobject
-Category.jsonldExpand allobject
-CommandeExpand allobject
-Commande.jsonldExpand allobject
-ItemExpand allobject
-Item.jsonldExpand allobject
-ItemEtatExpand allobject
-ItemEtat.jsonldExpand allobject
-MaterialExpand allobject
-Material.jsonldExpand allobject
-MeansofpaymentExpand allobject
-Meansofpayment.jsonldExpand allobject
-ServiceExpand allobject
-Service.jsonldExpand allobject
-ServiceStatusExpand allobject
-ServiceStatus.jsonldExpand allobject
-UserExpand allobject
-User.jsonldExpand allobject
-Available formats: jsonld jsonopenapi html
-Other API docs: ReDoc GraphiQL
-
-# Define the routes and methods as provided by the user
-
-routes = [
-    {'method': 'GET', 'endpoint': '/api/articles', 'description': 'Retrieves the collection of Article resources.'},
-    {'method': 'POST', 'endpoint': '/api/articles', 'description': 'Creates a Article resource.'},
-    {'method': 'GET', 'endpoint': '/api/articles/{id}', 'description': 'Retrieves a Article resource.'},
-    {'method': 'PUT', 'endpoint': '/api/articles/{id}', 'description': 'Replaces the Article resource.'},
-    {'method': 'DELETE', 'endpoint': '/api/articles/{id}', 'description': 'Removes the Article resource.'},
-    {'method': 'PATCH', 'endpoint': '/api/articles/{id}', 'description': 'Updates the Article resource.'},
-
-    {'method': 'GET', 'endpoint': '/api/categories', 'description': 'Retrieves the collection of Category resources.'},
-    {'method': 'POST', 'endpoint': '/api/categories', 'description': 'Creates a Category resource.'},
-    {'method': 'GET', 'endpoint': '/api/categories/{id}', 'description': 'Retrieves a Category resource.'},
-    {'method': 'PUT', 'endpoint': '/api/categories/{id}', 'description': 'Replaces the Category resource.'},
-    {'method': 'DELETE', 'endpoint': '/api/categories/{id}', 'description': 'Removes the Category resource.'},
-    {'method': 'PATCH', 'endpoint': '/api/categories/{id}', 'description': 'Updates the Category resource.'},
-    
-    {'method': 'GET', 'endpoint': '/api/commandes', 'description': 'Retrieves the collection of Commande resources.'},
-    {'method': 'POST', 'endpoint': '/api/commandes', 'description': 'Creates a Commande resource.'},
-    {'method': 'GET', 'endpoint': '/api/commandes/{id}', 'description': 'Retrieves a Commande resource.'},
-    {'method': 'PUT', 'endpoint': '/api/commandes/{id}', 'description': 'Replaces the Commande resource.'},
-    {'method': 'DELETE', 'endpoint': '/api/commandes/{id}', 'description': 'Removes the Commande resource.'},
-    {'method': 'PATCH', 'endpoint': '/api/commandes/{id}', 'description': 'Updates the Commande resource.'},
-    
-    {'method': 'GET', 'endpoint': '/api/item_etats', 'description': 'Retrieves the collection of ItemEtat resources.'},
-    {'method': 'POST', 'endpoint': '/api/item_etats', 'description': 'Creates a ItemEtat resource.'},
-    {'method': 'GET', 'endpoint': '/api/item_etats/{id}', 'description': 'Retrieves a ItemEtat resource.'},
-    {'method': 'PUT', 'endpoint': '/api/item_etats/{id}', 'description': 'Replaces the ItemEtat resource.'},
-    {'method': 'DELETE', 'endpoint': '/api/item_etats/{id}', 'description': 'Removes the ItemEtat resource.'},
-    {'method': 'PATCH', 'endpoint': '/api/item_etats/{id}', 'description': 'Updates the ItemEtat resource.'},
-    
-    {'method': 'GET', 'endpoint': '/api/items', 'description': 'Retrieves the collection of Item resources.'},
-    {'method': 'POST', 'endpoint': '/api/items', 'description': 'Creates a Item resource.'},
-    {'method': 'GET', 'endpoint': '/api/items/{id}', 'description': 'Retrieves a Item resource.'},
-    {'method': 'PUT', 'endpoint': '/api/items/{id}', 'description': 'Replaces the Item resource.'},
-    {'method': 'DELETE', 'endpoint': '/api/items/{id}', 'description': 'Removes the Item resource.'},
-    {'method': 'PATCH', 'endpoint': '/api/items/{id}', 'description': 'Updates the Item resource.'},
-    
-    {'method': 'POST', 'endpoint': '/api/login_check', 'description': 'Creates a user token.'},
-    
-    {'method': 'GET', 'endpoint': '/api/materials', 'description': 'Retrieves the collection of Material resources.'},
-    {'method': 'POST', 'endpoint': '/api/materials', 'description': 'Creates a Material resource.'},
-    {'method': 'GET', 'endpoint': '/api/materials/{id}', 'description': 'Retrieves a Material resource.'},
-    {'method': 'PUT', 'endpoint': '/api/materials/{id}', 'description': 'Replaces the Material resource.'},
-    {'method': 'DELETE', 'endpoint': '/api/materials/{id}', 'description': 'Removes the Material resource.'},
-    {'method': 'PATCH', 'endpoint': '/api/materials/{id}', 'description': 'Updates the Material resource.'},
-    
-    {'method': 'GET', 'endpoint': '/api/meansofpayments', 'description': 'Retrieves the collection of Meansofpayment resources.'},
-    {'method': 'POST', 'endpoint': '/api/meansofpayments', 'description': 'Creates a Meansofpayment resource.'},
-    {'method': 'GET', 'endpoint': '/api/meansofpayments/{id}', 'description': 'Retrieves a Meansofpayment resource.'},
-    {'method': 'PUT', 'endpoint': '/api/meansofpayments/{id}', 'description': 'Replaces the Meansofpayment resource.'},
-    {'method': 'DELETE', 'endpoint': '/api/meansofpayments/{id}', 'description': 'Removes the Meansofpayment resource.'},
-    {'method': 'PATCH', 'endpoint': '/api/meansofpayments/{id}', 'description': 'Updates the Meansofpayment resource.'},
-    
-    {'method': 'GET', 'endpoint': '/api/service_statuses', 'description': 'Retrieves the collection of ServiceStatus resources.'},
-    {'method': 'POST', 'endpoint': '/api/service_statuses', 'description': 'Creates a ServiceStatus resource.'},
-    {'method': 'GET', 'endpoint': '/api/service_statuses/{id}', 'description': 'Retrieves a ServiceStatus resource.'},
-    {'method': 'PUT', 'endpoint': '/api/service_statuses/{id}', 'description': 'Replaces the ServiceStatus resource.'},
-    {'method': 'DELETE', 'endpoint': '/api/service_statuses/{id}', 'description': 'Removes the ServiceStatus resource.'},
-    {'method': 'PATCH', 'endpoint': '/api/service_statuses/{id}', 'description': 'Updates the ServiceStatus resource.'},
-    
-    {'method': 'GET', 'endpoint': '/api/services', 'description': 'Retrieves the collection of Service resources.'},
-    {'method': 'POST', 'endpoint': '/api/services', 'description': 'Creates a Service resource.'},
-    {'method': 'GET', 'endpoint': '/api/services/{id}', 'description': 'Retrieves a Service resource.'},
-    {'method': 'PUT', 'endpoint': '/api/services/{id}', 'description': 'Replaces the Service resource.'},
-    {'method': 'DELETE', 'endpoint': '/api/services/{id}', 'description': 'Removes the Service resource.'},
-    {'method': 'PATCH', 'endpoint': '/api/services/{id}', 'description': 'Updates the Service resource.'},
-    
-    {'method': 'GET', 'endpoint': '/api/users', 'description': 'Retrieves the collection of User resources.'},
-    {'method': 'POST', 'endpoint': '/api/users', 'description': 'Creates a User resource.'},
-    {'method': 'GET', 'endpoint': '/api/users/{id}', 'description': 'Retrieves a User resource.'},
-    {'method': 'PUT', 'endpoint': '/api/users/{id}', 'description': 'Replaces the User resource.'},
-    {'method': 'DELETE', 'endpoint': '/api/users/{id}', 'description': 'Removes the User resource.'},
-    {'method': 'PATCH', 'endpoint': '/api/users/{id}', 'description': 'Updates the User resource.'}
-]
-
-import pandas as pd
-
-# Convert to DataFrame for better visualization
-
-df_routes = pd.DataFrame(routes)
-import ace_tools as tools; tools.display_dataframe_to_user(name="API Routes Table", dataframe=df_routes)
-
-df_routes
+| **Category**| **Method** | **Route**| **Description**|
+|--------------------|------------|--------------------------------|----------------------------------------------------|
+| **Login Check** | POST| /api/login_check| Creates a user token.|
+| **Category**| GET | /api/categories| Retrieves the collection of Category resources. |
+|  | POST| /api/categories| Creates a Category resource.|
+|  | GET | /api/categories/{id}  | Retrieves a Category resource.|
+|  | DELETE| /api/categories/{id}  | Removes the Category resource.|
+|  | PATCH | /api/categories/{id}  | Updates the Category resource.|
+| **Client**| GET | /api/clients | Retrieves the collection of Client resources. |
+|  | POST| /api/clients | Creates a Client resource.|
+|  | GET | /api/clients/commandes/{id} | Retrieves the collection of Client resources. |
+|  | GET | /api/clients/{id}| Retrieves a Client resource.|
+|  | DELETE| /api/clients/{id}| Removes the Client resource.|
+|  | PATCH | /api/clients/{id}| Updates the Client resource.|
+| **Commande**| GET | /api/commandes | Retrieves the collection of Commande resources. |
+|  | POST| /api/commandes | Creates a Commande resource.|
+|  | GET | /api/commandes/{id}| Retrieves a Commande resource.|
+|  | DELETE| /api/commandes/{id}| Removes the Commande resource.|
+|  | PATCH | /api/commandes/{id}| Updates the Commande resource.|
+| **User**  | GET | /api/currentuser | Retrieves the collection of User resources. |
+|  | GET | /api/users  | Retrieves the collection of User resources. |
+|  | POST| /api/users  | Creates a User resource.|
+|  | GET | /api/users/{id} | Retrieves a User resource.|
+|  | DELETE| /api/users/{id} | Removes the User resource.|
+|  | PATCH | /api/users/{id} | Updates the User resource.|
+| **Employee**| GET | /api/employees| Retrieves the collection of Employee resources. |
+|  | POST| /api/employees| Creates a Employee resource.|
+|  | GET | /api/employees/{id}  | Retrieves a Employee resource.|
+|  | DELETE| /api/employees/{id}  | Removes the Employee resource.|
+|  | PATCH | /api/employees/{id}  | Updates the Employee resource.|
+| **ItemStatus**| GET | /api/item_statuses| Retrieves the collection of ItemStatus resources.  |
+|  | POST| /api/item_statuses| Creates a ItemStatus resource.|
+|  | GET | /api/item_statuses/{id}| Retrieves a ItemStatus resource. |
+|  | DELETE| /api/item_statuses/{id}| Removes the ItemStatus resource. |
+|  | PATCH | /api/item_statuses/{id}| Updates the ItemStatus resource. |
+| **Item**  | GET | /api/items  | Retrieves the collection of Item resources. |
+|  | POST| /api/items  | Creates a Item resource.|
+|  | GET | /api/items/employees | Retrieves the collection of Item resources. |
+|  | GET | /api/items/noassigned| Retrieves the collection of Item resources. |
+|  | GET | /api/items/{id} | Retrieves a Item resource.|
+|  | DELETE| /api/items/{id} | Removes the Item resource.|
+|  | PATCH | /api/items/{id} | Updates the Item resource.|
+| **Service** | GET | /api/services | Retrieves the collection of Service resources.|
+|  | POST| /api/services | Creates a Service resource. |
+|  | GET | /api/services/{id}| Retrieves a Service resource. |
+|  | DELETE| /api/services/{id}| Removes the Service resource. |
+|  | PATCH | /api/services/{id}| Updates the Service resource. |

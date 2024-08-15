@@ -26,7 +26,7 @@ export class UserService {
   }
 
   patchUser(id: number | undefined, body: IUser | null): Observable<IUser> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/merge-patch+json' });    
+    const headers = new HttpHeaders({ 'Content-Type': 'application/merge-patch+json' });
     return this.httpClient.patch<IUser>(`${this.routeApi}/${id}`, body, { headers });
   }
 

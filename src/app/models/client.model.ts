@@ -6,7 +6,6 @@ export interface IClient {
   Premium: boolean,
   user: User;
   commande: ICommande[];
-
 }
 
 export interface ClientCollection {

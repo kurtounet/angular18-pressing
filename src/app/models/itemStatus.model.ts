@@ -1,9 +1,6 @@
-export interface ItemStatus {
+export interface IitemStatus {
   id: number;
   name: string;
-  description: string;
-  price: number;
-  image: string;
 }
 
 export interface ItemStatusCollection {
@@ -11,7 +8,7 @@ export interface ItemStatusCollection {
   '@id': string;
   '@type': string;
   'hydra:totalItemStatus': number;
-  'hydra:member': ItemStatus[];
+  'hydra:member': IitemStatus[];
   'hydra:view': {
     '@id': string;
     '@type': string;

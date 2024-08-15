@@ -1,14 +1,13 @@
-export interface Category {
+export interface ICategory {
   id: number;
   name: string;
   parent: string,
   subcategories: [];
   image: string;
-  quantity: number;
 }
 
 export interface CategoryCollection {
-  Categories: Category[]
+  Categories: ICategory[]
   /*'@context': string;
   '@id': string;
   '@type': string;
