@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PagecontactComponent } from './pagecontact.component';
+import {PagecontactComponent} from './pagecontact.component';
 
 describe('PagecontactComponent', () => {
   let component: PagecontactComponent;
@@ -10,8 +10,8 @@ describe('PagecontactComponent', () => {
     await TestBed.configureTestingModule({
       imports: [PagecontactComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(PagecontactComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -1,79 +1,26 @@
 <div class="d-flex justify-content-center align-items-start vh-100">
   <div class="mt-5 w-50">
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="needs-validation">
-      <div formGroupName="credentials" class="form-group mb-3">
-        <label for="username" class="form-label">Votre email</label>
-        <input id="username" formControlName="username" type="email" class="form-control"
-          placeholder="Entrez votre email">
+    <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" class="needs-validation">
+      <div formGroupName="credentials">
+        <div class="form-group mb-3">
+          <label class="form-label" for="username">Votre email</label>
+          <input class="form-control" formControlName="username" id="username" placeholder="Entrez votre email"
+            type="email">
+          <div *ngIf="loginForm.get('username')?.errors?.['required']">L'email est requis.</div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label class="form-label" for="password">Votre mot de passe</label>
+          <input class="form-control" formControlName="password" id="password" placeholder="Entrez votre mot de passe"
+            type="password">
+        </div>
+
+        <div *ngIf="serverErrorMessages" class="text-danger">
+          {{ serverErrorMessages }}
+        </div>
+
+        <button [disabled]="loginForm.invalid" class="btn btn-primary w-100" type="submit">Login</button>
       </div>
-      <div formGroupName="credentials" class="form-group mb-3">
-        <label for="password" class="form-label">Votre mot de passe</label>
-        <input id="password" type="password" formControlName="password" class="form-control"
-          placeholder="Entrez votre mot de passe">
-      </div>
-      <button type="submit" class="btn btn-primary w-100" [disabled]="loginForm.invalid">Login</button>
     </form>
   </div>
 </div>
-
-
-
-<!-- <div class="login-container">
-  <form (ngSubmit)="login()" #loginform="ngForm" action="" class="login-form">
-    <h1 class="h3 mb-3 font-weight-normal text-center">Me connecter</h1>
-    <div class="form-group">
-      <label for="inputusername">Votre username</label>
-      <input
-        type="username"
-        id="inputusername"
-        class="form-control"
-        placeholder="username address"
-        required
-        autofocus
-      />
-    </div>
-    <div class="form-group">
-      <label for="inputPassword">Mots de passe</label>
-      <input value="Emma" type="text" id="inputPassword" class="form-control" placeholder="Password" required />
-    </div>
-     <div class="form-group form-check">
-      <input type="checkbox" class="form-check-input" id="rememberMe" />
-      <label class="form-check-label" for="rememberMe">Remember me</label>
-    </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">
-      Me connecter
-    </button>
-    <a routerLink="/register" class="btn btn-lg btn-primary btn-block">
-      s'inscrire
-    </a>
-
-    <p class="mt-5 mb-3 text-muted text-center">&copy; 2024</p>
-  </form>
--->
-<!-- <div class="container">
-  <h2>Se connecter</h2>
-  <form (ngSubmit)="login()" #loginform="ngForm" action="" class="d-flex flex-column container">
-    <mat-form-field>
-      <mat-label>username</mat-label>
-      <input #username="ngModel" name="username" matInput placeholder="username" [(ngModel)]="authRequest.username"
-        required />
-      <mat-error *ngIf="!username.valid">Veuiller entrer un userName</mat-error>
-    </mat-form-field>
-
-    <mat-form-field>
-      <mat-label>Password</mat-label>
-      <input #password="ngModel" name="password" matInput placeholder="Password" [(ngModel)]="authRequest.password"
-        required />
-      <mat-error *ngIf="!password.valid">Veuiller entrer un username</mat-error>
-    </mat-form-field>
-
-    <div *ngIf="error">
-      <p class="text-danger">Invalid credentials</p>
-      {{ error }}
-    </div>
-
-    <button id="btn-connect" [disabled]="!loginform.valid" class="btn btn-success" type="submit">
-      Soummetre
-    </button>
-  </form>
-</div> -->

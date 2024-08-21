@@ -1,13 +1,12 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { catchError, Observable, retry, throwError } from 'rxjs';
-import { AuthRequest } from '../models/auth-request';
-import { AuthResponse } from '../models/auth-response';
-import { environment } from '../environments/environment';
-import { IUser, User } from '../models/user.model';
-import { IToken } from '../models/auth';
-import { jwtDecode } from 'jwt-decode';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {inject, Injectable} from '@angular/core';
+import {Router} from '@angular/router';
+import {Observable, throwError} from 'rxjs';
+import {environment} from '../environments/environment';
+import {IUser} from '../models/user.model';
+import {IToken} from '../models/auth';
+import {jwtDecode} from 'jwt-decode';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -29,6 +28,7 @@ export class AuthService {
   public getLocalStorageToken(): string | null {
     return localStorage.getItem("token");
   }
+
   //  getToken(): string | null {
   //   return localStorage.getItem('token');
   // }
@@ -50,6 +50,7 @@ export class AuthService {
   public setUserRoles(roles: Array<string>): void {
     this.roles = roles;
   }
+
   getAuthCurrentUser(): Observable<IUser> {
     return this.http.get<IUser>(`${environment.baseApiUrl}/currentuser`);
   }
@@ -73,11 +74,13 @@ export class AuthService {
   login(credentials: { username: string; password: string }): Observable<IToken> {
     return this.http.post<IToken>(`${this.urlApiAuth}`, credentials);
   }
+
   logOut() {
     localStorage.removeItem('token');
     this.setUserRoles([]);
     this.router.navigate(["/login"]);
   }
+
   /*
 logout(): void {
   localStorage.removeItem('token');

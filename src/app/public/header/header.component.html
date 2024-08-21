@@ -1,37 +1,64 @@
-<header class="header">
-  @if(isLoggedIn){
-  <div>
-    <img src="./assets/image/logo.png" alt="" class="logo" />
-    <div class="div-cart-burger">
-      <div id="div-cart">
-        <div id="div-cart-img">
-          <img id="burger" src="./assets/image/shopping-cart.svg" alt="Menu" (click)="toggleMenu()" />
-          <p>Panier</p>
-        </div>
-        <span>1</span>
-      </div>
-      <div id="div-menu ">
-        <img id="burger" src="./assets/image/menuburger_icon.svg" alt="Menu" (click)="toggleMenu()" />
-        <p>Menu</p>
-      </div>
-    </div>
-  </div>
+@if(isLoggedIn){
+<img src="./assets/image/logo.png" alt="" class="logo" />
+<!-- <div>
+<img src="./assets/image/logo.png" alt="" class="logo" />
+<div class="div-cart-burger">
+<div id="div-cart">
+<div id="div-cart-img">
+<img id="burger" src="./assets/image/shopping-cart.svg" alt="Menu" (click)="toggleMenu()" />
+<p>Panier</p>
+</div>
+<span>1</span>
+</div>
+<div id="div-menu ">
+<img id="burger" src="./assets/image/menuburger_icon.svg" alt="Menu" (click)="toggleMenu()" />
+<p>Menu</p>
+</div>
+</div>
+</div> -->
 
-  <nav id="nav-menu" [class.menu-open]="menuOpen">
-    <div (click)="toggleMenu()">
-      <img id="close" src="./assets/image/close-x.svg" alt="Fermer" />
-    </div>
-    <a routerLink="/accueil" class="link">Accueil </a>
-    <a routerLink="/presentation" class="link">Présentation </a>
-    <a routerLink="/nous-contactez" class="link">Nous contactez </a>
-    <a routerLink="/signup" class="link">S'inscrire</a>
-    <a routerLink="/login" class="link">Se connecter</a>
+<!-- <nav id="nav-menu" [class.menu-open]="menuOpen">
+<div (click)="toggleMenu()">
+<img id="close" src="./assets/image/close-x.svg" alt="Fermer" />
+</div>
+<a routerLink="/accueil" class="link">Accueil </a>
+<a routerLink="/presentation" class="link">Présentation </a>
+<a routerLink="/nous-contactez" class="link">Nous contactez </a>
+<a routerLink="/signup" class="link">S'inscrire</a>
+<a routerLink="/login" class="link">Se connecter</a>
 
-    <!-- /*
-    <a routerLink="/admin/dashboard/home" class="link">Dashboard </a>
-    <a routerLink="/admin/dashboard/depot" class="link">Déposer vos articles</a>
-    <a routerLink="/admin/dashboard/panier" class="link">Panier</a>
-    <a routerLink="/admin/dashboard/paiement" class="link">paiement</a> -->
-  </nav>
-  }
-</header>
+
+<a routerLink="/admin/dashboard/home" class="link">Dashboard </a>
+<a routerLink="/admin/dashboard/depot" class="link">Déposer vos articles</a>
+<a routerLink="/admin/dashboard/panier" class="link">Panier</a>
+<a routerLink="/admin/dashboard/paiement" class="link">paiement</a>
+</nav> -->
+<nav class="navbar navbar-expand-lg">
+<div class="container-fluid navbar-color">
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
+<ul class="navbar-nav navbar-color">
+<li class="nav-item">
+<a class="nav-link active" aria-current="page" routerLink="/accueil">Accueil</a>
+</li>
+<li class="nav-item">
+<a class="nav-link active" aria-current="page" routerLink="/presentation">Qui somme nous</a>
+</li>
+<li class="nav-item">
+<a class="nav-link active" aria-current="page" routerLink="/nous-contactez">Nous contacter</a>
+</li>
+<li class="nav-item">
+<a class="nav-link active" aria-current="page" routerLink="/signup">S'inscrire</a>
+</li>
+<li class="nav-item">
+<a class="nav-link active" aria-current="page" routerLink="/login">Se connecter</a>
+</li>
+
+</ul>
+</div>
+</div>
+</nav>
+}

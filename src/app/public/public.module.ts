@@ -1,8 +1,9 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { PublicRoutingModule } from './public-routing.module';
-import { PublicContentComponent } from './public-content/public-content.component';
-import { FormsModule } from '@angular/forms';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {PublicRoutingModule} from './public-routing.module';
+import {PublicContentComponent} from './public-content/public-content.component';
+import {FormsModule} from '@angular/forms';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -10,6 +11,7 @@ import { FormsModule } from '@angular/forms';
     PublicRoutingModule,
     PublicContentComponent,
     FormsModule,
-    ]
+  ]
 })
-export class PublicModule { }
+export class PublicModule {
+}

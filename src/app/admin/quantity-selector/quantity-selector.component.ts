@@ -1,7 +1,8 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
-import { CartService } from '../../services/cart.service';
+import {Component, EventEmitter, inject, Input, Output} from '@angular/core';
 
-import { FormsModule } from '@angular/forms';
+import {FormsModule} from '@angular/forms';
+import {ShoppingCartService} from '../../services/shopping-cart.service';
+
 @Component({
   selector: 'app-quantity-selector',
   standalone: true,
@@ -11,7 +12,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class QuantitySelectorComponent {
 
-  // private cartService = inject(CartService);
+  serviceShoppingCart$ = inject(ShoppingCartService).getCart();
 
   // @Input() inQuantity!: number;
   // @Output() outQuantity = new EventEmitter();
@@ -40,10 +41,10 @@ export class QuantitySelectorComponent {
   //   this.outQuantity.emit(this.quantity);
   // }
 
-  @Input() inQuantity: number = 1;
+  @Input() inQuantity!: number;
   @Output() outQuantity = new EventEmitter<number>();
 
-  quantity: number = 1;
+  quantity!: number
 
   ngOnInit() {
     this.quantity = this.inQuantity;

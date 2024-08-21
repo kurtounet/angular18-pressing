@@ -1,5 +1,5 @@
-import { ICommande } from "./commande.model";
-import { User } from "./user.model";
+import {ICommande} from "./commande.model";
+import {User} from "./user.model";
 
 export interface IClient {
   clientNumber: number,

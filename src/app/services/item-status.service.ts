@@ -1,10 +1,9 @@
-import { inject, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { map, Observable } from 'rxjs';
-import { environment } from '../environments/environment'; // Corriger le nom du chemin si nécessaire
-import { IitemStatus, ItemStatusCollection } from '../models/itemStatus.model';
-import { IHydraCollection } from '../models/hydraCollection.model';
-
+import {inject, Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {map, Observable} from 'rxjs';
+import {environment} from '../environments/environment'; // Corriger le nom du chemin si nécessaire
+import {IitemStatus} from '../models/itemStatus.model';
+import {IHydraCollection} from '../models/hydraCollection.model';
 
 
 @Injectable({
@@ -12,15 +11,13 @@ import { IHydraCollection } from '../models/hydraCollection.model';
 })
 export class ItemStatusService {
 
-  private routeApi = `${environment.baseApiUrl}/item_statuses`; // Utiliser un slash à la fin pour les chemins
-
   httpClient = inject(HttpClient);
+  private routeApi = `${environment.baseApiUrl}/item_statuses`; // Utiliser un slash à la fin pour les chemins
 
   // Obtenir tous les ItemStatus
   getAllItemStatus(): Observable<IitemStatus[]> {
     return this.httpClient.get<IHydraCollection<IitemStatus>>(this.routeApi).pipe(
       map(response => response['hydra:member']),
-
     );
   }
 

@@ -1,5 +1,3 @@
-
-
 export interface IUser {
   id: number,
   firstname: string,
@@ -16,6 +14,7 @@ export interface IUser {
   zipcode: string,
   country: string
 }
+
 /*
 export interface UserCollection {
   '@context': string;
@@ -78,6 +77,7 @@ export class User {
     this.zipcode = zipcode;
     this.country = country;
   }
+
   /*
     setLocalStorageToken(token: string) {
       return localStorage.setItem('token', this.token);

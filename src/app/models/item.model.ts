@@ -1,7 +1,7 @@
-import { ICategory } from "./category.model.";
-import { ICommande } from "./commande.model";
-import { IitemStatus } from "./itemStatus.model";
-import { IService } from "./service.model";
+import {ICategory} from "./category.model.";
+import {ICommande} from "./commande.model";
+import {IitemStatus} from "./itemStatus.model";
+import {IService} from "./service.model";
 
 export interface Iitem {
   id: number | null;

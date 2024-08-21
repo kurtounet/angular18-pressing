@@ -23,5 +23,5 @@ function Show-Tree {
 }
 
 # Appeler la fonction avec le chemin du dossier souhaité
-Show-Tree -Path "F:\angular-pressing\src"
+Show-Tree -Path "F:\angular-pressing\angular18-pressing\src"
 

@@ -1,10 +1,10 @@
 <div class="row m-4">
   <h1 class="mb-4">Contact</h1>
 
-  <form id="contact-form" (ngSubmit)="onSubmit()" class="needs-validation">
+  <form (ngSubmit)="onSubmit()" class="needs-validation" id="contact-form">
     <div class="form-group mb-3">
-      <label for="subject" class="form-label">Sélectionnez un Sujet :</label>
-      <select name="prestation" id="subject" class="form-select" formControlName="subject">
+      <label class="form-label" for="subject">Sélectionnez un Sujet :</label>
+      <select class="form-select" formControlName="subject" id="subject" name="prestation">
         <option value="prestation1">Prestation 1</option>
         <option value="prestation2">Prestation 2</option>
         <option value="prestation3">Prestation 3</option>
@@ -14,26 +14,26 @@
       </select>
     </div>
     <div class="form-group mb-3">
-      <label for="othersubject" class="form-label">Autre Sujet :</label>
-      <input id="othersubject" type="text" class="form-control" formControlName="othersubject" />
+      <label class="form-label" for="othersubject">Autre Sujet :</label>
+      <input class="form-control" formControlName="othersubject" id="othersubject" type="text"/>
     </div>
     <div class="form-group mb-3">
-      <label for="firstname" class="form-label">Nom :</label>
-      <input id="firstname" type="text" class="form-control" formControlName="firstname" />
+      <label class="form-label" for="firstname">Nom :</label>
+      <input class="form-control" formControlName="firstname" id="firstname" type="text"/>
     </div>
     <div class="form-group mb-3">
-      <label for="lastname" class="form-label">Prénom :</label>
-      <input id="lastname" type="text" class="form-control" formControlName="lastname" />
+      <label class="form-label" for="lastname">Prénom :</label>
+      <input class="form-control" formControlName="lastname" id="lastname" type="text"/>
     </div>
     <div class="form-group mb-3">
-      <label for="email" class="form-label">Email :</label>
-      <input id="email" type="email" class="form-control" formControlName="email" />
+      <label class="form-label" for="email">Email :</label>
+      <input class="form-control" formControlName="email" id="email" type="email"/>
     </div>
     <div class="form-group mb-3">
-      <label for="message" class="form-label">Message :</label>
-      <textarea id="message" class="form-control" formControlName="message"></textarea>
+      <label class="form-label" for="message">Message :</label>
+      <textarea class="form-control" formControlName="message" id="message"></textarea>
     </div>
-    <button type="submit" class="btn btn-primary" [disabled]="!contactForm.valid">
+    <button [disabled]="!contactForm.valid" class="btn btn-primary" type="submit">
       Envoyer
     </button>
   </form>

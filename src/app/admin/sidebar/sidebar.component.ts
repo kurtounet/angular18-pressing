@@ -1,8 +1,8 @@
-import { Component, Input } from '@angular/core';
-import { Router, RouterModule, RouterOutlet } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
-import { NgIf } from '@angular/common';
-import { environment } from '../../environments/environment';
+import {Component, Input} from '@angular/core';
+import {RouterModule, RouterOutlet} from '@angular/router';
+import {AuthService} from '../../services/auth.service';
+import {NgIf} from '@angular/common';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'app-sidebar',
@@ -17,14 +17,16 @@ import { environment } from '../../environments/environment';
 })
 export class SidebarComponent {
   baseUrl = environment.baseUrl;
+  @Input() roles: Array<string> = [];
 
   constructor(
     private authService: AuthService,
-  ) { }
-  @Input() roles: Array<string> = [];
+  ) {
+  }
 
   ngOnInit(): void {
   }
+
   logout() {
     this.authService.logOut();
   }

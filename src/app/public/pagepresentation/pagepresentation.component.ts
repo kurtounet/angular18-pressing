@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ServiceService } from '../../services/service.service';
-import { IService} from '../../models/service.model';
-import { CommonModule, NgFor } from '@angular/common';
+import {Component, OnInit} from '@angular/core';
+import {ServiceService} from '../../services/service.service';
+import {IService} from '../../models/service.model';
+import {CommonModule, NgFor} from '@angular/common';
 
 @Component({
   selector: 'app-pagepresentation',
@@ -11,24 +11,27 @@ import { CommonModule, NgFor } from '@angular/common';
   styleUrl: './pagepresentation.component.css'
 })
 export class PagepresentationComponent implements OnInit {
+  arrayServices: IService[] = [];
+
   constructor(
     private serviceService: ServiceService
-  ) { }
-
-  arrayServices: IService[]=[];
- // oneService: Service | null = null;
+  ) {
+  }
+  // oneService: Service | null = null;
   //categorySelectedService: Category[]=[];
   //categories: CategoryCollection | null = null;
   //categoryList: Category[] = [];
- // arrayCategorySelectedService: Category[] =[];
- // selectedServicesId: number = 0;
- // selectedCategoryId: number = 0;
+  // arrayCategorySelectedService: Category[] =[];
+  // selectedServicesId: number = 0;
+
+  // selectedCategoryId: number = 0;
   ngOnInit(): void {
-    this.getAllServices();    
+    this.getAllServices();
   }
+
   getAllServices() {
     this.serviceService.getAllServices().subscribe(data => {
-     this.arrayServices = data;       
+      this.arrayServices = data;
     });
   }
 }

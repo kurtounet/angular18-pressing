@@ -1,4 +1,4 @@
-import { IdCommandeToRefPipe } from './id-commande-to-ref.pipe';
+import {IdCommandeToRefPipe} from './id-commande-to-ref.pipe';
 
 describe('IdCommandeToRefPipe', () => {
   it('create an instance', () => {

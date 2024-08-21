@@ -1,9 +1,9 @@
-import { Component, inject, OnDestroy, OnInit, Pipe } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Observable, Subscription } from 'rxjs';
-import { ServiceService } from '../../services/service.service';
-import { IService } from '../../models/service.model';
-import { environment } from '../../environments/environment';
+import {Component, inject, OnDestroy, OnInit} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {Subscription} from 'rxjs';
+import {ServiceService} from '../../services/service.service';
+import {IService} from '../../models/service.model';
+import {environment} from '../../environments/environment';
 
 
 @Component({
@@ -30,9 +30,11 @@ export class LandingComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.getAllServices();
   }
+
   ngOnDestroy() {
     this.flowdata?.unsubscribe();
   }
+
   getAllServices() {
     this.flowdata = this.serviceService.getAllServices().subscribe(data => {
       // limit the number of service
@@ -41,8 +43,6 @@ export class LandingComponent implements OnInit, OnDestroy {
 
     });
   }
-
-
 
 
 }

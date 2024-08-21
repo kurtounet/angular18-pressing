@@ -8,9 +8,8 @@ import { IUser, User } from '../models/user.model';
   providedIn: 'root'
 })
 export class UserService {
-  private routeApi = `${environment.baseApiUrl}/users`;
-
   httpClient = inject(HttpClient);
+  private routeApi = `${environment.baseApiUrl}/users`;
 
   getAllUsers(): Observable<any> {
     return this.httpClient.get<any>(this.routeApi);
@@ -25,9 +24,10 @@ export class UserService {
     return this.httpClient.post<IUser>(this.routeApi, body, { headers });
   }
 
-  patchUser(id: number | undefined, body: IUser | null): Observable<IUser> {
+  patchUser(user: IUser | null): Observable<IUser> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/merge-patch+json' });
-    return this.httpClient.patch<IUser>(`${this.routeApi}/${id}`, body, { headers });
+    console.log(user)
+    return this.httpClient.patch<IUser>(`${this.routeApi}/${user?.id}`, user, { headers });
   }
 
   deleteUser(id: string): Observable<void> {

@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PageDepotComponent } from './page-depot.component';
+import {PageDepotComponent} from './page-depot.component';
 
 describe('PageDepotComponent', () => {
   let component: PageDepotComponent;
@@ -10,8 +10,8 @@ describe('PageDepotComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [PageDepotComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(PageDepotComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

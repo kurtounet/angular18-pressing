@@ -1,26 +1,26 @@
 admin
-	sidebar
+sidebar
         liste employé
-		page des item non assigne a un employé
+    page des item non assigne a un employé
 
         page profile
-		page contact
+    page contact
 manager
-	sidebar
-		liste employé
-		liste
+  sidebar
+    liste employé
+    liste
 employe
-	sidebar
-		page des tache
-		page profile
+  sidebar
+    page des tache
+    page profile
         page contact
 client
-	sidebar
-		page dépot
-		page des commandes
-		page panier stocker dans le local storage
-		page profile
-		page contact
+  sidebar
+    page dépot
+    page des commandes
+    page panier stocker dans le local storage
+    page profile
+    page contact
 
 
 

@@ -4,16 +4,16 @@ import { IService } from '../../models/service.model';
 import { CommonModule, DatePipe, NgForOf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CategoryService } from '../../services/category.service';
-
 import { QuantitySelectorComponent } from '../quantity-selector/quantity-selector.component';
-import { CartService } from '../../services/cart.service';
-import { CartComponent } from '../cart/cart.component';
-import { itemCart } from '../../models/itemCart.model';
+
 import { ICategory } from '../../models/category.model.';
 import { environment } from '../../environments/environment';
 import { CommandeService } from '../../services/commande.service';
 import { ICommande } from '../../models/commande.model';
 import { AuthService } from '../../services/auth.service';
+import { ShoppingCartService } from '../../services/shopping-cart.service';
+import { ShoppingCartComponent } from "../shopping-cart/shopping-cart.component";
+import { IshoppingCartItem } from '../../models/shoppingCartItem.model';
 
 @Component({
   standalone: true,
@@ -22,7 +22,7 @@ import { AuthService } from '../../services/auth.service';
     CommonModule,
     FormsModule,
     QuantitySelectorComponent,
-    CartComponent,
+    ShoppingCartComponent
   ],
   providers: [DatePipe],
   selector: 'app-page-depot',
@@ -42,7 +42,7 @@ export class PageDepotComponent implements OnInit {
   //INJECT DEPENDENCIES
   serviceService = inject(ServiceService);
   categoryService = inject(CategoryService);
-  serviceCart = inject(CartService);
+  serviceShoppingCart = inject(ShoppingCartService);
   serviceCommande = inject(CommandeService);
   authService = inject(AuthService);
   datePipe = inject(DatePipe);
@@ -67,17 +67,19 @@ export class PageDepotComponent implements OnInit {
   }
 
   selectedService(event: any) {
-    this.selectedServicesId = event.target.value;
+    this.selectedServicesId = Number(event.target.value);
     this.getCategoriesServiceById(this.selectedServicesId);
   }
 
-  addToCart(categoryId: number) {
-    this.serviceCart.addItem(
-      categoryId,
-      this.selectedServicesId,
-      this.quantity,
-      10
-    );
+  addToCart(category: ICategory) {
+    let itemCart: IshoppingCartItem = {
+      id: null,
+      serviceId: this.selectedServicesId,
+      categoryId: category.id,
+      quantity: this.quantity,
+      price: 10
+    }
+    this.serviceShoppingCart.addItem(itemCart, this.quantity);
   }
 
   updateQuantity(categoryId: number, newQuantity: number) {
@@ -94,9 +96,11 @@ export class PageDepotComponent implements OnInit {
     this.quantity = newQty;
     console.log(this.quantity);
   }
+
   formatDateTime(date: Date): string | null {
     return this.datePipe.transform(date, 'yyyy-MM-dd\'T\'HH:mm:ssZZZZZ'); // datePipe.transform(date, 'yyyy-MM-dd HH:mm:ss');
   }
+
   addCommande() {
     let formattedDate = this.formatDateTime(new Date());
     //console.log(formattedDate); // Affiche la date au format PHP: '2024-08-13 10:45:00'
@@ -112,8 +116,13 @@ export class PageDepotComponent implements OnInit {
       returnDate: this.formatDateTime(new Date()) ?? ''
     }
     console.log(commande);
+    /*
     this.serviceCommande.postCommande(commande).subscribe(data => {
       console.log(data);
+      if (data) {
+        this.serviceShoppingCart.postShoppingCart(this.arrayItemsCart).subscribe(data => console.log(data)); //clearCart();
+      }
     });
+    */
   }
 }

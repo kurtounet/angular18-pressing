@@ -1,10 +1,10 @@
-import { inject, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {inject, Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
-import { environment } from '../environments/environment'; // Corriger le nom du chemin si nécessaire
-import { IService } from '../models/service.model';
-import { IHydraCollection } from '../models/hydraCollection.model';
-import { catchError, map, Observable, retry, throwError } from "rxjs";
+import {environment} from '../environments/environment'; // Corriger le nom du chemin si nécessaire
+import {IService} from '../models/service.model';
+import {IHydraCollection} from '../models/hydraCollection.model';
+import {map, Observable} from "rxjs";
 
 
 @Injectable({
@@ -12,8 +12,8 @@ import { catchError, map, Observable, retry, throwError } from "rxjs";
 })
 export class ServiceService {
 
+  httpClient = inject(HttpClient);
   private routeApi = `${environment.baseApiUrl}/services`;
-httpClient = inject(HttpClient);
 
   // Obtenir tous les services
   getAllServices(): Observable<IService[]> {

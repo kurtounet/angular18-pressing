@@ -34,8 +34,8 @@
 
   <section id="cathegorie">
     <h4>Choisissez un service</h4>
-    <select [(ngModel)]="selectedServicesId" (change)="selectedService($event)">
-      <option value="Tout les services" selected>Tout les services</option>
+    <select (change)="selectedService($event)" [(ngModel)]="selectedServicesId">
+      <option selected value="Tout les services">Tout les services</option>
       <option *ngFor="let service of arrayServices" [value]="service.id">
         {{ service.name }}
       </option>
@@ -48,18 +48,18 @@
       <div *ngFor="let category of arrayCategoriesOfSelectedService" class="col">
         <div class="card m-2 p-2" style="width: fit-content;">
           <div class="d-flex flex-column justify-content-between align-items-center">
-            <img src="{{baseUrlImageCategories}}/{{category.image}}" class="card-img-top" alt="{{ category.name }}">
+            <img alt="{{ category.name }}" class="card-img-top" src="{{baseUrlImageCategories}}/{{category.image}}">
             <h5 class="card-title">{{ category.name }}</h5>
-            <app-quantity-selector [inQuantity]="quantity"
-              (outQuantity)="updateQuantity(category.id, $event)"></app-quantity-selector>
-            <button class="btn btn-primary mt-2" (click)="addToCart(category.id)">Ajouter au panier</button>
+            <app-quantity-selector (outQuantity)="updateQuantity(category.id, $event)"
+                                   [inQuantity]="quantity"></app-quantity-selector>
+            <button (click)="addToCart(category)" class="btn btn-primary mt-2">Ajouter au panier</button>
           </div>
         </div>
       </div>
     </div>
 
     <div class="col-md-6">
-      <app-cart></app-cart>
+      <app-shopping-cart></app-shopping-cart>
     </div>
   </section>
 </section>

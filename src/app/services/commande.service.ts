@@ -5,15 +5,13 @@ import { environment } from '../environments/environment'; // Corriger le nom du
 import { ICommande } from '../models/commande.model';
 
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class CommandeService {
 
-  private routeApi = `${environment.baseApiUrl}/commandes`; // Utiliser un slash à la fin pour les chemins
-
   httpClient = inject(HttpClient);// Injection correcte du HttpClient
+  private routeApi = `${environment.baseApiUrl}/commandes`; // Utiliser un slash à la fin pour les chemins
 
   // Obtenir tous les Commandes
   getAllCommandes(): Observable<ICommande[]> {
@@ -27,7 +25,8 @@ export class CommandeService {
 
   // Créer un nouveau Commande
   postCommande(body: ICommande): Observable<ICommande> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/ld+json' });;
+    const headers = new HttpHeaders({ 'Content-Type': 'application/ld+json' });
+
     return this.httpClient.post<ICommande>(this.routeApi, body, { headers });
   }
 

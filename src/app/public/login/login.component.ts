@@ -1,23 +1,25 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
-import { IToken } from '../../models/auth';
+import {Component, inject, OnInit} from '@angular/core';
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {CommonModule, NgIf} from '@angular/common';
+import {Router} from '@angular/router';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule,NgIf],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 
 export class LoginComponent implements OnInit {
+  title = 'Login';
   loginForm: FormGroup = new FormGroup({}); // Initialisation
   authService = inject(AuthService);
   router = inject(Router);
 
+  //serverErrorMessages: { [key: string]: string } = {"message": "moin de 2 caractères"};
+  serverErrorMessages:string='';
   ngOnInit() {
     this.loginForm = new FormGroup({
       credentials: new FormGroup({
@@ -29,9 +31,9 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      const { username, password } = this.loginForm.value.credentials;
+      const {username, password} = this.loginForm.value.credentials;
 
-      this.authService.login({ username, password }).subscribe(
+      this.authService.login({username, password}).subscribe(
         (token) => {
           //console.log('Token received:', token); // Pour déboguer
           this.authService.setLocalStorageToken(token.token);
@@ -41,24 +43,14 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/admin/dashboard']); // Redirection après connexion réussie
         },
         error => {
-          console.error('Login failed', error);
+          this.serverErrorMessages = error.error.message;
+          console.error('Login failed', error.error.message);
           // Gérer les erreurs de connexion ici (par exemple, afficher un message d'erreur)
         }
       );
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 // import { Component } from '@angular/core';

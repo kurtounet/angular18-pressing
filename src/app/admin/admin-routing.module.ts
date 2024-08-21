@@ -1,15 +1,6 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 //import { authGuard } from '../service/auth.guard';
-import { HomeComponent } from './home/home.component';
-import { PageDepotComponent } from './page-depot/page-depot.component';
-
-import { CartComponent } from './cart/cart.component';
-import { ProfileComponent } from './profile/profile.component';
-import { ContactComponent } from './contact/contact.component';
-import { OrderlistComponent } from './orderlist/orderlist.component';
-import { TasklistComponent } from './tasklist/tasklist.component';
 
 const routes: Routes = [
   // {
@@ -28,9 +19,11 @@ const routes: Routes = [
   //   ]
   // }
 ]
+
 /* OK  */
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AdminRoutingModule { }
+export class AdminRoutingModule {
+}

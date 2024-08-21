@@ -1,15 +1,12 @@
-import { Component, inject, Inject, OnInit } from '@angular/core';
-import { ItemService } from '../../services/item.service';
-import { CommonModule } from '@angular/common';
-import { Iitem } from '../../models/item.model';
-import { UserService } from '../../services/user.service';
-import { ItemStatusService } from '../../services/item-status.service';
-import { CommandeService } from '../../services/commande.service';
-import { AuthService } from '../../services/auth.service';
-import { FormsModule } from '@angular/forms';
-import { IdCommandeToRefPipe } from '../../pipes/id-commande-to-ref.pipe';
-import { IitemStatus } from '../../models/itemStatus.model';
-import { Subscription } from 'rxjs';
+import {Component, inject, OnInit} from '@angular/core';
+import {ItemService} from '../../services/item.service';
+import {CommonModule} from '@angular/common';
+import {Iitem} from '../../models/item.model';
+import {ItemStatusService} from '../../services/item-status.service';
+import {AuthService} from '../../services/auth.service';
+import {FormsModule} from '@angular/forms';
+import {IdCommandeToRefPipe} from '../../pipes/id-commande-to-ref.pipe';
+import {IitemStatus} from '../../models/itemStatus.model';
 
 @Component({
   selector: 'app-tasklist',
@@ -29,6 +26,7 @@ export class TasklistComponent implements OnInit {
   userRoles: Array<string> = [];
   selectedStatusId: number = 0;
   arrayItemStatus: IitemStatus[] = [];
+
   ngOnInit(): void {
     this.getIitemStatus();
 
@@ -44,6 +42,7 @@ export class TasklistComponent implements OnInit {
     //this.getAllItems();
     // console.log('Item employee', this.getItemsEmployee());
   }
+
   getIitemStatus(): void {
     this.itemStatusService.getAllItemStatus().subscribe(data => {
       this.arrayItemStatus = data;
@@ -57,6 +56,7 @@ export class TasklistComponent implements OnInit {
       // console.log(this.arrayItems.map(item => item.quantity));
     });
   }
+
   getItemsEmployee(): void {
     this.itemService.getItemsEmployee().subscribe(data => {
       this.arrayItems = data;

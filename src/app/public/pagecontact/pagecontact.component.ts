@@ -1,6 +1,6 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {CommonModule} from '@angular/common';
+import {Component} from '@angular/core';
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-pagecontact',
@@ -15,12 +15,12 @@ export class PagecontactComponent {
 
   public contactForm: FormGroup = new FormGroup({
     // email: new FormControl('',{validators:[Validators.required,Validators.email, motsInterdits]}),
-    subject: new FormControl('', { validators: [Validators.required] }),
-    othersubject: new FormControl('', { validators: [Validators.required] }),
-    firstname: new FormControl('', { validators: [Validators.required] }),
-    lastname: new FormControl('', { validators: [Validators.required] }),
-    email: new FormControl('', { validators: [Validators.email] }),
-    message: new FormControl('', { validators: [Validators.required] }),
+    subject: new FormControl('', {validators: [Validators.required]}),
+    othersubject: new FormControl('', {validators: [Validators.required]}),
+    firstname: new FormControl('', {validators: [Validators.required]}),
+    lastname: new FormControl('', {validators: [Validators.required]}),
+    email: new FormControl('', {validators: [Validators.email]}),
+    message: new FormControl('', {validators: [Validators.required]}),
 
   });
 

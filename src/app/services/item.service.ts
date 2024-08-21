@@ -1,22 +1,23 @@
-import { inject, Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { map, Observable } from 'rxjs';
-import { environment } from '../environments/environment';
-import { Iitem } from '../models/item.model';
-import { IHydraCollection } from '../models/hydraCollection.model';
+import {inject, Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {map, Observable} from 'rxjs';
+import {environment} from '../environments/environment';
+import {Iitem} from '../models/item.model';
+import {IHydraCollection} from '../models/hydraCollection.model';
+
 @Injectable({
   providedIn: 'root'
 })
 export class ItemService {
-  private routeApi = `${environment.baseApiUrl}/items`;
-
   httpClient = inject(HttpClient);
+  private routeApi = `${environment.baseApiUrl}/items`;
 
   getAllItems(): Observable<Iitem[]> {
     return this.httpClient.get<IHydraCollection<Iitem>>(this.routeApi).pipe(
       map(response => response['hydra:member']),
     );
   }
+
   getAllItemsNoAssigned(): Observable<Iitem[]> {
     return this.httpClient.get<Iitem[]>(`${this.routeApi}${'/noassigned'}`)
   }
@@ -26,6 +27,7 @@ export class ItemService {
       map(response => response['hydra:member']),
     );
   }
+
   getItemsEmployee(): Observable<Iitem[]> {
     return this.httpClient.get<Iitem[]>(`${this.routeApi}${'/employees'}`)
   }
