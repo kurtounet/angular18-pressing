@@ -24,7 +24,7 @@ import { IshoppingCartItem } from '../../models/shoppingCartItem.model';
     QuantitySelectorComponent,
     ShoppingCartComponent
   ],
-  providers: [DatePipe],
+
   selector: 'app-page-depot',
   templateUrl: './page-depot.component.html',
   styleUrls: ['./page-depot.component.css']
@@ -45,7 +45,7 @@ export class PageDepotComponent implements OnInit {
   serviceShoppingCart = inject(ShoppingCartService);
   serviceCommande = inject(CommandeService);
   authService = inject(AuthService);
-  datePipe = inject(DatePipe);
+
 
 
   //METHODS
@@ -56,7 +56,6 @@ export class PageDepotComponent implements OnInit {
   getAllServices() {
     this.serviceService.getAllServices().subscribe(data => {
       this.arrayServices = data;
-      console.log(this.arrayServices);
     });
   }
 
@@ -92,37 +91,7 @@ export class PageDepotComponent implements OnInit {
   }
 
   getQuantity(newQty: number) {
-
     this.quantity = newQty;
     console.log(this.quantity);
-  }
-
-  formatDateTime(date: Date): string | null {
-    return this.datePipe.transform(date, 'yyyy-MM-dd\'T\'HH:mm:ssZZZZZ'); // datePipe.transform(date, 'yyyy-MM-dd HH:mm:ss');
-  }
-
-  addCommande() {
-    let formattedDate = this.formatDateTime(new Date());
-    //console.log(formattedDate); // Affiche la date au format PHP: '2024-08-13 10:45:00'
-    let clientId = this.authService.getLocalStorageUser().id;
-    console.log(clientId);
-
-    let commande: ICommande = {
-      id: null,
-      ref: '',
-      client: '/api/clients/' + clientId,
-      filingDate: this.formatDateTime(new Date()) ?? '',
-      paymentDate: this.formatDateTime(new Date()) ?? '',
-      returnDate: this.formatDateTime(new Date()) ?? ''
-    }
-    console.log(commande);
-    /*
-    this.serviceCommande.postCommande(commande).subscribe(data => {
-      console.log(data);
-      if (data) {
-        this.serviceShoppingCart.postShoppingCart(this.arrayItemsCart).subscribe(data => console.log(data)); //clearCart();
-      }
-    });
-    */
   }
 }

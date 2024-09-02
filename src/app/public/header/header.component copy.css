@@ -108,7 +108,7 @@ header nav#nav-menu {
 }
 
 
-header nav#nav-menu.menu-open {
+aside nav#nav-menu.menu-open {
   transform: translateX(0);
 }
 

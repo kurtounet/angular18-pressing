@@ -11,18 +11,19 @@
 
         <div *ngFor="let item of arrayShoppingCartItem" class="card m-1">
           <div class="card-body d-flex justify-content-between align-items-center p-2">
-            <img alt="{{ item.categoryId }}" class="img-fluid cartProduct me-3" src="https://via.placeholder.com/50"/>
+            <img alt="{{ item.categoryId }}" class="img-fluid cartProduct me-3" src="https://via.placeholder.com/50" />
             <div class="d-flex flex-column flex-grow-1">
-              <h5 class="card-title mb-1">Id vêtement : {{ item.categoryId }}</h5>
-              <p class="card-text mb-0">Id service : {{ item.serviceId }}</p>
+              <h5 class="card-title mb-1">vêtement : {{ item.categoryId }}</h5>
+              <p class="card-text mb-0">service : {{ item.serviceId }}</p>
             </div>
             <div class="d-flex align-items-center">
+              <span>{{ item.quantity }}</span>
               <div class="me-3">
                 <app-quantity-selector (quantityChange)="changeQuantity($event)" [inQuantity]="item.quantity">
                 </app-quantity-selector>
               </div>
               <img (click)="removeItemCart(item)" alt="supprimer" class="trash" src="assets/admin/trash.svg"
-                   style="cursor: pointer;"/>
+                style="cursor: pointer;" />
             </div>
           </div>
         </div>
@@ -38,7 +39,7 @@
     </div>
   </div>
   <div class="d-flex justify-content-between p-3">
-    <button (click)="validedOrder()" class="btn btn-success w-50 me-2">Commander</button>
+    <button (click)="validedOrder()" class="btn btn-success w-50 me-2">Valider la Commande</button>
     <button (click)="clearCart()" class="btn btn-danger w-50 ms-2">Vider le panier</button>
   </div>
 </div>

@@ -39,6 +39,7 @@ export class SignupFormComponent {
   onSubmit() {
     if (this.signupForm.valid) {
       let client = this.signupForm.value as IClient;
+      console.log(client)
 
       this.clientService.postClient(client).subscribe({
         next: (data: IClient) => {

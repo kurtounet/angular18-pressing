@@ -1,16 +1,21 @@
-img {
+/* img {
   object-fit: cover;
   width: 30px;
   height: 30px;
 }
 
 .sidebar {
-  background-color: #009fdd;;
-  /* //justify-content: space-between; */
-  width: 250px;
+  background-color: #009fdd;
+  width: 100px;
   height: 100vh;
   color: white;
   padding: 20px;
+  padding-top: 1rem;
+
+}
+
+  .sidebar-open {
+  width: 250px;
 }
 
 .sidebar nav ul {
@@ -30,7 +35,7 @@ img {
 }
 
 .sidebar nav ul li:hover {
-  background-color: #808183;
+  background-color: #0c55e6;
   cursor: pointer;
 }
 
@@ -38,11 +43,89 @@ img {
   display: flex;
   justify-content: space-between;
 
-  color: white;
+  color: rgb(255, 255, 255);
   text-decoration: none;
 
 }
 
 .sidebar nav ul li a:hover {
   text-decoration: underline;
+}
+
+aside nav#nav-menu.menu-open {
+  transform: translateX(0);
+}
+
+@media (max-width: 767.98px) {
+  .sidebar {
+    position: fixed;
+    left: -250px;
+    width: 250px;
+    transition: all 0.3s;
+  }
+
+  .sidebar.sidebar-open {
+    left: 0;
+  }
+} */
+.sidebar {
+  height: 100vh;
+  padding-top: 1rem;
+  background-color: #009fdd;
+  /* Couleur personnalisée */
+  transition: transform 0.3s ease-in-out;
+  color: white;
+  /* Couleur du texte en blanc pour le contraste */
+}
+
+nav {
+  color: rgb(236, 5, 5);
+  /* Assurez-vous que les liens sont blancs */
+  display: flex;
+  align-items: center;
+  padding-left: 25px;
+}
+
+.sidebar .nav-link {
+  color: white;
+  /* Assurez-vous que les liens sont blancs */
+  display: flex;
+  align-items: center;
+}
+
+.sidebar .nav-link img {
+  width: 24px;
+  /* Largeur des images */
+  height: 24px;
+  /* Hauteur des images */
+  margin-right: 10px;
+  /* Espace entre l'image et le texte */
+}
+
+.sidebar .nav-link p {
+  margin: 0;
+  /* Supprime les marges autour du texte */
+}
+
+.sidebar .nav-link:hover {
+  color: black;
+  cursor: pointer;
+}
+
+.sidebar-open {
+  transform: translateX(0);
+}
+
+@media (max-width: 767.98px) {
+  .sidebar {
+    position: fixed;
+    left: -250px;
+    width: 250px;
+    transform: translateX(-100%);
+    z-index: 1040;
+  }
+
+  .sidebar.sidebar-open {
+    transform: translateX(0);
+  }
 }

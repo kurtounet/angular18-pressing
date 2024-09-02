@@ -1,37 +1,40 @@
-import {inject, Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {environment} from '../environments/environment'; // Corriger le nom du chemin si nécessaire
-import {CategoryCollection} from '../models/category.model.';
-import {Category} from '../interface/all.model';
+import { inject, Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { map, Observable } from 'rxjs';
+import { environment } from '../environments/environment'; // Corriger le nom du chemin si nécessaire
+import { ICategory, CategoryCollection } from '../models/category.model.';
+import { IHydraCollection } from '../models/hydraCollection.model';
+
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
-
+  arrayCategory: ICategory[] = [];
   httpClient = inject(HttpClient);
+
   private routeApi = `${environment.baseApiUrl}/categories`;
 
-  // Obtenir tous les Categorys
-  public getAllCategories(): Observable<CategoryCollection> {
-    return this.httpClient.get<CategoryCollection>(this.routeApi);
+  // Obtenir tous les Category
+  getAllCategories(): Observable<ICategory[]> {
+    return this.httpClient.get<IHydraCollection<ICategory>>(this.routeApi).pipe(
+      map(response => response['hydra:member']),
+    );
   }
-
   // Obtenir un Category par ID
-  public getCategoryById(id: string): Observable<Category> {
-    return this.httpClient.get<Category>(`${this.routeApi}/${id}`);
+  public getCategoryById(id: string): Observable<ICategory> {
+    return this.httpClient.get<ICategory>(`${this.routeApi}/${id}`);
   }
 
   // Créer un nouveau Category
-  public postCategory(body: Category): Observable<Category> {
-    return this.httpClient.post<Category>(this.routeApi, body);
+  public postCategory(body: ICategory): Observable<ICategory> {
+    return this.httpClient.post<ICategory>(this.routeApi, body);
   }
 
   // Mettre à jour un Category par ID
-  public patchCategory(id: string, body: Category): Observable<Category> {
-    return this.httpClient.patch<Category>(`${this.routeApi}/${id}`, body);
+  public patchCategory(id: string, body: ICategory): Observable<ICategory> {
+    return this.httpClient.patch<ICategory>(`${this.routeApi}/${id}`, body);
   }
 
   // Supprimer un Category par ID

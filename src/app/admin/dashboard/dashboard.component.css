@@ -1,4 +1,25 @@
-section #header {
+.container-fluid {
+  padding: 0;
+  margin: 0;
+}
+
+.row {
+  margin: 0;
+}
+
+.main-content {
+  padding: 20px;
+  background-color: #99c3ec;
+  min-height: 100vh;
+}
+
+@media (max-width: 767.98px) {
+  .main-content {
+    padding: 10px;
+  }
+}
+
+/* section #header {
   background-color: blue;
   display: flex;
   flex-direction: row;
@@ -36,9 +57,9 @@ section #sidebar {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* Vetical*/
+
   justify-content: space-evenly;
-  /* Vetical*/
+
   height: 100vh;
   width: 15%;
   z-index: 1000;
@@ -67,18 +88,67 @@ section #main {
   width: 100%;
   height: fit-content;
 }
-
-.dashboard-container {
+*/
+/* .dashboard-container {
   display: flex;
+  width: 100%;
   height: 100vh;
 }
 
 .dashboard-content {
-  flex-grow: 1;
-  padding: 20px;
-  background-color: #f8f9fa;
-}
+  display: flex;
+  width: 100%;
+  background-color: #0a7bec;
+} */
 
+
+/* router-outlet {
+  background-color: #067cf1;
+  display: flex;
+  width: 100%;
+} */
+
+/* app-sidebar {
+  z-index: 1000;
+} */
+
+/*
 .dashboard-content h1 {
   margin-top: 0;
 }
+
+.dashboard-container {
+  position: relative;
+}
+
+.dashboard-content {
+  position: relative;
+}
+
+app-sidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50px;
+  /* ou la largeur que vous souhaitez pour la barre latérale
+  height: 100vh;
+  /* pour que la barre latérale occupe toute la hauteur
+  z-index: 1000;
+  /* assure que la sidebar est au-dessus du contenu
+  /* background-color: #f4f4f4;
+  /* couleur de fond de la sidebar
+  /* box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  /* ombre pour différencier la sidebar du contenu
+}
+
+router-outlet {
+  /* margin-left: 250px;
+  /* pour que le contenu soit décalé en fonction de la largeur de la sidebar
+  position: relative;
+  /* z-index: 500;
+  /* inférieur à celui de la sidebar pour que la sidebar soit au-dessus
+  padding: 20px;
+
+  /* un peu de marge pour le contenu
+}
+*/

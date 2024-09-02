@@ -1,13 +1,13 @@
-import {Component, inject, OnInit} from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {CommonModule, NgIf} from '@angular/common';
-import {Router} from '@angular/router';
-import {AuthService} from '../../services/auth.service';
+import { Component, inject, OnInit } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CommonModule, NgIf } from '@angular/common';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule,NgIf],
+  imports: [ReactiveFormsModule, CommonModule, NgIf],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -19,23 +19,23 @@ export class LoginComponent implements OnInit {
   router = inject(Router);
 
   //serverErrorMessages: { [key: string]: string } = {"message": "moin de 2 caractères"};
-  serverErrorMessages:string='';
+  serverErrorMessages: string = '';
   ngOnInit() {
     this.loginForm = new FormGroup({
       credentials: new FormGroup({
-        username: new FormControl('', [Validators.required, Validators.email]),
-        password: new FormControl('', [Validators.required, Validators.minLength(2)])
+        username: new FormControl('anthony@gmail.com', [Validators.required, Validators.email]),
+        password: new FormControl('nirvana', [Validators.required, Validators.minLength(2)])
       })
     });
   }
 
   onSubmit() {
     if (this.loginForm.valid) {
-      const {username, password} = this.loginForm.value.credentials;
+      const { username, password } = this.loginForm.value.credentials;
 
-      this.authService.login({username, password}).subscribe(
+      this.authService.login({ username, password }).subscribe(
         (token) => {
-          //console.log('Token received:', token); // Pour déboguer
+
           this.authService.setLocalStorageToken(token.token);
           this.authService.getAuthCurrentUser().subscribe(data => {
             this.authService.setLocalStorageUser(data);

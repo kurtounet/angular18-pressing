@@ -1,8 +1,8 @@
-import {Component, inject} from '@angular/core';
-import {RouterLink, RouterModule, RouterOutlet} from '@angular/router';
-import {SidebarComponent} from '../sidebar/sidebar.component';
-import {AuthService} from '../../services/auth.service';
-import {CommonModule} from '@angular/common';
+import { Component, inject } from '@angular/core';
+import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
+import { SidebarComponent } from '../sidebar/sidebar.component';
+import { AuthService } from '../../services/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   standalone: true,

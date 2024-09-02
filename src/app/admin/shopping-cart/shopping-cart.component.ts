@@ -1,25 +1,26 @@
-import {Component, inject} from '@angular/core';
-import {QuantitySelectorComponent} from '../quantity-selector/quantity-selector.component';
-import {CommonModule} from '@angular/common';
-import {ShoppingCartService} from '../../services/shopping-cart.service';
-import {IshoppingCartItem} from '../../models/shoppingCartItem.model';
+import { Component, inject, SimpleChanges } from '@angular/core';
+import { QuantitySelectorComponent } from '../quantity-selector/quantity-selector.component';
+import { CommonModule } from '@angular/common';
+import { ShoppingCartService } from '../../services/shopping-cart.service';
+import { IshoppingCartItem } from '../../models/shoppingCartItem.model';
+import { NameCategoryByIdPipe } from '../../pipes/name-category-by-id.pipe';
+import { CategoryService } from '../../services/category.service';
+import { CartItem } from '../../models/cart.model';
 
 @Component({
   selector: 'app-shopping-cart',
   standalone: true,
-  imports: [CommonModule, QuantitySelectorComponent],
+  imports: [CommonModule, QuantitySelectorComponent, NameCategoryByIdPipe],
   templateUrl: './shopping-cart.component.html',
   styleUrl: './shopping-cart.component.css'
 })
 export class ShoppingCartComponent {
+
   shoppingCartService = inject(ShoppingCartService);
   arrayShoppingCartItem: IshoppingCartItem[] = [];
-  total: number = 0;
 
-  // items = [
-  //   { name: 'Produit 1', description: 'Description du produit 1', price: 10, quantity: 1 },
-  //   { name: 'Produit 2', description: 'Description du produit 2', price: 20, quantity: 2 }
-  // ];
+
+  total: number = 0;
   ngOnInit(): void {
     this.arrayShoppingCartItem = this.shoppingCartService.getCart();
     console.log(this.arrayShoppingCartItem);
@@ -35,9 +36,10 @@ export class ShoppingCartComponent {
   }
 
   validedOrder(): void {
+    console.log(this.arrayShoppingCartItem);
     if (this.arrayShoppingCartItem.length > 0) {
-      this.shoppingCartService.validedOder();
-      this.arrayShoppingCartItem = [];
+      let resp = this.shoppingCartService.validedOder();
+      console.log(resp)
     }
   }
 

@@ -5,6 +5,8 @@ import { environment } from '../environments/environment'; // Corriger le nom du
 import { ICommande } from '../models/commande.model';
 
 
+import { IClient } from '../models/client.model';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -26,7 +28,6 @@ export class CommandeService {
   // Créer un nouveau Commande
   postCommande(body: ICommande): Observable<ICommande> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/ld+json' });
-
     return this.httpClient.post<ICommande>(this.routeApi, body, { headers });
   }
 
@@ -39,5 +40,54 @@ export class CommandeService {
   deleteCommande(id: string): Observable<void> {
     return this.httpClient.delete<void>(`${this.routeApi}/${id}`);
   }
+
+  // formatDateTime(date: Date): string | null {
+  //   return this.datePipe.transform(date, 'yyyy-MM-dd\'T\'HH:mm:ssZZZZZ'); // datePipe.transform(date, 'yyyy-MM-dd HH:mm:ss');
+  // }
+
+  validCommande(commande: ICommande, client: IClient) {
+    // let formattedDate = this.formatDateTime(new Date());
+    //console.log(formattedDate); // Affiche la date au format PHP: '2024-08-13 10:45:00'
+    console.log("validCommande")
+    //console.log(client.user.id);
+
+    // let commande: ICommande = {
+    //   id: null,
+    //   ref: '',
+    //   client: '/api/clients/' + clientId,
+    //   filingDate: this.formatDateTime(new Date()) ?? '',
+    //   paymentDate: this.formatDateTime(new Date()) ?? '',
+    //   returnDate: this.formatDateTime(new Date()) ?? ''
+    // }
+    //console.log(commande);
+  }
 }
+
+/*
+
+
+addCommande() {
+    let formattedDate = this.formatDateTime(new Date());
+    //console.log(formattedDate); // Affiche la date au format PHP: '2024-08-13 10:45:00'
+    let clientId = this.authService.getLocalStorageUser().id;
+    console.log(clientId);
+
+    let commande: ICommande = {
+      id: null,
+      ref: '',
+      client: '/api/clients/' + clientId,
+      filingDate: this.formatDateTime(new Date()) ?? '',
+      paymentDate: this.formatDateTime(new Date()) ?? '',
+      returnDate: this.formatDateTime(new Date()) ?? ''
+    }
+    console.log(commande);
+    /*
+    this.serviceCommande.postCommande(commande).subscribe(data => {
+      console.log(data);
+      if (data) {
+        this.serviceShoppingCart.postShoppingCart(this.arrayItemsCart).subscribe(data => console.log(data)); //clearCart();
+      }
+    });
+
+*/
 

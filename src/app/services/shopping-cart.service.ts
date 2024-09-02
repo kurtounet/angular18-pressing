@@ -1,19 +1,18 @@
-import {Injectable} from '@angular/core';
-import {IshoppingCartItem} from '../models/shoppingCartItem.model';
+import { inject, Injectable } from '@angular/core';
+import { IshoppingCartItem } from '../models/shoppingCartItem.model';
+import { CommandeService } from './commande.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShoppingCartService {
+  serviceCommande = inject(CommandeService)
 
   CART_KEY = 'shopping_cart';
-  cartTest: IshoppingCartItem[] = [
-    {"id": 1, "categoryId": 1, "serviceId": 2, "quantity": 3, "price": 5},
-    {"id": 2, "categoryId": 2, "serviceId": 6, "quantity": 5, "price": 8}
-  ];
+
   lastIdIshoppinCartItem: number = 0;
   shoppingCart: IshoppingCartItem[] = [];
-  IshoppinCartItemCurrent: IshoppingCartItem = {id: 0, categoryId: 0, serviceId: 0, quantity: 0, price: 0};
+  IshoppinCartItemCurrent: IshoppingCartItem = { id: 0, categoryId: 0, serviceId: 0, quantity: 0, price: 0 };
 
   constructor() {
   }
@@ -32,7 +31,7 @@ export class ShoppingCartService {
 
 
   addItem(itemCart: IshoppingCartItem, quantite: number) {
-    //console.log('addItem', itemCart);
+
     //chercher si le produit existe dans le panier
     let item = this.shoppingCart.find((item) => item.categoryId === itemCart.categoryId);
 
@@ -45,7 +44,7 @@ export class ShoppingCartService {
       // sinon, on ajoute le produit au panier
       this.shoppingCart.push(itemCart);
     }
-
+    console.log(this.shoppingCart);
     this.saveCart();
 
   }
@@ -97,8 +96,17 @@ export class ShoppingCartService {
     console.log('postShoppingCart', itemCart);
 
   }
-  validedOder() {
-    console.log('validedOder');
+
+  validedOder(): string {
+    let validcoordanateClient = true;
+    if (validcoordanateClient) {
+      return "Envois au serviceCommand"
+    } else {
+      return "Coordonnées du client non remplit";
+    }
+    // this.serviceCommande.postCommande(this.shoppingCart).subscribe(data =>
+    //   console.log(data)
+    // )
   }
 }
 

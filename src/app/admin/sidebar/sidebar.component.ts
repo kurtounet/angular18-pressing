@@ -1,8 +1,8 @@
-import {Component, Input} from '@angular/core';
-import {RouterModule, RouterOutlet} from '@angular/router';
-import {AuthService} from '../../services/auth.service';
-import {NgIf} from '@angular/common';
-import {environment} from '../../environments/environment';
+import { Component, Input } from '@angular/core';
+import { RouterModule, RouterOutlet } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { NgClass, NgIf } from '@angular/common';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,22 +10,27 @@ import {environment} from '../../environments/environment';
   imports: [
     RouterOutlet,
     RouterModule,
-    NgIf
+    NgIf,
+    NgClass
   ],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent {
+  isOpen: boolean = true;
   baseUrl = environment.baseUrl;
-  @Input() roles: Array<string> = [];
+  @Input() roles: string[] = [];
 
   constructor(
     private authService: AuthService,
   ) {
   }
 
-  ngOnInit(): void {
+  toggleMenu() {
+    this.isOpen = !this.isOpen;
   }
+
+
 
   logout() {
     this.authService.logOut();

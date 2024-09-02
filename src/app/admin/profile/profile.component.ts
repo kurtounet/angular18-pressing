@@ -21,6 +21,7 @@ import { IClient } from '../../models/client.model';
 export class ProfileComponent implements OnInit {
 
   AdressIschecked = false;
+  //user: IClient | null = null;
   user: IUser | null = null;
   authService = inject(AuthService);
   userService = inject(UserService);
@@ -56,10 +57,11 @@ export class ProfileComponent implements OnInit {
           let date = new Date(data.dateborn);
           if (date) { // Check if date is valid
             const formattedDate = date.toISOString().split('T')[0];
-
           }
         }
-        this.profileForm.patchValue(data);
+        //this.profileForm.patchValue(data);
+        this.profileForm.patchValue({ id: data.id })
+
       },
       error: (error) => {
         console.error(error);
@@ -70,14 +72,15 @@ export class ProfileComponent implements OnInit {
   onSubmit() {
     if (this.profileForm.valid) {
       this.user = this.profileForm.value;
-      // this.clientService.patchClient(this.user).subscribe({
-      //   next: (data: IClient) => {
-      //     this.router.navigate(['/admin/dashboard/Home']);
-      //   },
-      //   error: (error) => {
-      //     console.error(error);
-      //   }
-      // })
+      console.log(this.user);
+      this.userService.patchUser(this.user).subscribe({
+        next: (data: IUser) => {
+          this.router.navigate(['/admin/dashboard/Home']);
+        },
+        error: (error) => {
+          console.error(error);
+        }
+      })
     } else {
       this.profileForm.markAllAsTouched(); // Pour afficher les erreurs
     }

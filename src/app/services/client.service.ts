@@ -43,7 +43,9 @@ export class ClientService {
 
   // Mettre à jour un Client
   patchClient(client: IClient | null): Observable<IClient> {
+    console.log('SERVICE CLIENT', client)
     const headers = new HttpHeaders({ 'Content-Type': 'application/merge-patch+json' });
+    console.log(client?.Premium)
     return this.httpClient.patch<IClient>(`${this.routeApi}/${client?.user.id}`, client, { headers });
   }
 
