@@ -12,7 +12,7 @@ export class ShoppingCartService {
 
   lastIdIshoppinCartItem: number = 0;
   shoppingCart: IshoppingCartItem[] = [];
-  IshoppinCartItemCurrent: IshoppingCartItem = { id: 0, categoryId: 0, serviceId: 0, quantity: 0, price: 0 };
+  IshoppinCartItemCurrent: IshoppingCartItem = { id: 0, categoryId: 0, serviceId: 0, quantity: 0};
 
   constructor() {
   }
@@ -21,20 +21,19 @@ export class ShoppingCartService {
     this.shoppingCart = this.getCart();
   }
 
-  getCart(): IshoppingCartItem[] {
+  getCart(): IshoppingCartItem[] {    
     let cart = localStorage.getItem(this.CART_KEY);
-    if (cart) {
-      return JSON.parse(cart);
+    if (cart != null)  {
+      this.shoppingCart = JSON.parse(cart);
+      return this.shoppingCart;
     }
     return [];
   }
 
 
   addItem(itemCart: IshoppingCartItem, quantite: number) {
-
     //chercher si le produit existe dans le panier
     let item = this.shoppingCart.find((item) => item.categoryId === itemCart.categoryId);
-
     // si le produit existe, on ajoute la quantite
     if (item) {
       console.log('item', item);
@@ -46,8 +45,8 @@ export class ShoppingCartService {
     }
     console.log(this.shoppingCart);
     this.saveCart();
-
-  }
+    
+    }
 
   udpateItem(id: number) {
     let indexItem = this.shoppingCart.findIndex(item => item.id === id);
@@ -190,4 +189,66 @@ CART_KEY = 'shopping_cart';
   validedOder() {
     console.log('validedOder');
   }
+*/
+/*
+import { Injectable } from '@angular/core';
+
+interface CartItem {
+  id: number;
+  name: string;
+  price: number;
+  quantity: number;
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ShoppingCartService {
+  private items: CartItem[] = [];
+
+  constructor() { }
+
+  // Ajouter un article au panier
+  addToCart(item: CartItem): void {
+    const existingItem = this.items.find(cartItem => cartItem.id === item.id);
+    if (existingItem) {
+      existingItem.quantity += item.quantity;
+    } else {
+      this.items.push({ ...item });
+    }
+  }
+
+  // Mettre à jour la quantité d'un article dans le panier
+  updateQuantity(itemId: number, quantity: number): void {
+    const item = this.items.find(cartItem => cartItem.id === itemId);
+    if (item) {
+      if (quantity > 0) {
+        item.quantity = quantity;
+      } else {
+        this.removeItem(itemId);
+      }
+    }
+  }
+
+  // Supprimer un article du panier
+  removeItem(itemId: number): void {
+    this.items = this.items.filter(cartItem => cartItem.id !== itemId);
+  }
+
+  // Récupérer le contenu du panier
+  getItems(): CartItem[] {
+    return this.items;
+  }
+
+  // Vider le panier
+  clearCart(): void {
+    this.items = [];
+  }
+
+  // Calculer le total du panier
+  getTotal(): number {
+    return this.items.reduce((total, item) => total + item.price * item.quantity, 0);
+  }
+}
+
 */

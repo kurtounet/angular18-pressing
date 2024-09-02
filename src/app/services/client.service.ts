@@ -32,7 +32,7 @@ export class ClientService {
 
   // Créer un nouveau Client
   postClient(user: IClient): Observable<IClient> {
-    // const headers = new HttpHeaders({ 'Content-Type': 'application/ld+json' });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.httpClient.post<IClient>(this.routeApi, user);
   }
   // patchUser(user: IUser | null): Observable<IUser> {

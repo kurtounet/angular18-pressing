@@ -1,6 +1,6 @@
-import {Component, EventEmitter, inject, Input, Output} from '@angular/core';
+import {Component, EventEmitter, inject, Input, Output, SimpleChange, SimpleChanges} from '@angular/core';
 
-import {FormsModule} from '@angular/forms';
+import {FormsModule, NgModel} from '@angular/forms';
 import {ShoppingCartService} from '../../services/shopping-cart.service';
 
 @Component({
@@ -49,7 +49,13 @@ export class QuantitySelectorComponent {
   ngOnInit() {
     this.quantity = this.inQuantity;
   }
-
+  
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['inQuantity']) {
+      this.quantity = changes['inQuantity'].currentValue;
+    
+  }
+}
   decrease() {
     if (this.quantity > 0) {
       this.quantity--;

@@ -14,10 +14,11 @@ employee: < <lucy.liu@gmail.com> > pwd :Lucy
 
 ## À FAIRE
 
+revoire s'inscription des utilisateur (erreur 500)
+
 API
 
-- created et update entity
-- choix du service -> article -> quantité
+
 - Faire une route pour récupérer les commandes sans employé : api/commandes/noassign (fait)
 - Faire une route pour récupérer les commandes du client : api/client/commandes (fait)
 - Faire une route pour Assigner une Commande a un employé ROLE_Employee: api/employee/items (fait)

@@ -3,5 +3,5 @@ export interface IshoppingCartItem {
   categoryId: number;
   serviceId: number;
   quantity: number;
-  price: number;
+  
 }

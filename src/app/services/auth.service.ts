@@ -1,4 +1,4 @@
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {inject, Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {Observable, throwError} from 'rxjs';
@@ -72,7 +72,8 @@ export class AuthService {
   //     return this.http.post<AuthResponse>(this.urlApiAuth, authRequest);
   //   }
   login(credentials: { username: string; password: string }): Observable<IToken> {
-    return this.http.post<IToken>(`${this.urlApiAuth}`, credentials);
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<IToken>(`${this.urlApiAuth}`, credentials, {headers});
   }
 
   logOut() {

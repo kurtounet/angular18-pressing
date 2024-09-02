@@ -33,7 +33,7 @@ export class PageDepotComponent implements OnInit {
   //VARIABLES
 
   baseUrlImageCategories = environment.baseUrl + environment.assertsImageCategories;
-  quantity: number = 2;
+  quantity: number = 1;
   arrayServices: IService[] = [];
   arrayCategoriesOfSelectedService: ICategory[] = [];
   selectedServicesId: number = 0;
@@ -43,8 +43,8 @@ export class PageDepotComponent implements OnInit {
   serviceService = inject(ServiceService);
   categoryService = inject(CategoryService);
   serviceShoppingCart = inject(ShoppingCartService);
-  serviceCommande = inject(CommandeService);
-  authService = inject(AuthService);
+  //serviceCommande = inject(CommandeService);
+  //authService = inject(AuthService);
 
 
 
@@ -75,10 +75,9 @@ export class PageDepotComponent implements OnInit {
       id: null,
       serviceId: this.selectedServicesId,
       categoryId: category.id,
-      quantity: this.quantity,
-      price: 10
+      quantity: this.quantity     
     }
-    this.serviceShoppingCart.addItem(itemCart, this.quantity);
+    this.serviceShoppingCart.addItem(itemCart, this.quantity);       
   }
 
   updateQuantity(categoryId: number, newQuantity: number) {
@@ -90,8 +89,8 @@ export class PageDepotComponent implements OnInit {
     // }
   }
 
-  getQuantity(newQty: number) {
-    this.quantity = newQty;
-    console.log(this.quantity);
-  }
+  // getQuantity(newQty: number) {
+  //   this.quantity = newQty;
+  //   console.log(this.quantity);
+  // }
 }

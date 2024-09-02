@@ -15,12 +15,19 @@ export class CategoryService {
   httpClient = inject(HttpClient);
 
   private routeApi = `${environment.baseApiUrl}/categories`;
+  //*********************functions*******************//
+  getNameCategory(id: number): string {
+    return this.arrayCategory.find(c => c.id === id)?.name || '';
+  }
+
+  //******************CRUD********************************//
 
   // Obtenir tous les Category
   getAllCategories(): Observable<ICategory[]> {
     return this.httpClient.get<IHydraCollection<ICategory>>(this.routeApi).pipe(
       map(response => response['hydra:member']),
     );
+
   }
   // Obtenir un Category par ID
   public getCategoryById(id: string): Observable<ICategory> {

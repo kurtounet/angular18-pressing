@@ -1,5 +1,10 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { CommonModule, NgIf } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
@@ -9,9 +14,8 @@ import { AuthService } from '../../services/auth.service';
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule, NgIf],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
 })
-
 export class LoginComponent implements OnInit {
   title = 'Login';
   loginForm: FormGroup = new FormGroup({}); // Initialisation
@@ -23,9 +27,15 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.loginForm = new FormGroup({
       credentials: new FormGroup({
-        username: new FormControl('anthony@gmail.com', [Validators.required, Validators.email]),
-        password: new FormControl('nirvana', [Validators.required, Validators.minLength(2)])
-      })
+        username: new FormControl('anthony@gmail.com', [
+          Validators.required,
+          Validators.email,
+        ]),
+        password: new FormControl('nirvana', [
+          Validators.required,
+          Validators.minLength(2),
+        ]),
+      }),
     });
   }
 
@@ -35,14 +45,13 @@ export class LoginComponent implements OnInit {
 
       this.authService.login({ username, password }).subscribe(
         (token) => {
-
           this.authService.setLocalStorageToken(token.token);
-          this.authService.getAuthCurrentUser().subscribe(data => {
+          this.authService.getAuthCurrentUser().subscribe((data) => {
             this.authService.setLocalStorageUser(data);
-          })
+          });
           this.router.navigate(['/admin/dashboard']); // Redirection après connexion réussie
         },
-        error => {
+        (error) => {
           this.serverErrorMessages = error.error.message;
           console.error('Login failed', error.error.message);
           // Gérer les erreurs de connexion ici (par exemple, afficher un message d'erreur)
@@ -51,7 +60,6 @@ export class LoginComponent implements OnInit {
     }
   }
 }
-
 
 // import { Component } from '@angular/core';
 // import { CommonModule } from '@angular/common';
