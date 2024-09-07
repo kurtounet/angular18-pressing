@@ -1,18 +1,21 @@
 <section class="container">
-  <section id="cathegorie">
-    <h4>Choisissez un service</h4>
+  <section class="services-list">
+    <h4>1 - Choisissez un service</h4>
+    <!-- SELECT POUR LES SERVICES -->
     <select (change)="selectedService($event)" [(ngModel)]="selectedServicesId">
-      <option selected value="Tout les services">Tout les services</option>
+      <!-- <option selected>Tout les services</option> -->
       <option *ngFor="let service of arrayServices" [value]="service.id">
         {{ service.name }}
       </option>
     </select>
-  </section>
+    <!-- PANIER -->
 
-  <section class="row">
-    <div class="col-md-6">
-      <h1>Catégories de vêtement</h1>
-      <div *ngFor="let category of arrayCategoriesOfSelectedService" class="col">
+  </section>
+  <!-- SECTION  -->
+  <section class="section-categories-list">
+    <h4>2 - Séléctionner une catégorie de vêtement</h4>
+    <ul class="categories-list">
+      <li *ngFor="let category of arrayCategoriesOfSelectedService">
         <div class="card m-2 p-2" style="width: fit-content;">
           <div class="d-flex flex-column justify-content-between align-items-center">
             <img alt="{{ category.name }}" class="card-img-top" src="{{baseUrlImageCategories}}/{{category.image}}">
@@ -22,13 +25,13 @@
             <button (click)="addToCart(category)" class="btn btn-primary mt-2">Ajouter au panier</button>
           </div>
         </div>
-      </div>
-    </div>
-
-    <div class="col-md-6">
-      <app-shopping-cart></app-shopping-cart>
-    </div>
+      </li>
+    </ul>
   </section>
+  <!-- <div class="col-md-6">
+      <app-shopping-cart></app-shopping-cart>
+    </div> -->
+
 </section>
 
 <!-- <section class="d-flex justify-content-between align-items-center">

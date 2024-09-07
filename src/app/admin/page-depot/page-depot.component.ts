@@ -33,8 +33,10 @@ export class PageDepotComponent implements OnInit {
   //VARIABLES
 
   baseUrlImageCategories = environment.baseUrl + environment.assertsImageCategories;
+  imageShoppingCart = "shopping-cart.svg";
   quantity: number = 1;
   arrayServices: IService[] = [];
+  arrayCategories: ICategory[] = [];
   arrayCategoriesOfSelectedService: ICategory[] = [];
   selectedServicesId: number = 0;
   selectedCategoryId: number = 0;
@@ -51,18 +53,34 @@ export class PageDepotComponent implements OnInit {
   //METHODS
   ngOnInit(): void {
     this.getAllServices();
+    //this.getAllCategories();
   }
 
   getAllServices() {
-    this.serviceService.getAllServices().subscribe(data => {
-      this.arrayServices = data;
-    });
+    this.serviceService.getAllServices()
+      .subscribe(data => {
+        this.arrayServices = data;
+      });
   }
+  // getAllCategories() {
+  //   this.categoryService.getAllCategories();
+  //   // .subscribe(data => {
+  //   //   this.arrayCategories = data;
+  //   //   console.log('CATEGORIES', data)
+  //   // });
+  //}
 
   getCategoriesServiceById(id: number) {
-    this.serviceService.getServiceById(id).subscribe(data => {
-      this.arrayCategoriesOfSelectedService = data['Category'];
-    });
+    if (id != 0) {
+      this.serviceService.getServiceById(id).subscribe(data => {
+        this.arrayCategoriesOfSelectedService = data['Category'];
+      });
+    } else {
+      this.categoryService.getAllCategories().subscribe(data => {
+        this.arrayCategoriesOfSelectedService = data;
+        console.log(id)
+      });
+    }
   }
 
   selectedService(event: any) {
@@ -73,11 +91,12 @@ export class PageDepotComponent implements OnInit {
   addToCart(category: ICategory) {
     let itemCart: IshoppingCartItem = {
       id: null,
-      serviceId: this.selectedServicesId,
-      categoryId: category.id,
-      quantity: this.quantity     
+      service: this.selectedServicesId,
+      detailItem: '',
+      category: category.id,
+      quantity: this.quantity
     }
-    this.serviceShoppingCart.addItem(itemCart, this.quantity);       
+    this.serviceShoppingCart.addItem(itemCart, this.quantity);
   }
 
   updateQuantity(categoryId: number, newQuantity: number) {

@@ -1,24 +1,32 @@
-section#container-article-depot {
+section {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
-  margin: 0.5rem;
+
+  padding: 0;
+  margin: 0;
 }
 
-section#article div {
-  width: 100%;
+h4 {
+  padding: 10px;
+}
+
+.section-categories-list {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+ul {
+  list-style: none;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: center;
-  margin: 0.5rem;
 }
 
-
 select {
-
-  width: 300px;
+  width: 100%;
   height: 30px;
   font-size: 15px;
   font-weight: bold;

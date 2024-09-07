@@ -1,0 +1,38 @@
+svg {
+  height: 30px;
+  width: 50px;
+}
+
+.cart {
+  padding: 10px;
+  width: fit-content;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+p {
+  margin: 0;
+  width: 20px;
+  height: 20px;
+  background-color: #3498db;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 20px;
+  color: white;
+
+}
+
+.container-header {
+  border: 1px solid #3498db;
+  height: fit-content;
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.img-logo {
+  width: 50px;
+  object-fit: cover;
+}

@@ -1,10 +1,10 @@
-import {Component, inject, OnInit} from '@angular/core';
-import {RouterModule, RouterOutlet} from '@angular/router';
+import { Component, inject, OnInit } from '@angular/core';
+import { RouterModule, RouterOutlet } from '@angular/router';
 
-import {NgFor} from '@angular/common';
-import {AuthService} from '../../services/auth.service';
-import {ItemService} from '../../services/item.service';
-import {Iitem} from '../../models/item.model';
+import { NgFor } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
+import { ItemService } from '../../services/item.service';
+import { Iitem } from '../../models/item.model';
 
 @Component({
   selector: 'app-home',
@@ -46,6 +46,7 @@ export class HomeComponent implements OnInit {
   getAuthCurrentUser() {
     this.authService.getAuthCurrentUser().subscribe(data => {
       this.user = data;
+      console.log(this.user);
     });
   }
 
