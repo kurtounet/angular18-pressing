@@ -3,18 +3,21 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment'; // Corriger le nom du chemin si nécessaire
 import { ICommande } from '../models/commande.model';
-
+import { DatePipe } from '@angular/common';
 
 import { IClient } from '../models/client.model';
+import { IshoppingCartItem } from '../models/shoppingCartItem.model';
+import { IposteCommande } from '../models/postCommande.model';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommandeService {
-
-  httpClient = inject(HttpClient);// Injection correcte du HttpClient
   private routeApi = `${environment.baseApiUrl}/commandes`; // Utiliser un slash à la fin pour les chemins
-
+  httpClient = inject(HttpClient);
+  serviceAuth = inject(AuthService);
+  constructor(private datePipe: DatePipe) { }
   // Obtenir tous les Commandes
   getAllCommandes(): Observable<ICommande[]> {
     return this.httpClient.get<ICommande[]>(this.routeApi);
@@ -26,9 +29,10 @@ export class CommandeService {
   }
 
   // Créer un nouveau Commande
-  postCommande(body: ICommande): Observable<ICommande> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/ld+json' });
-    return this.httpClient.post<ICommande>(this.routeApi, body, { headers });
+  postCommandeClient(body: IposteCommande): Observable<ICommande> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    console.table(body);
+    return this.httpClient.post<ICommande>(`${this.routeApi}/client`, body, { headers });
   }
 
   // Mettre à jour un Commande par ID
@@ -41,25 +45,24 @@ export class CommandeService {
     return this.httpClient.delete<void>(`${this.routeApi}/${id}`);
   }
 
-  // formatDateTime(date: Date): string | null {
-  //   return this.datePipe.transform(date, 'yyyy-MM-dd\'T\'HH:mm:ssZZZZZ'); // datePipe.transform(date, 'yyyy-MM-dd HH:mm:ss');
-  // }
+  formatDateTime(date: Date): string | null {
+    return this.datePipe.transform(date, 'yyyy-MM-dd\'T\'HH:mm:ssZZZZZ');
+    // datePipe.transform(date, 'yyyy-MM-dd HH:mm:ss');
+  }
 
-  validCommande(commande: ICommande, client: IClient) {
-    // let formattedDate = this.formatDateTime(new Date());
-    //console.log(formattedDate); // Affiche la date au format PHP: '2024-08-13 10:45:00'
-    console.log("validCommande")
-    //console.log(client.user.id);
-
-    // let commande: ICommande = {
-    //   id: null,
-    //   ref: '',
-    //   client: '/api/clients/' + clientId,
-    //   filingDate: this.formatDateTime(new Date()) ?? '',
-    //   paymentDate: this.formatDateTime(new Date()) ?? '',
-    //   returnDate: this.formatDateTime(new Date()) ?? ''
-    // }
-    //console.log(commande);
+  prepareCommande(arrayShoppingCartItem: IshoppingCartItem[]) {
+    let clientId = this.serviceAuth.getLocalStorageUser().id;
+    let today = new Date();
+    let commande: IposteCommande = {
+      id: null,
+      ref: '',
+      client: '/api/clients/' + clientId,
+      filingDate: this.formatDateTime(new Date()) ?? '',
+      paymentDate: this.formatDateTime(new Date()) ?? '',
+      returnDate: this.formatDateTime(new Date()) ?? '',
+      items: arrayShoppingCartItem
+    }
+    return commande;
   }
 }
 

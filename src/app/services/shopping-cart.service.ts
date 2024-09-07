@@ -1,29 +1,32 @@
 import { inject, Injectable } from '@angular/core';
 import { IshoppingCartItem } from '../models/shoppingCartItem.model';
 import { CommandeService } from './commande.service';
+import { AuthService } from './auth.service';
+import { IposteCommande } from '../models/postCommande.model';
+import { AppComponent } from '../app.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShoppingCartService {
-  serviceCommande = inject(CommandeService)
 
+  // VARIABLES
   CART_KEY = 'shopping_cart';
-
   lastIdIshoppinCartItem: number = 0;
   shoppingCart: IshoppingCartItem[] = [];
-  IshoppinCartItemCurrent: IshoppingCartItem = { id: 0, categoryId: 0, serviceId: 0, quantity: 0};
 
-  constructor() {
-  }
+  // INJECTION DEPENDENCIES
+  constructor() { }
+  serviceCommande = inject(CommandeService)
+  serviceAuth = inject(AuthService)
 
   ngOnInit() {
     this.shoppingCart = this.getCart();
   }
 
-  getCart(): IshoppingCartItem[] {    
+  getCart(): IshoppingCartItem[] {
     let cart = localStorage.getItem(this.CART_KEY);
-    if (cart != null)  {
+    if (cart != null) {
       this.shoppingCart = JSON.parse(cart);
       return this.shoppingCart;
     }
@@ -33,7 +36,7 @@ export class ShoppingCartService {
 
   addItem(itemCart: IshoppingCartItem, quantite: number) {
     //chercher si le produit existe dans le panier
-    let item = this.shoppingCart.find((item) => item.categoryId === itemCart.categoryId);
+    let item = this.shoppingCart.find((item) => item.category === itemCart.category);
     // si le produit existe, on ajoute la quantite
     if (item) {
       console.log('item', item);
@@ -45,8 +48,8 @@ export class ShoppingCartService {
     }
     console.log(this.shoppingCart);
     this.saveCart();
-    
-    }
+
+  }
 
   udpateItem(id: number) {
     let indexItem = this.shoppingCart.findIndex(item => item.id === id);
@@ -99,13 +102,15 @@ export class ShoppingCartService {
   validedOder(): string {
     let validcoordanateClient = true;
     if (validcoordanateClient) {
+      let body: IposteCommande = this.serviceCommande.prepareCommande(this.shoppingCart);
+      this.serviceCommande.postCommandeClient(body).subscribe(data =>
+        console.log(data)
+      )
       return "Envois au serviceCommand"
     } else {
       return "Coordonnées du client non remplit";
     }
-    // this.serviceCommande.postCommande(this.shoppingCart).subscribe(data =>
-    //   console.log(data)
-    // )
+
   }
 }
 

@@ -1,10 +1,10 @@
-import {inject, Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
-import {environment} from '../environments/environment'; // Corriger le nom du chemin si nécessaire
-import {IService} from '../models/service.model';
-import {IHydraCollection} from '../models/hydraCollection.model';
-import {map, Observable} from "rxjs";
+import { environment } from '../environments/environment'; // Corriger le nom du chemin si nécessaire
+import { IService } from '../models/service.model';
+import { IHydraCollection } from '../models/hydraCollection.model';
+import { map, Observable } from "rxjs";
 
 
 @Injectable({
@@ -12,15 +12,21 @@ import {map, Observable} from "rxjs";
 })
 export class ServiceService {
 
+  arrayServices: IService[] = [];
+
   httpClient = inject(HttpClient);
   private routeApi = `${environment.baseApiUrl}/services`;
 
   // Obtenir tous les services
   getAllServices(): Observable<IService[]> {
     return this.httpClient.get<IHydraCollection<IService>>(this.routeApi).pipe(
-      map(response => response['hydra:member']),
+      map(response => {
+        this.arrayServices = response['hydra:member'];
+        return response['hydra:member'];
+      }),
     );
   }
+
 
   // fetchAll(): Observable<IService[]> {
   //   return this.http.get<HydraCollection<IService>>(this.urlService + '/services').pipe(

@@ -1,6 +1,7 @@
 import { Inject, inject, Pipe, PipeTransform } from '@angular/core';
 import { CategoryService } from '../services/category.service';
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
+import { ICategory } from '../models/category.model.';
 
 @Pipe({
   name: 'nameCategoryById',
@@ -8,14 +9,13 @@ import { map } from 'rxjs';
 })
 export class NameCategoryByIdPipe implements PipeTransform {
 
-  serviceCategory = inject(CategoryService);
+  categoryService = inject(CategoryService);
 
-  transform(value: number): void {
-    console.log(value)
+  transform(categoryId: number): string | undefined {
+    console.log(this.categoryService.arrayCategories)
+    let category = this.categoryService.arrayCategories.find(cat => cat.id === categoryId);
+    return category ? category.name : undefined;
 
-    let category = this.serviceCategory.getAllCategories()
-    console.log(category)
-    //return category.name;
   }
 
 }

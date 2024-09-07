@@ -11,13 +11,13 @@ import { IHydraCollection } from '../models/hydraCollection.model';
   providedIn: 'root'
 })
 export class CategoryService {
-  arrayCategory: ICategory[] = [];
+  arrayCategories: ICategory[] = [];
   httpClient = inject(HttpClient);
 
   private routeApi = `${environment.baseApiUrl}/categories`;
   //*********************functions*******************//
   getNameCategory(id: number): string {
-    return this.arrayCategory.find(c => c.id === id)?.name || '';
+    return this.arrayCategories.find(c => c.id === id)?.name || '';
   }
 
   //******************CRUD********************************//
@@ -25,7 +25,12 @@ export class CategoryService {
   // Obtenir tous les Category
   getAllCategories(): Observable<ICategory[]> {
     return this.httpClient.get<IHydraCollection<ICategory>>(this.routeApi).pipe(
-      map(response => response['hydra:member']),
+      map(response => {
+        this.arrayCategories = response['hydra:member'];
+        console.log('ARRAY CATEGORIES', this.arrayCategories)
+        return response['hydra:member'];
+      }),
+
     );
 
   }

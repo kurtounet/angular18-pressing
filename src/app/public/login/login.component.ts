@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   authService = inject(AuthService);
   router = inject(Router);
 
-  //serverErrorMessages: { [key: string]: string } = {"message": "moin de 2 caractères"};
+
   serverErrorMessages: string = '';
   ngOnInit() {
     this.loginForm = new FormGroup({
@@ -49,12 +49,13 @@ export class LoginComponent implements OnInit {
           this.authService.getAuthCurrentUser().subscribe((data) => {
             this.authService.setLocalStorageUser(data);
           });
-          this.router.navigate(['/admin/dashboard']); // Redirection après connexion réussie
+          // Redirection après authentification
+          this.router.navigate(['/admin/dashboard']);
         },
         (error) => {
           this.serverErrorMessages = error.error.message;
           console.error('Login failed', error.error.message);
-          // Gérer les erreurs de connexion ici (par exemple, afficher un message d'erreur)
+
         }
       );
     }

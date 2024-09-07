@@ -1,15 +1,21 @@
 <section class="container">
   <h2>Nos services</h2>
   <p>
-    Nos services Nous sommes votre partenaire de confiance pour tous vos besoins
-    de nettoyage et d'entretien de textiles. Nous offrons une large gamme de
+    Nous sommes votre partenaire de confiance pour tous vos besoins
+    de nettoyage et d'entretien de textiles.
+    <br>
+    <br>
+    Nous offrons une large gamme de
     services de qualité pour assurer que vos vêtements et autres articles en
     tissu soient toujours impeccables. Découvrez nos services ci-dessous :
+    <br>
   </p>
 </section>
 <section class="container">
-  <div *ngFor="let service of arrayServices" class="cardService">
-    <h6>{{ service.name }}</h6>
-    <h6>{{ service.price }} €</h6>
-  </div>
+  <ul>
+    <li *ngFor="let service of arrayServices" class="cardService">
+      <p>{{ service.name }}</p>
+      <p>{{ service.price }} €</p>
+    </li>
+  </ul>
 </section>

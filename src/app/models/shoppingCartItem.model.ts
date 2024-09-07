@@ -1,7 +1,8 @@
 export interface IshoppingCartItem {
   id: number | null;
-  categoryId: number;
-  serviceId: number;
+  category: number;
+  detailItem: string;
+  service: number;
   quantity: number;
-  
+
 }

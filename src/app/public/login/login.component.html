@@ -1,5 +1,6 @@
 <div class="d-flex justify-content-center align-items-start vh-100">
   <div class="mt-5 w-50">
+    <h2>Se connecter</h2>
     <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" class="needs-validation">
       <div formGroupName="credentials">
         <div class="form-group mb-3">
@@ -18,7 +19,6 @@
         <div *ngIf="serverErrorMessages" class="text-danger">
           {{ serverErrorMessages }}
         </div>
-
         <button [disabled]="loginForm.invalid" class="btn btn-primary w-100" type="submit">Login</button>
       </div>
     </form>

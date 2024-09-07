@@ -2,10 +2,10 @@ import { ICommande } from "./commande.model";
 import { IUser } from "./user.model";
 
 export interface IClient {
+  user: IUser;
   clientNumber: number,
   Premium: boolean,
-  user: IUser;
-  commande: ICommande[];
+
 }
 
 export interface ClientCollection {
