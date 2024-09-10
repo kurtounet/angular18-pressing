@@ -1,19 +1,16 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ServiceService } from '../../services/service.service';
 import { IService } from '../../models/service.model';
-import { CommonModule, DatePipe, NgForOf } from '@angular/common';
+import { CommonModule, NgForOf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CategoryService } from '../../services/category.service';
-import { QuantitySelectorComponent } from '../quantity-selector/quantity-selector.component';
-
 import { ICategory } from '../../models/category.model.';
 import { environment } from '../../environments/environment';
-import { CommandeService } from '../../services/commande.service';
-import { ICommande } from '../../models/commande.model';
-import { AuthService } from '../../services/auth.service';
 import { ShoppingCartService } from '../../services/shopping-cart.service';
 import { ShoppingCartComponent } from "../shopping-cart/shopping-cart.component";
 import { IshoppingCartItem } from '../../models/shoppingCartItem.model';
+import { QuantitySelectorComponent } from '../quantity-selector/quantity-selector.component';
+import { map } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -33,13 +30,20 @@ export class PageDepotComponent implements OnInit {
   //VARIABLES
 
   baseUrlImageCategories = environment.baseUrl + environment.assertsImageCategories;
-  imageShoppingCart = "shopping-cart.svg";
-  quantity: number = 1;
+  quantity: number = 0;
+
+  selectedServiceCheck: boolean = false;
+  selectedCategoryCheck: boolean = false;
+  popUpIsVisible: boolean = false;
+
   arrayServices: IService[] = [];
+  arrayTempCategories: any[] = [];
   arrayCategories: ICategory[] = [];
   arrayCategoriesOfSelectedService: ICategory[] = [];
   selectedServicesId: number = 0;
-  selectedCategoryId: number = 0;
+  selectedCategory!: ICategory;
+
+
 
   //INJECT DEPENDENCIES
   serviceService = inject(ServiceService);
@@ -57,59 +61,74 @@ export class PageDepotComponent implements OnInit {
   }
 
   getAllServices() {
-    this.serviceService.getAllServices()
-      .subscribe(data => {
-        this.arrayServices = data;
-      });
-  }
-  // getAllCategories() {
-  //   this.categoryService.getAllCategories();
-  //   // .subscribe(data => {
-  //   //   this.arrayCategories = data;
-  //   //   console.log('CATEGORIES', data)
-  //   // });
-  //}
+    this.serviceService.getAllServices().subscribe(data => {
+      this.serviceService.arrayServices = data;
 
-  getCategoriesServiceById(id: number) {
+    });
+  }
+
+  selectedService(event: any) {
+    this.selectedServicesId = Number(event.target.value);
+    //this.selectedServiceCheck = !this.selectedServiceCheck;
+    this.getCategoriesOfServiceById(this.selectedServicesId);
+  }
+
+  getCategoriesOfServiceById(id: number) {
     if (id != 0) {
       this.serviceService.getServiceById(id).subscribe(data => {
-        this.arrayCategoriesOfSelectedService = data['Category'];
+        this.arrayCategoriesOfSelectedService = data["Category"];
+        this.arrayTempCategories = this.arrayCategoriesOfSelectedService.map(cat => ({ ...cat, quantity: 0 }))
       });
+
     } else {
       this.categoryService.getAllCategories().subscribe(data => {
         this.arrayCategoriesOfSelectedService = data;
         console.log(id)
       });
     }
+
   }
 
-  selectedService(event: any) {
-    this.selectedServicesId = Number(event.target.value);
-    this.getCategoriesServiceById(this.selectedServicesId);
+
+  // POPUP
+  openPopupSelectedCategory(category: ICategory) {
+    this.selectedCategory = category;
+    this.popUpIsVisible = true;
+    console.log(category);
   }
 
-  addToCart(category: ICategory) {
-    let itemCart: IshoppingCartItem = {
-      id: null,
-      service: this.selectedServicesId,
-      detailItem: '',
-      category: category.id,
-      quantity: this.quantity
+  closePopup() {
+    this.popUpIsVisible = false;
+  }
+  addToCart(category: any) {
+    if (category.quantity != 0) {
+      let itemCart: IshoppingCartItem = {
+        id: null,
+        service: this.selectedServicesId,
+        detailItem: '',
+        category: category.id,
+        quantity: category.quantity
+      }
+      this.serviceShoppingCart.addItem(itemCart, this.quantity);
     }
-    this.serviceShoppingCart.addItem(itemCart, this.quantity);
   }
-
-  updateQuantity(categoryId: number, newQuantity: number) {
-    this.quantity = newQuantity;
-    // console.log('updateQuantity', categoryId, 'newQuantity:', newQuantity);
-    // const category = this.arrayCategorySelectedService.find(cat => cat.id === categoryId);
-    // if (category) {
-    //   category.quantity = newQuantity;
-    // }
+  abort() {
+    this.popUpIsVisible = false;
   }
-
-  // getQuantity(newQty: number) {
-  //   this.quantity = newQty;
-  //   console.log(this.quantity);
+  // updateQuantity(Id: number, newQuantity: number) {
+  //   this.quantity = newQuantity;
+  //   console.log('updateQuantity', categoryId, 'newQuantity:', newQuantity);
+  //   const category = this.arrayTempCategories.find(cat => cat.id === Id);
+  //   if (category) {
+  //     category.quantity = newQuantity;
+  //   }
   // }
+  updateQuantity(categoryId: number, newQuantity: number) {
+    let category = this.arrayTempCategories.find(cat => cat.id === categoryId);
+    if (category) {
+      category.quantity = newQuantity;
+    }
+
+  }
+
 }

@@ -1,11 +1,15 @@
-<app-header-dashboard />
-<div class="container-fluid">
-  <div class="row">
-    <!-- Sidebar -->
-    <app-sidebar [roles]="roles" class="col-md-3 col-lg-2 p-0"></app-sidebar>
+<div class="dashboard-container">
+  <app-header-dashboard />
 
-    <!-- Main Content -->
-    <div class=" main-content col-md-9 ms-sm-auto col-lg-10">
+  <div class="member-container">
+
+    <div>
+      <app-sidebar class="sidebar"
+        [ngClass]="{'sidebar-open': sidebarService.isVisible, 'sidebar-closed': !sidebarService.isVisible}"
+        [roles]="roles"></app-sidebar>
+    </div>
+
+    <div class="main-content">
       <router-outlet></router-outlet>
     </div>
   </div>

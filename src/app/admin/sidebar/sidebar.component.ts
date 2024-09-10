@@ -1,8 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { NgClass, NgIf } from '@angular/common';
 import { environment } from '../../environments/environment';
+import { SidebarService } from '../../services/sidebar.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -21,16 +22,14 @@ export class SidebarComponent {
   baseUrl = environment.baseUrl;
   @Input() roles: string[] = [];
 
-  constructor(
-    private authService: AuthService,
-  ) {
-  }
 
-  toggleMenu() {
-    this.isOpen = !this.isOpen;
-  }
+  authService = inject(AuthService);
+  sidebarService = inject(SidebarService);
 
-
+  // toggleMenu() {
+  //   //this.sidebarService.isVisible = !this.sidebarService.isVisible
+  //   this.isOpen = !this.isOpen;
+  // }
 
   logout() {
     this.authService.logOut();

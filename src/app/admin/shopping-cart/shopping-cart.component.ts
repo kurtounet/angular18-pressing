@@ -7,6 +7,8 @@ import { NameCategoryByIdPipe } from '../../pipes/name-category-by-id.pipe';
 import { CategoryService } from '../../services/category.service';
 import { NameServiceByIdPipe } from '../../pipes/name-service-by-id.pipe';
 import { ServiceService } from '../../services/service.service';
+import { AppComponent } from '../../app.component';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -16,19 +18,24 @@ import { ServiceService } from '../../services/service.service';
   styleUrl: './shopping-cart.component.css'
 })
 export class ShoppingCartComponent {
-
-  shoppingCartService = inject(ShoppingCartService);
-  arrayShoppingCartItem: IshoppingCartItem[] = [];
-  isVisible: boolean = false;
+  // VARIABLES
+  baseUrlImageCategories = environment.baseUrl + environment.assertsImageCategories;
 
   total: number = 0;
+  isVisible: boolean = false;
+  arrayShoppingCartItem: IshoppingCartItem[] = [];
+
+  // INJECTION DEPENDENCIES
+  constructor(private app: AppComponent) { }
+  shoppingCartService = inject(ShoppingCartService);
+
+
   ngOnInit(): void {
     this.getItemsCart();
   }
 
   getItemsCart() {
     this.arrayShoppingCartItem = this.shoppingCartService.getCart();
-    console.log(this.arrayShoppingCartItem);
   }
 
   updateCart(): void {
@@ -38,65 +45,32 @@ export class ShoppingCartComponent {
   removeItemCart(item: IshoppingCartItem) {
     this.shoppingCartService.removeItem(item);
     this.updateCart();
-    console.log(this.arrayShoppingCartItem);
   }
 
   clearCart(): void {
     this.shoppingCartService.clearCart();
     this.updateCart();
+    this.closeShoppingCart();
   }
 
   validedOrder(): void {
     if (this.arrayShoppingCartItem.length > 0) {
       let resp = this.shoppingCartService.validedOder();
-      console.log(resp)
     }
+    this.closeShoppingCart();
   }
 
   changeQuantity(event: any) {
     console.log("changeQuantity")
     let qty = event.target.value;
-    console.log(qty)
   }
   //FUNCTIONS
   openShoppingCart() {
-    this.isVisible = true;
+    this.app.isCartVisible = true;
   }
 
   closeShoppingCart() {
-    this.isVisible = false;
+    this.app.isCartVisible = false;
   }
 
 }
-/*
- cartItems = this.cartService.getItems();
-  total = this.cartService.getTotal();
-
-  constructor(private cartService: ShoppingCartService) {}
-
-  addToCart(item): void {
-    this.cartService.addToCart(item);
-    this.updateCart();
-  }
-
-  updateQuantity(itemId: number, quantity: number): void {
-    this.cartService.updateQuantity(itemId, quantity);
-    this.updateCart();
-  }
-
-  removeItem(itemId: number): void {
-    this.cartService.removeItem(itemId);
-    this.updateCart();
-  }
-
-  clearCart(): void {
-    this.cartService.clearCart();
-    this.updateCart();
-  }
-
-  private updateCart(): void {
-    this.cartItems = this.cartService.getItems();
-    this.total = this.cartService.getTotal();
-  }
-*/
-

@@ -24,13 +24,12 @@ export class CategoryService {
 
   // Obtenir tous les Category
   getAllCategories(): Observable<ICategory[]> {
+    this.arrayCategories = [];
     return this.httpClient.get<IHydraCollection<ICategory>>(this.routeApi).pipe(
       map(response => {
         this.arrayCategories = response['hydra:member'];
-        console.log('ARRAY CATEGORIES', this.arrayCategories)
         return response['hydra:member'];
       }),
-
     );
 
   }

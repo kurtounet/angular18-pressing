@@ -11,6 +11,13 @@
   height: 50px;
 }
 
+.close {
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
 .shopping-cart {
   position: fixed;
   top: 20px;

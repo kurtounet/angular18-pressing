@@ -1,88 +1,11 @@
-<!-- <aside id="sidebar" [ngClass]="{'sidebar': true, 'sidebar-open': isOpen}">
-  <nav>
-    <ul>
-      <h6 *ngIf="roles.includes('ROLE_ADMIN')">Espace Admin</h6>
-      <h6 *ngIf="roles.includes('ROLE_EMPLOYEE')">Espace Employé</h6>
-      <h6 *ngIf="roles.includes('ROLE_CLIENT')">Espace client</h6>
-      <li (click)="toggleMenu()">
-        <div>
-          <img alt="Fermer" src="./assets/image/close-x.svg" />
-        </div>
-      </li>
-
-      <li>
-        <div (click)="logout()">Déconnexion</div>
-      </li>
-      <li>
-        <a routerLink="/admin/dashboard/home">
-
-          <img alt="Accueil" src="./assets/admin/home.svg" />
-          <p>Accueil</p>
-        </a>
-      </li>
-
-      <li *ngIf="roles.includes('ROLE_ADMIN')">
-        <a routerLink="/admin/dashboard/orderlist"><img alt="Les Commandes" src="./assets/admin/commande.png" />
-          <p>Les Commandes</p>
-        </a>
-      </li>
-      <li *ngIf="roles.includes('ROLE_ADMIN')">
-        <a routerLink="/admin/dashboard/tasklist"><img alt="Faire un dépot" src="./assets/admin/shopping-cart.svg" />
-          <p>Les tâches</p>
-        </a>
-      </li>
-      <li *ngIf="roles.includes('ROLE_ADMIN')">
-        <a routerLink="/admin/dashboard/userlist"><img alt="Faire un dépot" src="./assets/admin/user.png" />
-          <p>Utilisateurs</p>
-        </a>
-      </li>
-
-      <li *ngIf="roles.includes('ROLE_EMPLOYEE')">
-
-        <a routerLink="/admin/dashboard/tasklist"><img alt="Liste des tâches" src="./assets/admin/commande.png" />
-          <p>Mes tâches</p>
-        </a>
-      </li>
-
-      <li *ngIf="roles.includes('ROLE_CLIENT')">
-        <a routerLink="/admin/dashboard/depot"><img alt="Faire un dépot" src="./assets/admin/shopping-cart.svg" />
-          <p>Faire un dépot</p>
-        </a>
-      </li>
-      <li *ngIf="roles.includes('ROLE_CLIENT')">
-        <a routerLink="/admin/dashboard/orderlist"><img alt="Mes commandes" src="./assets/admin/list-order.svg" />
-          <p>Mes commandes</p>
-        </a>
-      </li>
-      <li *ngIf="roles.includes('ROLE_CLIENT')">
-        <a routerLink="/admin/dashboard/cart"><img alt="Mon panier" src="./assets/admin/shopping-cart-euro.svg" />
-          <p>Mon panier</p>
-        </a>
-      </li>
-
-      <li>
-        <a class="link" routerLink="/admin/dashboard/profil"><img alt="Mes Informations"
-            src="./assets/admin/profil.svg" />
-          <p>Mes Informations</p>
-        </a>
-      </li>
-      <li>
-        <a class="link" routerLink="contact">
-          <img alt="Nous Contactez" src="./assets/admin/email.svg" />
-          <p>Nous Contactez</p>
-        </a>
-      </li>
-    </ul>
-  </nav>
-</aside> -->
-<aside id="sidebar" class="sidebar" [ngClass]="{'sidebar-open': isOpen}">
+<aside id="sidebar" class="sidebar">
   <nav>
     <ul class="nav flex-column">
       <h6 *ngIf="roles.includes('ROLE_ADMIN')" class="text-uppercase">Espace Admin</h6>
       <h6 *ngIf="roles.includes('ROLE_EMPLOYEE')" class="text-uppercase">Espace Employé</h6>
       <h6 *ngIf="roles.includes('ROLE_CLIENT')" class="text-uppercase">Espace Client</h6>
 
-      <li class="nav-item" (click)="toggleMenu()">
+      <li class="nav-item" (click)="this.sidebarService.toggleSidebar()">
         <div class="nav-link">
           <img alt="Fermer" src="./assets/image/close-x.svg" />
         </div>
@@ -142,7 +65,7 @@
       </li>
       <li class="nav-item" *ngIf="roles.includes('ROLE_CLIENT')">
         <a class="nav-link" routerLink="/admin/dashboard/cart">
-          <img alt="Mon panier" src="./assets/admin/shopping-cart-euro.svg" />
+          <img alt="Mon panier" src="./assets/admin/shopping-cart.svg" />
           <p>Mon panier</p>
         </a>
       </li>

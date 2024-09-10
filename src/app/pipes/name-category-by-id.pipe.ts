@@ -10,12 +10,9 @@ import { ICategory } from '../models/category.model.';
 export class NameCategoryByIdPipe implements PipeTransform {
 
   categoryService = inject(CategoryService);
-
   transform(categoryId: number): string | undefined {
-    console.log(this.categoryService.arrayCategories)
     let category = this.categoryService.arrayCategories.find(cat => cat.id === categoryId);
     return category ? category.name : undefined;
-
   }
 
 }

@@ -1,33 +1,35 @@
-<div class="container">
-  <!-- SECTION INTRO-->
-  <section id="introduction">
-    <h1>Bienvenue chez Pressing Prestige.</h1>
-    <div>
-      <!-- <img src="assets/image/site/landing-page-pressing.webp" alt="" /> -->
-      <img [src]="imageIntroduction" alt="" />
-      <div>
-        <p>
-          Gagnez du temps et profitez de la vie pendant que nous prenons soin de
-          vos vêtements. Avec [Nom du Pressing], découvrez une nouvelle manière
-          de gérer votre linge sans effort.
-        </p>
-        <p>
-          Nous offrons un service de pressing et de blanchisserie qui vous
-          permet d'avoir une vitrine de votre linge tout de qualité supérieure,
-          directement à votre porte.
-        </p>
-      </div>
-    </div>
-  </section>
-  <!-- SECTION SERVICE-->
-  <section id="services">
-    <h2>Nos services</h2>
-    <div class="d-flex justify-content-between align-items-center">
-      <div *ngFor="let service of servicesList" class="card-service">
-        <h4>{{ service.name }}</h4>
-        <img alt="{{ service.image }}" src="{{baseUrlImageServices}}/{{service.image}}" />
-        <p>{{ service.description }}</p>
-      </div>
-    </div>
-  </section>
-</div>
+<!-- SECTION INTRO-->
+<section id="introduction">
+  <h1>Bienvenue chez <br> <strong>Pressing Prestige</strong>.</h1>
+  
+  <button>Dépositer mes vétements</button>
+</section>
+<!-- SECTION SERVICE-->
+<section id="services">
+  <h2>Nos services</h2>
+  <ul class="d-flex justify-content-between align-items-center">
+    <li *ngFor="let service of servicesList" class="card-service">
+      <h4>{{ service.name }}</h4>
+      <img alt="{{ service.name }}" src="{{baseUrlImageServices}}/{{service.image}}" />
+      <p>{{ service.description }}</p>
+    </li>
+  </ul>
+</section>
+<!-- <div>
+    <p>
+      Avec Pressing Prestige, dites adieu aux corvées de linge et dites bonjour à une vie plus légère ! Plus besoin de
+      perdre du temps avec votre pressing, nous prenons tout en main ! Nos experts s'occupent de vos vêtements avec un
+      soin
+      inégalé, pour des résultats impeccables, dignes des plus grandes exigences.
+    </p>
+    <p>
+      Un linge parfait, sans effort, livré directement chez vous ! Profitez de votre temps libre pendant que nous
+      transformons vos vêtements . Que ce soit pour une soirée importante ou votre quotidien, vos vêtements sont entre
+      les
+      meilleures mains.
+    </p>
+    <p>
+      Pressing Prestige : parce que vous méritez l'excellence, sans compromis. Laissez-nous vous simplifier la vie, et
+      découvrez le luxe d'un service qui dépasse vos attentes !
+    </p>
+  </div> -->

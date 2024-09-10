@@ -9,21 +9,9 @@ import { map, Observable } from 'rxjs';
 export class NameServiceByIdPipe implements PipeTransform {
 
   serviceService = inject(ServiceService);
-
   transform(serviceId: number): string | undefined {
     let service = this.serviceService.arrayServices.find(service => service.id === serviceId);
     return service ? service.name : undefined;
   }
-
-  // serviceService = inject(ServiceService);
-
-  // transform(serviceId: number): Observable<string | undefined> {
-  //   return this.serviceService.getAllServices().pipe(
-  //     map(services => {
-  //       let service = services.find(cat => cat.id === serviceId);
-  //       return service ? service.name : undefined;
-  //     })
-  //   );
-  // }
 
 }

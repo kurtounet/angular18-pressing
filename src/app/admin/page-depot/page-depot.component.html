@@ -1,37 +1,107 @@
 <section class="container">
-  <section class="services-list">
-    <h4>1 - Choisissez un service</h4>
-    <!-- SELECT POUR LES SERVICES -->
-    <select (change)="selectedService($event)" [(ngModel)]="selectedServicesId">
-      <!-- <option selected>Tout les services</option> -->
-      <option *ngFor="let service of arrayServices" [value]="service.id">
-        {{ service.name }}
-      </option>
-    </select>
-    <!-- PANIER -->
+  <div class="col-12">
+    <!-- <section class="steper">
+    <div class="row">
+      <div class="col">
+        <div class="step">
+          <span class="step-number">1</span>
+          <span class="step-description">: Sélectionnez un service</span>
+        </div>
+      </div>
+      <div class="col">
+        <div class="step">
+          <span class="step-number">2</span>
+          <span class="step-description">: Sélectionner la catégorie de vêtement</span>
+        </div>
+      </div>
+      <div class="col">
+        <div class="step">
+          <span class="step-number">3</span>
+          <span class="step-description">: Indiquer la quantité</span>
+        </div>
+      </div>
+      <div class="col">
+        <div class="step">
+          <span class="step-number">4</span>
+          <span class="step-description">: Ajouter au panier</span>
+        </div>
+      </div>
+    </div>
+  </section> -->
 
-  </section>
-  <!-- SECTION  -->
-  <section class="section-categories-list">
+    <section class="services-list" *ngIf="!popUpIsVisible">
+      <h4>1 - Choisissez un service</h4>
+      <!-- SELECT POUR LES SERVICES -->
+      <select (change)="selectedService($event)" [(ngModel)]="selectedServicesId">
+        <!-- <option selected>Tout les services</option> -->
+        <option *ngFor="let service of serviceService.arrayServices" [value]="service.id">
+          {{ service.name }}
+        </option>
+      </select>
+      <!-- PANIER -->
+
+    </section>
+    <!-- SECTION  -->
+    <section *ngIf="!popUpIsVisible" class="section-categories-list">
+      <h4>2 - Séléctionner une catégorie de vêtement</h4>
+      <ul class="categories-list">
+        <li class="d-flex w-100 justify-content-between align-items-center border-bottom mb-2"
+          *ngFor="let category of arrayTempCategories">
+          <div class="col-md-3">
+            <img alt="{{ category.name }}" src="{{baseUrlImageCategories}}/{{category.image}}">
+          </div>
+          <div class="col-md-4">
+            <h5 class="card-title">{{ category.name }}</h5>
+          </div>
+          <div class="col-3 text-center">
+            <div class="col">
+              <app-quantity-selector [inQuantity]="quantity" (outQuantity)="updateQuantity(category.id, $event)">
+              </app-quantity-selector>
+            </div>
+            <div class="col">
+              <button (click)="addToCart(category)" class="btn btn-primary mt-2">Ajouter au panier</button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- <section *ngIf="!popUpIsVisible" class="section-categories-list">
     <h4>2 - Séléctionner une catégorie de vêtement</h4>
     <ul class="categories-list">
       <li *ngFor="let category of arrayCategoriesOfSelectedService">
-        <div class="card m-2 p-2" style="width: fit-content;">
+        <div class="card m-2 p-2" style="width: fit-content;" (click)="openPopupSelectedCategory(category)">
           <div class="d-flex flex-column justify-content-between align-items-center">
             <img alt="{{ category.name }}" class="card-img-top" src="{{baseUrlImageCategories}}/{{category.image}}">
             <h5 class="card-title">{{ category.name }}</h5>
-            <app-quantity-selector (outQuantity)="updateQuantity(category.id, $event)" [inQuantity]="quantity">
+             <app-quantity-selector (outQuantity)="updateQuantity(category.id, $event)" [inQuantity]="quantity">
             </app-quantity-selector>
-            <button (click)="addToCart(category)" class="btn btn-primary mt-2">Ajouter au panier</button>
+              <button (click)="addToCart(category)" class="btn btn-primary mt-2">Ajouter au panier</button>
           </div>
         </div>
       </li>
     </ul>
-  </section>
-  <!-- <div class="col-md-6">
-      <app-shopping-cart></app-shopping-cart>
-    </div> -->
-
+  </section> -->
+    <!-- <section *ngIf="popUpIsVisible" class="popup-category">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <img class="card-img-top" src="{{baseUrlImageCategories}}/{{selectedCategory.image}}"
+            alt="{{selectedCategory.name}}" />
+          <div class="col">
+            <h5 class="card-title">3 - Indiquez le nombre de {{selectedCategory.name}} que vous déposez</h5>
+            <app-quantity-selector class="col" (outQuantity)="updateQuantity(selectedCategory.id, $event)"
+              [inQuantity]="quantity"></app-quantity-selector>
+          </div>
+        </div>
+        <p>Information supplémentaire</p>
+        <textarea class="form-control mt-2"></textarea>
+        <button (click)="addToCart(selectedCategory)" class="btn btn-primary mt-2">Ajouter au panier</button>
+        <button (click)="abort()" class="btn btn-primary mt-2">Annuler</button>
+      </div>
+    </div>
+  </section> -->
+  </div>
 </section>
 
 <!-- <section class="d-flex justify-content-between align-items-center">

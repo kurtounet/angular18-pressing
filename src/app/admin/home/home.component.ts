@@ -5,6 +5,8 @@ import { NgFor } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { ItemService } from '../../services/item.service';
 import { Iitem } from '../../models/item.model';
+import { ServiceService } from '../../services/service.service';
+import { CategoryService } from '../../services/category.service';
 
 @Component({
   selector: 'app-home',
@@ -19,53 +21,35 @@ import { Iitem } from '../../models/item.model';
 })
 export class HomeComponent implements OnInit {
   authService = inject(AuthService);
-  itemsService = inject(ItemService);
-  itemsList: Iitem[] = [];
+  serviceService = inject(ServiceService);
+  categoryService = inject(CategoryService);
 
-  // item: Iitem =
-  //   {
-  //     "id": 16,
-  //     "service": "/api/services/341",
-  //     "commande": "/api/commandes/91",
-  //     "itemStatus": "/api/item_statuses/86",
-  //     "detailItem": " Item change",
-  //     "price": 11.51,
-  //     "quantity": 5,
-  //     "employee": "/api/employees/123"
-  //   };
 
   user: any | null = null;
 
   ngOnInit(): void {
     this.getAuthCurrentUser();
-    // this.UpdateItem(this.item);
-    // this.getAddItems();
-    // this.getAllItems();
+    this.getAllServices();
+    this.getAllCategories();
   }
 
   getAuthCurrentUser() {
     this.authService.getAuthCurrentUser().subscribe(data => {
       this.user = data;
-      console.log(this.user);
+    });
+  }
+  getAllServices() {
+    this.serviceService.getAllServices().subscribe(services => {
+      this.serviceService.arrayServices = services;
+    }
+    );
+  }
+  getAllCategories() {
+    this.categoryService.getAllCategories().subscribe(categories => {
+      this.categoryService.arrayCategories = categories;
     });
   }
 
-  getAllItems() {
-    return this.itemsService.getAllItems().subscribe(data => {
-      this.itemsList = data;
 
-    });
-  }
 
-  UpdateItem(item: Iitem) {
-    return this.itemsService.patchItem(item.id, item).subscribe(data => {
-      console.log('data', data);
-    });
-  }
-
-  // AddItem() {
-  //   this.itemsService.postItem(this.item).subscribe(data => {
-  //      console.log('data', data);
-  //   });
-  // }
 }

@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
 
   today = Date.now();
   userRoles: string[] = [];
-  //user: IClient | null = null;
+
   user: IUser | null = null;
 
   // Injection dependencies
@@ -69,7 +69,7 @@ export class ProfileComponent implements OnInit {
   getProfileUser() {
     this.authService.getAuthCurrentUser().subscribe({
       next: (data: IUser) => {
-        console.log(data)
+
         this.userRoles = data.roles;
 
         if (data && data.dateborn) {
@@ -92,7 +92,7 @@ export class ProfileComponent implements OnInit {
   onSubmit() {
     if (this.profileForm.valid) {
       this.user = this.profileForm.value;
-      console.log(this.user);
+
       this.userService.patchUser(this.user).subscribe({
         next: (data: IUser) => {
           this.router.navigate(['/admin/dashboard/Home']);

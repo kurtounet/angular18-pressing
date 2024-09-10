@@ -1,6 +1,7 @@
 svg {
   height: 30px;
   width: 50px;
+  cursor: pointer;
 }
 
 .cart {
@@ -25,14 +26,27 @@ p {
 }
 
 .container-header {
-  border: 1px solid #3498db;
   height: fit-content;
+  border-bottom: 1px solid #3498db;
   display: flex;
   justify-content: space-between;
-
+  align-items: center;
 }
 
-.img-logo {
-  width: 50px;
-  object-fit: cover;
+.logo {
+  display: contents;
+}
+
+
+/* Style du bouton menu burger (visible uniquement en mobile) */
+.burger-menu {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .burger-menu {
+    cursor: pointer;
+    display: contents;
+    /* Visible uniquement sur mobile */
+  }
 }

@@ -1,153 +1,86 @@
-.container-fluid {
-  padding: 0;
-  margin: 0;
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
 }
 
-.row {
-  margin: 0;
+.member-container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
 }
 
 .main-content {
+  flex: 1;
   padding: 20px;
-  min-height: 100vh;
+  transition: margin-left 0.1s ease;
+  /* Transition fluide */
 }
 
-@media (max-width: 767.98px) {
+.sidebar {
+  width: 250px;
+  /* Largeur de la sidebar */
+  height: 100vh;
+  /* Prend toute la hauteur */
+
+  /* Couleur de fond */
+  color: white;
+  /* Texte en blanc */
+  transition: transform 0.3s ease;
+  /* Transition pour l'animation mobile */
+
+
+}
+
+
+/* Styles pour la sidebar toujours visible en desktop */
+@media (min-width: 768px) {
+  .sidebar {
+    transform: translateX(0);
+    /* Sidebar visible en desktop */
+  }
+
+  /* .main-content {
+    margin-left: 250px;
+
+  } */
+}
+
+/* Sidebar en version mobile (initialement cachée) */
+@media (max-width: 767px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80%;
+    /* Sidebar occupe 80% de l'écran en mobile */
+    height: 100%;
+    transform: translateX(-100%);
+    /* Masquée par défaut */
+    z-index: 1050;
+    /* Assurez-vous qu'elle est au-dessus du contenu principal */
+  }
+
+  .sidebar-open {
+    transform: translateX(0);
+    /* Sidebar visible en mobile */
+  }
+
+  .sidebar-closed {
+    transform: translateX(-100%);
+    /* Sidebar cachée en mobile */
+  }
+
   .main-content {
-    padding: 10px;
+    margin-left: 0;
+    /* Pas de décalage pour le contenu principal en mobile */
   }
 }
 
-/* section #header {
-  background-color: blue;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100px;
-}
 
-section #container {
-  display: flex;
-  flex-direction: row;
-  align-items: start;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-}
 
-section div#container ul#sidebar li div#close {
-  display: flex;
-  justify-content: flex-end;
+.main-content {
+  margin-left: 0;
 
 }
-
-section div#container ul#sidebar li div#close img {
-  object-fit: cover;
-  width: 50px;
-  height: 50px;
-}
-
-section #sidebar {
-
-  list-style-type: none;
-  background-color: #009fdd;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  justify-content: space-evenly;
-
-  height: 100vh;
-  width: 15%;
-  z-index: 1000;
-}
-
-section #sidebar li a {
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-section #sidebar li a img {
-  object-position: cover;
-  object-fit: cover;
-  width: 50px;
-  height: 50px;
-}
-
-section #main {
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: center;
-  width: 100%;
-  height: fit-content;
-}
-*/
-/* .dashboard-container {
-  display: flex;
-  width: 100%;
-  height: 100vh;
-}
-
-.dashboard-content {
-  display: flex;
-  width: 100%;
-  background-color: #0a7bec;
-} */
-
-
-/* router-outlet {
-  background-color: #067cf1;
-  display: flex;
-  width: 100%;
-} */
-
-/* app-sidebar {
-  z-index: 1000;
-} */
-
-/*
-.dashboard-content h1 {
-  margin-top: 0;
-}
-
-.dashboard-container {
-  position: relative;
-}
-
-.dashboard-content {
-  position: relative;
-}
-
-app-sidebar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 50px;
-  /* ou la largeur que vous souhaitez pour la barre latérale
-  height: 100vh;
-  /* pour que la barre latérale occupe toute la hauteur
-  z-index: 1000;
-  /* assure que la sidebar est au-dessus du contenu
-  /* background-color: #f4f4f4;
-  /* couleur de fond de la sidebar
-  /* box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  /* ombre pour différencier la sidebar du contenu
-}
-
-router-outlet {
-  /* margin-left: 250px;
-  /* pour que le contenu soit décalé en fonction de la largeur de la sidebar
-  position: relative;
-  /* z-index: 500;
-  /* inférieur à celui de la sidebar pour que la sidebar soit au-dessus
-  padding: 20px;
-
-  /* un peu de marge pour le contenu
-}
-*/

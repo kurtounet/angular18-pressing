@@ -33,20 +33,18 @@ export class ShoppingCartService {
     return [];
   }
 
-
   addItem(itemCart: IshoppingCartItem, quantite: number) {
     //chercher si le produit existe dans le panier
     let item = this.shoppingCart.find((item) => item.category === itemCart.category);
     // si le produit existe, on ajoute la quantite
     if (item) {
-      console.log('item', item);
+
       item.quantity += itemCart.quantity;
     } else {
       this.lastIdIshoppinCartItem++;
       // sinon, on ajoute le produit au panier
       this.shoppingCart.push(itemCart);
     }
-    console.log(this.shoppingCart);
     this.saveCart();
 
   }
@@ -87,13 +85,6 @@ export class ShoppingCartService {
     localStorage.setItem(this.CART_KEY, JSON.stringify(this.shoppingCart));
   }
 
-  // getTotalQuantity() {
-  //   let totalQuantity = 0;
-  //   this.cart.forEach(item => {
-  //     totalQuantity += item.quantity;
-  //   });
-  //   return totalQuantity;
-  // }
   postShoppingCart(itemCart: IshoppingCartItem[]) {
     console.log('postShoppingCart', itemCart);
 

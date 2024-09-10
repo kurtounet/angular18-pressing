@@ -10,8 +10,7 @@
   <button (click)="incrementQuantity()">+</button>
 </div> -->
 
-<div class="d-flex justify-content-between">
-  <button (click)="decrease()" class="col">-</button>
-  <input (input)="onInputChange($event)" [value]="quantity" class="col" name="quantity" type="text" />
-  <button (click)="increase()" class="col">+</button>
-</div>
+
+<button (click)="decrease()" class="col-3">-</button>
+<input (input)="onInputChange($event)" [value]="inQuantity" class="col" name="quantity" type="text" />
+<button (click)="increase()" class="col-3">+</button>

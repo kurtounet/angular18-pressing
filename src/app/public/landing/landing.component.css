@@ -15,35 +15,79 @@ h2 {
   font-weight: bold;
 }
 
+h1 {
+  position: relative;
+  font-weight: bold;
+  color: #ffffff;
+  font-size: 3rem;
+  padding: 100px;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgb(12, 12, 12);
+}
+
+strong {
+  color: #ffffff;
+}
+
 /*SECTION INTRODUCTION*/
+section#introduction {
+  background-image:
+    linear-gradient(to bottom, rgba(2, 71, 110, 0.7), rgba(249, 250, 250, 0.1)),
+    url("/assets/image/site/intro-landing-page-pressing-ok.png");
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: antiquewhite;
+}
+
 section#introduction {
   display: flex;
   flex-direction: column;
   align-items: center;
-  align-content: center;
-  padding: 20px
+  justify-content: center;
 }
 
-section#introduction div {
-  display: flex;
-  flex-direction: column;
-}
-
-section#introduction div image {
-  object-fit: cover;
-  width: 300px;
-  height: auto;
-}
-
-section#introduction div div {
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-}
 
 section#introduction div div p {
-  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 1px 1px 2px rgb(12, 12, 12);
 }
+
+section#introduction button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 1px 1px 2px rgb(12, 12, 12);
+  background-color: #009fdd;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+section#introduction button:hover {
+  background-color: #0077b3;
+  transition: 0.5s;
+  color: #ffffff;
+  text-shadow: 1px 1px 2px rgb(12, 12, 12);
+}
+
 
 /*SECTION SERVICES*/
 section#services {
@@ -53,14 +97,14 @@ section#services {
   justify-content: center;
 }
 
-section#services div {
+section#services ul {
   display: flex;
   flex-direction: column;
   align-items: center;
 
 }
 
-section#services div div.card-service {
+section#services ul li.card-service {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -74,13 +118,13 @@ section#services div div.card-service {
   width: 250px;
 }
 
-section#services div div.card-service h4,
+section#services ul li.card-service h4,
 p {
   text-align: center;
   padding: 10px 0px;
 }
 
-section#services div.card-service img {
+section#services li.card-service img {
   object-fit: cover;
   object-position: center;
   width: 150px;
@@ -89,7 +133,15 @@ section#services div.card-service img {
 
 
 
-@media screen and (max-width: 991px) {
+@media screen and (min-width: 991px) {
+  h1 {
+    font-size: 5rem;
+  }
+
+  /* section#introduction {
+    background-size: cover;
+  } */
+
   section#introduction div {
     display: flex;
     flex-direction: column;
