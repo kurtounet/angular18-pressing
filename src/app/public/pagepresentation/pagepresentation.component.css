@@ -1,4 +1,4 @@
-.cardService {
+.card-service {
   background-color: #faf9f9;
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -7,6 +7,15 @@
   width: 100%;
   padding: 5px;
   margin: 10px;
+}
+
+.list-services {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: fit-content;
 }
 
 p {

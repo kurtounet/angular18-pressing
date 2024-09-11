@@ -11,9 +11,7 @@
         </div>
       </li>
 
-      <li class="nav-item">
-        <div class="nav-link" (click)="logout()">Déconnexion</div>
-      </li>
+
 
       <li class="nav-item">
         <a class="nav-link" routerLink="/admin/dashboard/home">
@@ -83,6 +81,14 @@
           <p>Nous Contacter</p>
         </a>
       </li>
+      <li class="nav-item" (click)="logout()">
+        <div class="nav-link">
+          <img alt="Déconnexion" src="./assets/admin/deconnexion.svg" />
+          <p>Me Déconnexion</p>
+        </div>
+      </li>
+
+
     </ul>
   </nav>
 </aside>

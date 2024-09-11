@@ -19,7 +19,7 @@ export class PagecontactComponent {
     othersubject: new FormControl('', {validators: [Validators.required]}),
     firstname: new FormControl('', {validators: [Validators.required]}),
     lastname: new FormControl('', {validators: [Validators.required]}),
-    email: new FormControl('', {validators: [Validators.email]}),
+    email: new FormControl('', {validators: [Validators.email, Validators.required]}),
     message: new FormControl('', {validators: [Validators.required]}),
 
   });

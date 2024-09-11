@@ -1,74 +1,74 @@
-<div class="container mt-4">
-  <h1 class="mb-4">Inscription</h1>
-
-  <form (ngSubmit)="onSubmit()" [formGroup]="signupForm" class="needs-validation">
-    <!--    <div class="form-group mb-3">-->
-    <!--      <label for="firstname">Prénom</label>-->
-    <!--      <input class="form-control" formControlName="firstname" id="firstname" type="text"/>-->
-    <!--      <div *ngIf="signupForm.get('firstname')?.touched && signupForm.get('firstname')?.invalid" class="text-danger">-->
-    <!--        Le prénom est requis.-->
-    <!--      </div>-->
-    <!--    </div>-->
-    <!--    <div class="form-group mb-3">-->
-    <!--      <label for="lastname">Nom</label>-->
-    <!--      <input class="form-control" formControlName="lastname" id="lastname" type="text"/>-->
-    <!--      <div *ngIf="signupForm.get('lastname')?.touched && signupForm.get('lastname')?.invalid" class="text-danger">-->
-    <!--        Le nom est requis.-->
-    <!--      </div>-->
-    <!--    </div>-->
-    <!--    <div class="form-group mb-3">-->
-    <!--      <label for="dateborn">Date de naissance</label>-->
-    <!--      <input class="form-control" formControlName="dateborn" id="dateborn" type="date"/>-->
-    <!--      <div *ngIf="signupForm.get('dateborn')?.touched && signupForm.get('dateborn')?.invalid" class="text-danger">-->
-    <!--        La date de naissance est requise.-->
-    <!--      </div>-->
-    <!--    </div>-->
-    <div class="form-group mb-3">
-      <label for="email">Email</label>
-      <input class="form-control" formControlName="email" id="email" type="email" />
-      <div *ngIf="signupForm.get('email')?.touched && signupForm.get('email')?.invalid" class="text-danger">
-        <div *ngIf="signupForm.get('email')?.errors?.['required']">L'email est requis.</div>
-        <div *ngIf="signupForm.get('email')?.errors?.['email']">L'email n'est pas valide.</div>
-        <div *ngIf=" serverErrorMessages " class="text-danger">{{ serverErrorMessages }}.</div>
-      </div>
-    </div>
-    <div>
-
-
+<div class="container vh-100 mt-4">
+  <h2>Inscription</h2>
+  <div class="mt-5">
+    <form (ngSubmit)="onSubmit()" [formGroup]="signupForm" class="needs-validation">
+      <!--    <div class="form-group mb-3">-->
+      <!--      <label for="firstname">Prénom</label>-->
+      <!--      <input class="form-control" formControlName="firstname" id="firstname" type="text"/>-->
+      <!--      <div *ngIf="signupForm.get('firstname')?.touched && signupForm.get('firstname')?.invalid" class="text-danger">-->
+      <!--        Le prénom est requis.-->
+      <!--      </div>-->
+      <!--    </div>-->
+      <!--    <div class="form-group mb-3">-->
+      <!--      <label for="lastname">Nom</label>-->
+      <!--      <input class="form-control" formControlName="lastname" id="lastname" type="text"/>-->
+      <!--      <div *ngIf="signupForm.get('lastname')?.touched && signupForm.get('lastname')?.invalid" class="text-danger">-->
+      <!--        Le nom est requis.-->
+      <!--      </div>-->
+      <!--    </div>-->
+      <!--    <div class="form-group mb-3">-->
+      <!--      <label for="dateborn">Date de naissance</label>-->
+      <!--      <input class="form-control" formControlName="dateborn" id="dateborn" type="date"/>-->
+      <!--      <div *ngIf="signupForm.get('dateborn')?.touched && signupForm.get('dateborn')?.invalid" class="text-danger">-->
+      <!--        La date de naissance est requise.-->
+      <!--      </div>-->
+      <!--    </div>-->
       <div class="form-group mb-3">
-        <label for="password">Mots de passe</label>
-        <input class="form-control" formControlName="password" id="password" type="password" />
-        <div *ngIf=" signupForm.get('password')?.touched && signupForm.get('password')?.invalid" class="text-danger">
-          <div *ngIf="signupForm.get('password')?.errors?.['required']">Le mots de passe est requis.</div>
-          <div *ngIf="signupForm.get('password')?.errors?.['password']">Le mots de passe n'est pas valide.</div>
+        <label for="email">Email</label>
+        <input class="form-control" formControlName="email" id="email" type="email" />
+        <div *ngIf="signupForm.get('email')?.touched && signupForm.get('email')?.invalid" class="text-danger">
+          <div *ngIf="signupForm.get('email')?.errors?.['required']">L'email est requis.</div>
+          <div *ngIf="signupForm.get('email')?.errors?.['email']">L'email n'est pas valide.</div>
+          <div *ngIf=" serverErrorMessages " class="text-danger">{{ serverErrorMessages }}.</div>
         </div>
       </div>
-      <div class="form-group mb-3">
-        <label for="secondpassword">Vérifier mots de passe</label>
-        <input class="form-control" formControlName="secondpassword" id="secondpassword" type="password" />
-        <div *ngIf=" signupForm.get('secondpassword')?.touched && signupForm.get('secondpassword')?.invalid"
-          class="text-danger">
-          <div *ngIf="signupForm.get('secondpassword')?.errors?.['required']">Le mots de passe est requis.</div>
-          <div *ngIf="signupForm.get('secondpassword')?.errors?.['secondpassword']">Le mots de passe n'est pas valide.
+      <div>
+
+
+        <div class="form-group mb-3">
+          <label for="password">Mots de passe</label>
+          <input class="form-control" formControlName="password" id="password" type="password" />
+          <div *ngIf=" signupForm.get('password')?.touched && signupForm.get('password')?.invalid" class="text-danger">
+            <div *ngIf="signupForm.get('password')?.errors?.['required']">Le mots de passe est requis.</div>
+            <div *ngIf="signupForm.get('password')?.errors?.['password']">Le mots de passe n'est pas valide.</div>
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="secondpassword">Vérifier mots de passe</label>
+          <input class="form-control" formControlName="secondpassword" id="secondpassword" type="password" />
+          <div *ngIf=" signupForm.get('secondpassword')?.touched && signupForm.get('secondpassword')?.invalid"
+            class="text-danger">
+            <div *ngIf="signupForm.get('secondpassword')?.errors?.['required']">Le mots de passe est requis.</div>
+            <div *ngIf="signupForm.get('secondpassword')?.errors?.['secondpassword']">Le mots de passe n'est pas valide.
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <!--    <div class="form-group mb-3">-->
-    <!--      <label for="mobilephone">Téléphone mobile</label>-->
-    <!--      <input class="form-control" formControlName="mobilephone" id="mobilephone" type="text"/>-->
-    <!--      <div *ngIf="signupForm.get('mobilephone')?.touched && signupForm.get('mobilephone')?.invalid" class="text-danger">-->
-    <!--        Le téléphone mobile est requis et doit être numérique.-->
-    <!--      </div>-->
-    <!--    </div>-->
-    <!--    <div class="form-group mb-3">-->
-    <!--      <label for="phone">Téléphone fixe</label>-->
-    <!--      <input class="form-control" formControlName="phone" id="phone" type="text"/>-->
-    <!--      <div *ngIf="signupForm.get('phone')?.touched && signupForm.get('phone')?.invalid" class="text-danger">-->
-    <!--        Le téléphone fixe doit être numérique.-->
-    <!--      </div>-->
-    <!--    </div>-->
-    <!-- <div class="form-group mb-3">
+      <!--    <div class="form-group mb-3">-->
+      <!--      <label for="mobilephone">Téléphone mobile</label>-->
+      <!--      <input class="form-control" formControlName="mobilephone" id="mobilephone" type="text"/>-->
+      <!--      <div *ngIf="signupForm.get('mobilephone')?.touched && signupForm.get('mobilephone')?.invalid" class="text-danger">-->
+      <!--        Le téléphone mobile est requis et doit être numérique.-->
+      <!--      </div>-->
+      <!--    </div>-->
+      <!--    <div class="form-group mb-3">-->
+      <!--      <label for="phone">Téléphone fixe</label>-->
+      <!--      <input class="form-control" formControlName="phone" id="phone" type="text"/>-->
+      <!--      <div *ngIf="signupForm.get('phone')?.touched && signupForm.get('phone')?.invalid" class="text-danger">-->
+      <!--        Le téléphone fixe doit être numérique.-->
+      <!--      </div>-->
+      <!--    </div>-->
+      <!-- <div class="form-group mb-3">
       <label for="roles">Rôles</label>
       <select id="roles" class="form-control" formControlName="roles" multiple>
         <option value="admin">Admin</option>
@@ -78,43 +78,44 @@
         Au moins un rôle est requis.
       </div>
     </div> -->
-    <!--    <div class="form-group mb-3">-->
-    <!--      <label for="numadrs">Numéro d'adresse</label>-->
-    <!--      <input class="form-control" formControlName="numadrs" id="numadrs" type="number"/>-->
-    <!--      <div *ngIf="signupForm.get('numadrs')?.touched && signupForm.get('numadrs')?.invalid" class="text-danger">-->
-    <!--        Le numéro d'adresse est requis.-->
-    <!--      </div>-->
-    <!--    </div>-->
-    <!--    <div class="form-group mb-3">-->
-    <!--      <label for="adrs">Rue</label>-->
-    <!--      <input class="form-control" formControlName="adrs" id="adrs" type="text"/>-->
-    <!--      <div *ngIf="signupForm.get('adrs')?.touched && signupForm.get('adrs')?.invalid" class="text-danger">-->
-    <!--        La rue est requise.-->
-    <!--      </div>-->
-    <!--    </div>-->
-    <!--    <div class="form-group mb-3">-->
-    <!--      <label for="city">Ville</label>-->
-    <!--      <input class="form-control" formControlName="city" id="city" type="text"/>-->
-    <!--      <div *ngIf="signupForm.get('city')?.touched && signupForm.get('city')?.invalid" class="text-danger">-->
-    <!--        La ville est requise.-->
-    <!--      </div>-->
-    <!--    </div>-->
-    <!--    <div class="form-group mb-3">-->
-    <!--      <label for="zipcode">Code postal</label>-->
-    <!--      <input class="form-control" formControlName="zipcode" id="zipcode" type="text"/>-->
-    <!--      <div *ngIf="signupForm.get('zipcode')?.touched && signupForm.get('zipcode')?.invalid" class="text-danger">-->
-    <!--        Le code postal est requis.-->
-    <!--      </div>-->
-    <!--    </div>-->
-    <!--    <div class="form-group mb-3">-->
-    <!--      <label for="country">Pays</label>-->
-    <!--      <input class="form-control" formControlName="country" id="country" type="text"/>-->
-    <!--      <div *ngIf="signupForm.get('country')?.touched && signupForm.get('country')?.invalid" class="text-danger">-->
-    <!--        Le pays est requis.-->
-    <!--      </div>-->
-    <!--    </div>-->
-    <button [disabled]="!signupForm.valid" class="btn btn-primary" type="submit">
-      S'inscrire
-    </button>
-  </form>
+      <!--    <div class="form-group mb-3">-->
+      <!--      <label for="numadrs">Numéro d'adresse</label>-->
+      <!--      <input class="form-control" formControlName="numadrs" id="numadrs" type="number"/>-->
+      <!--      <div *ngIf="signupForm.get('numadrs')?.touched && signupForm.get('numadrs')?.invalid" class="text-danger">-->
+      <!--        Le numéro d'adresse est requis.-->
+      <!--      </div>-->
+      <!--    </div>-->
+      <!--    <div class="form-group mb-3">-->
+      <!--      <label for="adrs">Rue</label>-->
+      <!--      <input class="form-control" formControlName="adrs" id="adrs" type="text"/>-->
+      <!--      <div *ngIf="signupForm.get('adrs')?.touched && signupForm.get('adrs')?.invalid" class="text-danger">-->
+      <!--        La rue est requise.-->
+      <!--      </div>-->
+      <!--    </div>-->
+      <!--    <div class="form-group mb-3">-->
+      <!--      <label for="city">Ville</label>-->
+      <!--      <input class="form-control" formControlName="city" id="city" type="text"/>-->
+      <!--      <div *ngIf="signupForm.get('city')?.touched && signupForm.get('city')?.invalid" class="text-danger">-->
+      <!--        La ville est requise.-->
+      <!--      </div>-->
+      <!--    </div>-->
+      <!--    <div class="form-group mb-3">-->
+      <!--      <label for="zipcode">Code postal</label>-->
+      <!--      <input class="form-control" formControlName="zipcode" id="zipcode" type="text"/>-->
+      <!--      <div *ngIf="signupForm.get('zipcode')?.touched && signupForm.get('zipcode')?.invalid" class="text-danger">-->
+      <!--        Le code postal est requis.-->
+      <!--      </div>-->
+      <!--    </div>-->
+      <!--    <div class="form-group mb-3">-->
+      <!--      <label for="country">Pays</label>-->
+      <!--      <input class="form-control" formControlName="country" id="country" type="text"/>-->
+      <!--      <div *ngIf="signupForm.get('country')?.touched && signupForm.get('country')?.invalid" class="text-danger">-->
+      <!--        Le pays est requis.-->
+      <!--      </div>-->
+      <!--    </div>-->
+      <button [disabled]="!signupForm.valid" class="btn btn-primary" type="submit">
+        S'inscrire
+      </button>
+    </form>
+  </div>
 </div>

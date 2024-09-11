@@ -28,11 +28,9 @@ export class HeaderDashboardComponent {
     this.shoppingCartService.isCartVisible = this.isVisibleCart;
   }
   visibleSidebar() {
-    console.log("this.isVisibleSideBar")
     this.isVisibleSideBar = !this.isVisibleSideBar
     this.sidebarService.toggleSidebar();
-    console.log(this.isVisibleSideBar)
   }
-  sidebar() { console.log(this.isVisibleSideBar) }
+
 
 }
