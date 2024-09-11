@@ -1,15 +1,12 @@
 <div class="dashboard-container">
-  <app-header-dashboard />
-
   <div class="member-container">
-
     <div>
       <app-sidebar class="sidebar"
         [ngClass]="{'sidebar-open': sidebarService.isVisible, 'sidebar-closed': !sidebarService.isVisible}"
         [roles]="roles"></app-sidebar>
     </div>
-
     <div class="main-content">
+      <app-header-dashboard />
       <router-outlet></router-outlet>
     </div>
   </div>

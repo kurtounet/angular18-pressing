@@ -1,45 +1,50 @@
 .sidebar {
   height: 100vh;
   padding-top: 1rem;
-  background-color: #009fdd;
-  /* Couleur personnalisée */
+  /* background-color: #009fdd; */
+  background-color: #ace5fc;
   transition: transform 0.3s ease-in-out;
-  color: white;
-  /* Couleur du texte en blanc pour le contraste */
+  color: black;
+  width: 250px;
+
 }
 
 nav {
-  color: rgb(236, 5, 5);
-  /* Assurez-vous que les liens sont blancs */
-  display: flex;
-  align-items: center;
   padding-left: 25px;
 }
 
-.sidebar .nav-link {
-  color: white;
-  /* Assurez-vous que les liens sont blancs */
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  margin-right: 10px;
+}
+
+.close {
   display: flex;
+  justify-content: end;
   align-items: center;
 }
 
- img {
-  width: 24px;
-  /* Largeur des images */
-  height: 24px;
-  /* Hauteur des images */
-  margin-right: 10px;
-  /* Espace entre l'image et le texte */
-}
-
-.sidebar .nav-link p {
-  margin: 0;
-  /* Supprime les marges autour du texte */
-}
-
 .sidebar .nav-link:hover {
-  color: black;
+  color: whitesmoke;
+  background-color: #009fdd;
   cursor: pointer;
+}
+
+.sidebar .nav-link {
+  color: black;
+  display: flex;
+  align-content: center;
+
 }
 
 .sidebar-open {

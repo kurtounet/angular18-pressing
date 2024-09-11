@@ -1,25 +1,30 @@
 <aside id="sidebar" class="sidebar">
-  <nav>
-    <ul class="nav flex-column">
+  <!-- <div class="row">
+    <div class="col-6">
       <h6 *ngIf="roles.includes('ROLE_ADMIN')" class="text-uppercase">Espace Admin</h6>
       <h6 *ngIf="roles.includes('ROLE_EMPLOYEE')" class="text-uppercase">Espace Employé</h6>
       <h6 *ngIf="roles.includes('ROLE_CLIENT')" class="text-uppercase">Espace Client</h6>
-
-      <li class="nav-item" (click)="this.sidebarService.toggleSidebar()">
+    </div>
+    <div class="col-6">
+      <div class="nav-link" (click)="this.sidebarService.toggleSidebar()">
+        <img alt="Fermer" src="./assets/image/close-x.svg" />
+      </div>
+    </div>
+  </div> -->
+  <nav>
+    <ul class="flex-column">
+      <li *ngIf="!sidebarService.isVisible" class="nav-item close" (click)="this.sidebarService.toggleSidebar()">
         <div class="nav-link">
+          <p>Fermer</p>
           <img alt="Fermer" src="./assets/image/close-x.svg" />
         </div>
       </li>
-
-
-
       <li class="nav-item">
         <a class="nav-link" routerLink="/admin/dashboard/home">
           <img alt="Accueil" src="./assets/admin/home.svg" />
           <p>Accueil</p>
         </a>
       </li>
-
       <!-- Admin Section -->
       <li class="nav-item" *ngIf="roles.includes('ROLE_ADMIN')">
         <a class="nav-link" routerLink="/admin/dashboard/orderlist">
@@ -87,8 +92,6 @@
           <p>Me Déconnexion</p>
         </div>
       </li>
-
-
     </ul>
   </nav>
 </aside>
