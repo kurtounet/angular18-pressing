@@ -26,7 +26,7 @@ export class ShoppingCartComponent {
   arrayShoppingCartItem: IshoppingCartItem[] = [];
 
   // INJECTION DEPENDENCIES
-  constructor(private app: AppComponent) { }
+  //constructor(private app: AppComponent) { }
   shoppingCartService = inject(ShoppingCartService);
 
 
@@ -66,11 +66,11 @@ export class ShoppingCartComponent {
   }
   //FUNCTIONS
   openShoppingCart() {
-    this.app.isCartVisible = true;
+    this.shoppingCartService.isCartVisible = true;
   }
 
   closeShoppingCart() {
-    this.app.isCartVisible = false;
+    this.shoppingCartService.isCartVisible = false;
   }
 
 }

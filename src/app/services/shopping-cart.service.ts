@@ -14,7 +14,7 @@ export class ShoppingCartService {
   CART_KEY = 'shopping_cart';
   lastIdIshoppinCartItem: number = 0;
   shoppingCart: IshoppingCartItem[] = [];
-
+  isCartVisible: boolean = false;
   // INJECTION DEPENDENCIES
   constructor() { }
   serviceCommande = inject(CommandeService)

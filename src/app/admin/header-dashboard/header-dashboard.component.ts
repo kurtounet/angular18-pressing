@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { AppComponent } from '../../app.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { SidebarService } from '../../services/sidebar.service';
+import { ShoppingCartService } from '../../services/shopping-cart.service';
 
 @Component({
   selector: 'app-header-dashboard',
@@ -16,14 +17,15 @@ export class HeaderDashboardComponent {
   isVisibleSideBar: boolean = true;
 
   // INJECTIONS DEPENDANCIES
-  constructor(private app: AppComponent) { }
-  appShoppingCartService = this.app.shoppingCartService;
+  //constructor(private app: AppComponent) { }
+  //appShoppingCartService = this.app.shoppingCartService;
+  shoppingCartService = inject(ShoppingCartService)
   sidebarService = inject(SidebarService)
 
   // FUNCTIONS
   visibleCart() {
     this.isVisibleCart = !this.isVisibleCart;
-    this.app.isCartVisible = this.isVisibleCart;
+    this.shoppingCartService.isCartVisible = this.isVisibleCart;
   }
   visibleSidebar() {
     console.log("this.isVisibleSideBar")

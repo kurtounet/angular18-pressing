@@ -25,7 +25,7 @@ import { ShoppingCartComponent } from './admin/shopping-cart/shopping-cart.compo
 export class AppComponent {
   // VARIABLES
   title = 'Pressing Prestige';
-  isCartVisible: boolean = false;
+  //isCartVisible: boolean = false;
 
   // INJECTION DEPENDENCIES
   shoppingCartService = inject(ShoppingCartService);
