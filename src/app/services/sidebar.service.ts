@@ -4,10 +4,10 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class SidebarService {
-
-  isVisible: boolean = false;
+  isDesktop: boolean = false;
+  isOpen: boolean = false;
   toggleSidebar() {
-    this.isVisible = !this.isVisible;
+    this.isOpen = !this.isOpen;
   }
 
 }

@@ -2,7 +2,7 @@
   <div class="member-container">
     <div>
       <app-sidebar class="sidebar"
-        [ngClass]="{'sidebar-open': sidebarService.isVisible, 'sidebar-closed': !sidebarService.isVisible}"
+        [ngClass]="{'sidebar-open': sidebarService.isOpen, 'sidebar-closed': !sidebarService.isOpen}"
         [roles]="roles"></app-sidebar>
     </div>
     <div class="main-content">

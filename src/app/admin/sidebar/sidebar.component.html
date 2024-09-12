@@ -6,14 +6,14 @@
       <h6 *ngIf="roles.includes('ROLE_CLIENT')" class="text-uppercase">Espace Client</h6>
     </div>
     <div class="col-6">
-      <div class="nav-link" (click)="this.sidebarService.toggleSidebar()">
+      <div class="nav-link" >
         <img alt="Fermer" src="./assets/image/close-x.svg" />
       </div>
     </div>
   </div> -->
   <nav>
     <ul class="flex-column">
-      <li *ngIf="!sidebarService.isVisible" class="nav-item close" (click)="this.sidebarService.toggleSidebar()">
+      <li *ngIf="!sidebarService.isDesktop" class="nav-item close" (click)="sidebarService.toggleSidebar()">
         <div class="nav-link">
           <p>Fermer</p>
           <img alt="Fermer" src="./assets/image/close-x.svg" />

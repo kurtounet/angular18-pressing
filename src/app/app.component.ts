@@ -37,11 +37,11 @@ export class AppComponent {
   ngOnInit(): void {
     // Met a jour la liste des items du panier
     this.shoppingCartService.ngOnInit();
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        // Ferme la sidebar quand on arrive sur une autre page.
-        this.sideBarService.toggleSidebar();
-      }
-    });
+    // this.router.events.subscribe(event => {
+    //   if (event instanceof NavigationEnd) {
+    //     // Ferme la sidebar quand on arrive sur une autre page.
+    //     this.sideBarService.toggleSidebar();
+    //   }
+    // });
   }
 }

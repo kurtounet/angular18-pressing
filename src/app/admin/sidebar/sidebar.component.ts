@@ -1,10 +1,10 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, HostListener, inject, Input } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { NgClass, NgIf } from '@angular/common';
 import { environment } from '../../environments/environment';
 import { SidebarService } from '../../services/sidebar.service';
-
+import { CloseSidebarLinkClickDirective } from '../../directives/close-sidebar-link-click.directive';
 @Component({
   selector: 'app-sidebar',
   standalone: true,
@@ -12,26 +12,27 @@ import { SidebarService } from '../../services/sidebar.service';
     RouterOutlet,
     RouterModule,
     NgIf,
-    NgClass
+    NgClass,
+    CloseSidebarLinkClickDirective
   ],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent {
-  isOpen: boolean = true;
+  // isOpen: boolean = false;
+  // isDesktop: boolean = false;
   baseUrl = environment.baseUrl;
   @Input() roles: string[] = [];
-
 
   authService = inject(AuthService);
   sidebarService = inject(SidebarService);
 
-  // toggleMenu() {
-  //   //this.sidebarService.isVisible = !this.sidebarService.isVisible
-  //   this.isOpen = !this.isOpen;
-  // }
-
   logout() {
     this.authService.logOut();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.sidebarService.isDesktop = window.innerWidth >= 768;
   }
 }

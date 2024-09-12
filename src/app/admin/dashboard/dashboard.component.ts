@@ -25,32 +25,15 @@ import { SidebarService } from '../../services/sidebar.service';
 })
 export class DashboardComponent {
   isDesktop: boolean = false;
-  //sidebarService = inject(SidebarService)
-
-
+  sidebarService = inject(SidebarService);
   authService = inject(AuthService);
 
   roles: Array<string> = [];
-  constructor(public sidebarService: SidebarService) {
-    this.checkViewportWidth();
-  }
-  // Vérifier la taille de l'écran au chargement et lors du redimensionnement
-  @HostListener('window:resize', ['$event'])
-  onResize(event: Event) {
-    this.checkViewportWidth();
-  }
-
-  checkViewportWidth() {
-    //this.isDesktop = window.innerWidth >= 768;  // Bootstrap md size
-  }
 
   ngOnInit(): void {
-
     this.authService.getAuthCurrentUser().subscribe(data => {
       this.roles = data.roles;
     });
-
   }
-
 
 }

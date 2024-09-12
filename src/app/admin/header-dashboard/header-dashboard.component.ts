@@ -27,9 +27,8 @@ export class HeaderDashboardComponent {
     this.isVisibleCart = !this.isVisibleCart;
     this.shoppingCartService.isCartVisible = this.isVisibleCart;
   }
-  visibleSidebar() {
-    this.isVisibleSideBar = !this.isVisibleSideBar
-    this.sidebarService.toggleSidebar();
+  openSidebar() {
+    this.sidebarService.isOpen = true;
   }
 
 
