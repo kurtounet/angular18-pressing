@@ -9,5 +9,11 @@ export class SidebarService {
   toggleSidebar() {
     this.isOpen = !this.isOpen;
   }
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    
+    this.isDesktop = window.innerWidth > 768;
+  }
 
 }

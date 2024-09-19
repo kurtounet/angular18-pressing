@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 //import { AuthGuard } from './security/guards/auth.guard';
 import { CommonModule } from '@angular/common';
@@ -31,17 +31,21 @@ export class AppComponent {
   // INJECTION DEPENDENCIES
   shoppingCartService = inject(ShoppingCartService);
   sideBarService = inject(SidebarService);
-  router = inject(Router);
-
+  //router = inject(Router);
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.sideBarService.isDesktop = window.innerWidth >= 768;
+  }
   // START
   ngOnInit(): void {
     // Met a jour la liste des items du panier
     this.shoppingCartService.ngOnInit();
-    // this.router.events.subscribe(event => {
-    //   if (event instanceof NavigationEnd) {
-    //     // Ferme la sidebar quand on arrive sur une autre page.
-    //     this.sideBarService.toggleSidebar();
-    //   }
-    // });
+
+    if (window.innerWidth >= 768) {
+      this.sideBarService.isDesktop = true;
+    } else {
+      this.sideBarService.isDesktop = false;
+    };
+
   }
 }

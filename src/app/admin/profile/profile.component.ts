@@ -25,6 +25,7 @@ export class ProfileComponent implements OnInit {
   userRoles: string[] = [];
 
   user: IUser | null = null;
+  client: IClient | null = null;
 
   // Injection dependencies
   authService = inject(AuthService);
@@ -69,7 +70,6 @@ export class ProfileComponent implements OnInit {
   getProfileUser() {
     this.authService.getAuthCurrentUser().subscribe({
       next: (data: IUser) => {
-
         this.userRoles = data.roles;
 
         if (data && data.dateborn) {
@@ -84,7 +84,7 @@ export class ProfileComponent implements OnInit {
 
       },
       error: (error) => {
-        console.error(error);
+        // console.error(error);
       }
     });
   }
@@ -101,6 +101,14 @@ export class ProfileComponent implements OnInit {
           console.error(error);
         }
       })
+      // this.userService.patchUser(this.user).subscribe({
+      //   next: (data: IUser) => {
+      //     this.router.navigate(['/admin/dashboard/Home']);
+      //   },
+      //   error: (error) => {
+      //     console.error(error);
+      //   }
+      // })
     } else {
       this.profileForm.markAllAsTouched(); // Pour afficher les erreurs
     }

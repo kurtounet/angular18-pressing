@@ -11,22 +11,22 @@ export class UserService {
   httpClient = inject(HttpClient);
   private routeApi = `${environment.baseApiUrl}/users`;
 
-  getAllUsers(): Observable<any> {
-    return this.httpClient.get<any>(this.routeApi);
+  getAllUsers(): Observable<IUser> {
+    return this.httpClient.get<IUser>(this.routeApi);
   }
 
   getUserById(id: string): Observable<IUser> {
     return this.httpClient.get<IUser>(`${this.routeApi}/${id}`);
   }
 
-  postUser(body: User): Observable<IUser> {
+  postUser(user: IUser): Observable<IUser> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/ld+json' });
-    return this.httpClient.post<IUser>(this.routeApi, body, { headers });
+    return this.httpClient.post<IUser>(this.routeApi, user, { headers });
   }
 
   patchUser(user: IUser | null): Observable<IUser> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/merge-patch+json' });
-    console.log(user)
+    // console.log(user)
     return this.httpClient.patch<IUser>(`${this.routeApi}/${user?.id}`, user, { headers });
   }
 

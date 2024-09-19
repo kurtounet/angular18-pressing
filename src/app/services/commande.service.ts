@@ -31,7 +31,6 @@ export class CommandeService {
   // Créer un nouveau Commande
   postCommandeClient(body: IposteCommande): Observable<ICommande> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    console.table(body);
     return this.httpClient.post<ICommande>(`${this.routeApi}/client`, body, { headers });
   }
 

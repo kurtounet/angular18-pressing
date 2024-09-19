@@ -31,8 +31,18 @@ export class SidebarComponent {
     this.authService.logOut();
   }
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event: Event) {
-    this.sidebarService.isDesktop = window.innerWidth >= 768;
+  // @HostListener('window:resize', ['$event'])
+  // onResize(event: Event) {
+  //   this.sidebarService.isDesktop = window.innerWidth >= 768;
+  // }
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    // if (window.innerWidth >= 768) {
+    //   this.sidebarService.isDesktop = true;
+    // } else {
+    //   this.sidebarService.isDesktop = false;
+    // };
+
   }
 }

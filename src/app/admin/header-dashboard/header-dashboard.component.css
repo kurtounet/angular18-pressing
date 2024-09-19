@@ -34,7 +34,7 @@ p {
 }
 
 .logo {
-  display: contents;
+  display: block;
 }
 
 
@@ -46,7 +46,10 @@ p {
 @media (max-width: 767px) {
   .burger-menu {
     cursor: pointer;
+    display: block;
+  }
+
+  .logo {
     display: contents;
-    /* Visible uniquement sur mobile */
   }
 }

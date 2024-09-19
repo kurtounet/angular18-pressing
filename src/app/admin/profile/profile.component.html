@@ -3,28 +3,28 @@
   <form (ngSubmit)="onSubmit()" [formGroup]="profileForm">
     <div class="form-group mb-3">
       <label for="firstname">Prénom</label>
-      <input class="form-control" formControlName="firstname" id="firstname" type="text"/>
+      <input class="form-control" formControlName="firstname" id="firstname" type="text" />
       <div *ngIf="profileForm.get('firstname')?.touched && profileForm.get('firstname')?.invalid" class="text-danger">
         Le prénom est requis.
       </div>
     </div>
     <div class="form-group mb-3">
       <label for="lastname">Nom</label>
-      <input class="form-control" formControlName="lastname" id="lastname" type="text"/>
+      <input class="form-control" formControlName="lastname" id="lastname" type="text" />
       <div *ngIf="profileForm.get('lastname')?.touched && profileForm.get('lastname')?.invalid" class="text-danger">
         Le nom est requis.
       </div>
     </div>
     <div class="form-group mb-3">
       <label for="dateborn">Date de naissance</label>
-      <input class="form-control" formControlName="dateborn" id="dateborn" type="date"/>
+      <input class="form-control" formControlName="dateborn" id="dateborn" type="date" />
       <div *ngIf="profileForm.get('dateborn')?.touched && profileForm.get('dateborn')?.invalid" class="text-danger">
         La date de naissance est requise.
       </div>
     </div>
     <div class="form-group mb-3">
       <label for="email">Email</label>
-      <input class="form-control" formControlName="email" id="email" type="email"/>
+      <input class="form-control" formControlName="email" id="email" type="email" />
       <div *ngIf="profileForm.get('email')?.touched && profileForm.get('email')?.invalid" class="text-danger">
         <div *ngIf="profileForm.get('email')?.errors?.['required']">L'email est requis.</div>
         <div *ngIf="profileForm.get('email')?.errors?.['email']">L'email n'est pas valide.</div>
@@ -32,15 +32,15 @@
     </div>
     <div class="form-group mb-3">
       <label for="mobilephone">Téléphone mobile</label>
-      <input class="form-control" formControlName="mobilephone" id="mobilephone" type="text"/>
+      <input class="form-control" formControlName="mobilephone" id="mobilephone" type="text" />
       <div *ngIf="profileForm.get('mobilephone')?.touched && profileForm.get('mobilephone')?.invalid"
-           class="text-danger">
+        class="text-danger">
         Le téléphone mobile est requis et doit être numérique.
       </div>
     </div>
     <div class="form-group mb-3">
       <label for="phone">Téléphone fixe</label>
-      <input class="form-control" formControlName="phone" id="phone" type="text"/>
+      <input class="form-control" formControlName="phone" id="phone" type="text" />
       <div *ngIf="profileForm.get('phone')?.touched && profileForm.get('phone')?.invalid" class="text-danger">
         Le téléphone fixe doit être numérique.
       </div>
@@ -57,41 +57,41 @@
     </div> -->
     <div class="form-group mb-3">
       <label for="numadrs">Numéro d'adresse</label>
-      <input class="form-control" formControlName="numadrs" id="numadrs" type="number"/>
+      <input class="form-control" formControlName="numadrs" id="numadrs" type="number" />
       <div *ngIf="profileForm.get('numadrs')?.touched && profileForm.get('numadrs')?.invalid" class="text-danger">
         Le numéro d'adresse est requis.
       </div>
     </div>
     <div class="form-group mb-3">
       <label for="adrs">Rue</label>
-      <input class="form-control" formControlName="adrs" id="adrs" type="text"/>
+      <input class="form-control" formControlName="adrs" id="adrs" type="text" />
       <div *ngIf="profileForm.get('adrs')?.touched && profileForm.get('adrs')?.invalid" class="text-danger">
         La rue est requise.
       </div>
     </div>
     <div class="form-group mb-3">
       <label for="city">Ville</label>
-      <input class="form-control" formControlName="city" id="city" type="text"/>
+      <input class="form-control" formControlName="city" id="city" type="text" />
       <div *ngIf="profileForm.get('city')?.touched && profileForm.get('city')?.invalid" class="text-danger">
         La ville est requise.
       </div>
     </div>
     <div class="form-group mb-3">
       <label for="zipcode">Code postal</label>
-      <input class="form-control" formControlName="zipcode" id="zipcode" type="text"/>
+      <input class="form-control" formControlName="zipcode" id="zipcode" type="text" />
       <div *ngIf="profileForm.get('zipcode')?.touched && profileForm.get('zipcode')?.invalid" class="text-danger">
         Le code postal est requis.
       </div>
     </div>
     <div class="form-group mb-3">
       <label for="country">Pays</label>
-      <input class="form-control" formControlName="country" id="country" type="text"/>
+      <input class="form-control" formControlName="country" id="country" type="text" />
       <div *ngIf="profileForm.get('country')?.touched && profileForm.get('country')?.invalid" class="text-danger">
         Le pays est requis.
       </div>
     </div>
     <button [disabled]="!profileForm.valid" class="btn btn-primary" type="submit">
-      S'inscrire
+      Valider
     </button>
   </form>
 </div>

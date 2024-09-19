@@ -20,7 +20,7 @@ import { environment } from '../../environments/environment';
 export class ShoppingCartComponent {
   // VARIABLES
   baseUrlImageCategories = environment.baseUrl + environment.assertsImageCategories;
-
+  message: string = '';
   total: number = 0;
   isVisible: boolean = false;
   arrayShoppingCartItem: IshoppingCartItem[] = [];
@@ -56,8 +56,15 @@ export class ShoppingCartComponent {
   validedOrder(): void {
     if (this.arrayShoppingCartItem.length > 0) {
       let resp = this.shoppingCartService.validedOder();
+      if (resp) {
+        this.shoppingCartService.clearCart();
+        this.closeShoppingCart();
+        this.message = "La commande a bien été validée"
+      } else {
+        this.message = "Vérifiez votre panier vos informations personner et votre adresse."
+      }
     }
-    this.closeShoppingCart();
+
   }
 
   changeQuantity(event: any) {

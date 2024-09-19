@@ -19,6 +19,7 @@ export class ShoppingCartService {
   constructor() { }
   serviceCommande = inject(CommandeService)
   serviceAuth = inject(AuthService)
+  isCommandeValidated: boolean = false;
 
   ngOnInit() {
     this.shoppingCart = this.getCart();
@@ -90,16 +91,18 @@ export class ShoppingCartService {
 
   }
 
-  validedOder(): string {
-    let validcoordanateClient = true;
-    if (validcoordanateClient) {
+  validedOder(): boolean {
+
+    if (this.serviceAuth.validcoordanateClient()) {
       let body: IposteCommande = this.serviceCommande.prepareCommande(this.shoppingCart);
-      this.serviceCommande.postCommandeClient(body).subscribe(data =>
-        console.log(data)
-      )
-      return "Envois au serviceCommand"
+      this.serviceCommande.postCommandeClient(body).subscribe(data => {
+        if (data != null) {
+          this.isCommandeValidated = true;
+        }
+      });
+      return this.isCommandeValidated;
     } else {
-      return "Coordonnées du client non remplit";
+      return false;
     }
 
   }
