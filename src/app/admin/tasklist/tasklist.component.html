@@ -1,42 +1,25 @@
 <div *ngIf="userRoles?.includes('ROLE_ADMIN')">ADMIN</div>
 <div *ngIf="userRoles?.includes('ROLE_EMPLOYEE')">EMPLOYEE</div>
 
-
-<table class="table">
+<ul>
+  <li *ngFor="let task of arrayTasks">
+    <app-task [task]="task" [arrayItemStatus]="arrayItemStatus"></app-task>
+  </li>
+</ul>
+<!-- <table class="table">
   <thead>
-  <tr>
-    <th class="text-center">#</th>
-    <th class="text-center">Reférence commande</th>
-    <th class="text-center">Service</th>
-    <th class="text-center">Catégorie</th>
-    <th class="text-center">Quantité</th>
-    <th *ngIf="userRoles?.includes('ROLE_ADMIN')" class="text-center">Employer</th>
-    <th *ngIf="userRoles?.includes('ROLE_ADMIN')" class="text-center">Montant</th>
-    <th class="text-center">Status</th>
-    <th class="text-center"></th>
-  </tr>
+    <tr>
+      <th class="text-center">#</th>
+      <th class="text-center">Reférence commande</th>
+      <th class="text-center">Service</th>
+      <th class="text-center">Catégorie</th>
+      <th class="text-center">Quantité</th>
+      <th *ngIf="userRoles?.includes('ROLE_ADMIN')" class="text-center">Employer</th>
+      <th *ngIf="userRoles?.includes('ROLE_ADMIN')" class="text-center">Montant</th>
+      <th class="text-center">Status</th>
+      <th class="text-center"></th>
+    </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let row of arrayItems" i="index" let>
-    <th scope="row">{{ row.id }}</th>
-    <td class="text-center">{{ row.commande?.ref }}</td>
-    <td class="text-center">{{ row.service?.name }}</td>
-    <td class="text-center">{{ row.category?.name }}</td>
-    <td class="text-center">{{ row.quantity }}</td>
-    <td *ngIf="userRoles?.includes('ROLE_ADMIN')" class="text-center">{{ row.employee }}</td>
-    <td *ngIf="userRoles?.includes('ROLE_ADMIN')" class="text-center">{{ row.price}} <span>€</span></td>
-
-    <td class="text-center">
-      <!-- <select [(ngModel)]="selectedStatusId" (change)="selectedStatus($event)">
-        <option *ngFor="let status of arrayItemStatus" [value]="status.id">
-          {{ status.name }}
-        </option>
-      </select> -->
-      {{ row.itemStatus?.name }}
-    </td>
-    <td class="text-center">
-      <button class="btn btn-primary mx-1" type="button">Valider</button>
-    </td>
-  </tr>
   </tbody>
-</table>
+</table> -->

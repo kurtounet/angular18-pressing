@@ -72,7 +72,8 @@ export class ProfileComponent implements OnInit {
       next: (data: IUser) => {
         this.userRoles = data.roles;
 
-        if (data && data.dateborn) {
+        if (data.dateborn) {
+          console.log(data.dateborn);
           let date = new Date(data.dateborn);
           if (date) { // Check if date is valid
             const formattedDate = date.toISOString().split('T')[0];
@@ -95,10 +96,11 @@ export class ProfileComponent implements OnInit {
 
       this.userService.patchUser(this.user).subscribe({
         next: (data: IUser) => {
-          this.router.navigate(['/admin/dashboard/Home']);
+          console.log(data);
+          //this.router.navigate(['/admin/dashboard/Home']);
         },
         error: (error) => {
-          console.error(error);
+          console.error(error.error);
         }
       })
       // this.userService.patchUser(this.user).subscribe({

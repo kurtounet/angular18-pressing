@@ -1,0 +1,19 @@
+<div class="task-card">
+  <div scope="task">{{ task.id }}</div>
+  <div class="text-center">{{ task.commande?.ref }}</div>
+  <div class="text-center">{{ task.service?.name }}</div>
+  <div class="text-center">{{ task.category?.name }}</div>
+  <div class="text-center">{{ task.quantity }}</div>
+
+  <div class="text-center">
+    <select [(ngModel)]="selectedStatusId" (change)="selectedStatus($event)">
+      <option *ngFor="let status of arrayItemStatus" [value]="status.id" [selected]="status.id === task.itemStatus?.id">
+        {{ status.name }}
+      </option>
+    </select>
+    {{ task.itemStatus?.name }}
+  </div>
+  <div class="text-center">
+    <button class="btn btn-primary mx-1" type="button" (click)="validateNewStatus()">Valider</button>
+  </div>
+</div>

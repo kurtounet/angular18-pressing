@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { ServiceService } from '../../services/service.service';
 import { IService } from '../../models/service.model';
 import { environment } from '../../environments/environment';
+import { RouterLink } from '@angular/router';
 
 
 @Component({
@@ -13,6 +14,7 @@ import { environment } from '../../environments/environment';
   styleUrl: './landing.component.css',
   imports: [
     CommonModule,
+    RouterLink
 
   ],
 })

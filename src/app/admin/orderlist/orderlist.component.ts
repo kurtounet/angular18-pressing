@@ -4,6 +4,9 @@ import { CommandeService } from '../../services/commande.service';
 import { ICommande } from '../../models/commande.model';
 import { ClientService } from '../../services/client.service';
 import { IUser, User } from '../../models/user.model';
+import { ItemService } from '../../services/item.service';
+import { Iitem } from '../../models/item.model';
+import { CommandeDetailComponent } from '../commande-detail/commande-detail.component';
 
 @Component({
   standalone: true,
@@ -11,15 +14,17 @@ import { IUser, User } from '../../models/user.model';
   templateUrl: './orderlist.component.html',
   styleUrl: './orderlist.component.css',
 
-  imports: [NgFor, NgIf, DatePipe]
+  imports: [NgFor, NgIf, DatePipe, CommandeDetailComponent]
 })
 export class OrderlistComponent {
 
   arrayCommandes: ICommande[] = [];
-
+  arrayItemCommande: Iitem[] = [];
   commandeService = inject(CommandeService);
   clientService = inject(ClientService);
-
+  itemService = inject(ItemService);
+  isShowDetail: boolean = false;
+  selectedCommande: any = null;
   user: User = new User();
 
 
@@ -40,7 +45,6 @@ export class OrderlistComponent {
   loadAllCommande() {
     this.commandeService.getAllCommandes().subscribe(data => {
       this.arrayCommandes = data;
-
     });
   }
 
@@ -59,10 +63,41 @@ export class OrderlistComponent {
     });
   }
 
-  /*
-    onCommandeSelect(event: any) {
-      console.log(this.selectedServicesId);
-    }
-     */
 
+  toggleDetail(commande: any) {
+    if (this.selectedCommande?.id === commande.id) {
+      // Si on clique sur la même commande, on cache le détail
+      this.isShowDetail = !this.isShowDetail;
+      this.itemService.getItemCommandesById(commande.id).subscribe(
+        (data: Iitem[]) => {
+          this.arrayItemCommande = data;
+          console.log(this.arrayItemCommande);
+        })
+    } else {
+      // Si on clique sur une autre commande, on affiche le nouveau détail
+      this.selectedCommande = commande;
+      this.isShowDetail = true;
+      this.itemService.getItemCommandesById(commande.id).subscribe(
+        (data: Iitem[]) => {
+          this.arrayItemCommande = data;
+          console.log(this.arrayItemCommande);
+        })
+    }
+
+    // toggleDetail(row: any) {
+    //   this.selectedCommande = commande;
+    //   this.isShowDetail = !this.isShowDetail;
+    //   console.log(row);
+    //   this.itemService.getItemCommandesById(row.id).subscribe(
+    //     (data: Iitem[]) => {
+    //       this.arrayItemCommande = data;
+    //       console.log(this.arrayItemCommande);
+    //     })
+    // }
+    /*
+      onCommandeSelect(event: any) {
+        console.log(this.selectedServicesId);
+      }
+       */
+  }
 }

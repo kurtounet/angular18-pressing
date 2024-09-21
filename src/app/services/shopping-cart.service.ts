@@ -96,6 +96,7 @@ export class ShoppingCartService {
     if (this.serviceAuth.validcoordanateClient()) {
       let body: IposteCommande = this.serviceCommande.prepareCommande(this.shoppingCart);
       this.serviceCommande.postCommandeClient(body).subscribe(data => {
+        console.log(data);
         if (data != null) {
           this.isCommandeValidated = true;
         }
