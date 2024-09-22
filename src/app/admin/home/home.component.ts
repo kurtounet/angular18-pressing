@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 
-import { NgFor } from '@angular/common';
+import { CommonModule, NgFor } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { ItemService } from '../../services/item.service';
 import { Iitem } from '../../models/item.model';
@@ -14,7 +14,7 @@ import { CategoryService } from '../../services/category.service';
   imports: [
     RouterOutlet,
     RouterModule,
-    NgFor
+    CommonModule,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'

@@ -24,7 +24,7 @@ export class ProfileComponent implements OnInit {
   today = Date.now();
   userRoles: string[] = [];
 
-  user: IUser | null = null;
+  user!: IUser;
   client: IClient | null = null;
 
   // Injection dependencies
@@ -34,7 +34,7 @@ export class ProfileComponent implements OnInit {
   router = inject(Router);
 
   // public profileForm: FormGroup = new FormGroup({
-  //   id: new FormControl(null),  // Optionnel, peut être généré automatiquement
+  //   id: new FormControl(125),  // Optionnel, peut être généré automatiquement
   //   firstname: new FormControl('Anthony', { validators: [Validators.required] }),
   //   lastname: new FormControl('Moi', { validators: [Validators.required] }),
   //   dateborn: new FormControl(this.today, { validators: [Validators.required] }),
@@ -71,18 +71,13 @@ export class ProfileComponent implements OnInit {
     this.authService.getAuthCurrentUser().subscribe({
       next: (data: IUser) => {
         this.userRoles = data.roles;
-
         if (data.dateborn) {
-          console.log(data.dateborn);
           let date = new Date(data.dateborn);
-          if (date) { // Check if date is valid
+          if (date) {
             const formattedDate = date.toISOString().split('T')[0];
           }
         }
         this.profileForm.patchValue(data);
-
-
-
       },
       error: (error) => {
         // console.error(error);
@@ -94,25 +89,17 @@ export class ProfileComponent implements OnInit {
     if (this.profileForm.valid) {
       this.user = this.profileForm.value;
 
-      this.userService.patchUser(this.user).subscribe({
+      this.userService.putUser(this.user).subscribe({
         next: (data: IUser) => {
-          console.log(data);
-          //this.router.navigate(['/admin/dashboard/Home']);
+          this.authService.setLocalStorageUser(data);
+          this.router.navigate(['/admin/dashboard/home']);
         },
         error: (error) => {
           console.error(error.error);
         }
       })
-      // this.userService.patchUser(this.user).subscribe({
-      //   next: (data: IUser) => {
-      //     this.router.navigate(['/admin/dashboard/Home']);
-      //   },
-      //   error: (error) => {
-      //     console.error(error);
-      //   }
-      // })
     } else {
-      this.profileForm.markAllAsTouched(); // Pour afficher les erreurs
+      this.profileForm.markAllAsTouched();
     }
   }
 

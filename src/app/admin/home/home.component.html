@@ -4,7 +4,8 @@
     <p>
       Bienvenue sur votre tableau de bord personnel.
     </p>
-    <h2>Merci de complèter vos informations personnel dans la section "Mes informations"</h2>
+    <h2 *ngIf="!authService.validcoordanateClient()">Merci de complèter vos informations personnel dans la section "Mes
+      informations"</h2>
     <p>
       Vous trouverez ici toutes les informations nécessaires pour gérer vos
       commandes, consulter vos factures, et bien plus encore. N'hésitez pas à

@@ -103,8 +103,8 @@ export class AuthService {
   //     return this.http.post<AuthResponse>(this.urlApiAuth, authRequest);
   //   }
   login(credentials: { username: string; password: string }): Observable<IToken> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post<IToken>(`${this.urlApiAuth}`, credentials, { headers });
+    //const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<IToken>(`${this.urlApiAuth}`, credentials);
   }
 
   logOut() {
