@@ -15,7 +15,6 @@ import { RouterLink } from '@angular/router';
   imports: [
     CommonModule,
     RouterLink
-
   ],
 })
 export class LandingComponent implements OnInit, OnDestroy {

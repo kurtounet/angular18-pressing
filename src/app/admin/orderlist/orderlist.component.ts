@@ -62,42 +62,59 @@ export class OrderlistComponent {
       console.log(data);
     });
   }
-
-
   toggleDetail(commande: any) {
     if (this.selectedCommande?.id === commande.id) {
-      // Si on clique sur la même commande, on cache le détail
-      this.isShowDetail = !this.isShowDetail;
-      this.itemService.getItemCommandesById(commande.id).subscribe(
-        (data: Iitem[]) => {
-          this.arrayItemCommande = data;
-          console.log(this.arrayItemCommande);
-        })
+      this.isShowDetail = !this.isShowDetail; // Cache ou montre les détails pour la même commande
     } else {
-      // Si on clique sur une autre commande, on affiche le nouveau détail
       this.selectedCommande = commande;
-      this.isShowDetail = true;
-      this.itemService.getItemCommandesById(commande.id).subscribe(
-        (data: Iitem[]) => {
-          this.arrayItemCommande = data;
-          console.log(this.arrayItemCommande);
-        })
+      this.isShowDetail = true; // Affiche les détails pour une nouvelle commande
     }
 
-    // toggleDetail(row: any) {
-    //   this.selectedCommande = commande;
-    //   this.isShowDetail = !this.isShowDetail;
-    //   console.log(row);
-    //   this.itemService.getItemCommandesById(row.id).subscribe(
-    //     (data: Iitem[]) => {
-    //       this.arrayItemCommande = data;
-    //       console.log(this.arrayItemCommande);
-    //     })
-    // }
-    /*
-      onCommandeSelect(event: any) {
-        console.log(this.selectedServicesId);
-      }
-       */
+    if (this.isShowDetail) {
+      this.itemService.getItemCommandesById(commande.id).subscribe(
+        (data: Iitem[]) => {
+          this.arrayItemCommande = data;
+          console.log(this.arrayItemCommande);
+        }
+      );
+    }
   }
+
+
+  // toggleDetail(commande: any) {
+  //   if (this.selectedCommande?.id === commande.id) {
+  //     // Si on clique sur la même commande, on cache le détail
+  //     this.isShowDetail = !this.isShowDetail;
+  //     this.itemService.getItemCommandesById(commande.id).subscribe(
+  //       (data: Iitem[]) => {
+  //         this.arrayItemCommande = data;
+  //         console.log(this.arrayItemCommande);
+  //       })
+  //   } else {
+  //     // Si on clique sur une autre commande, on affiche le nouveau détail
+  //     this.selectedCommande = commande;
+  //     this.isShowDetail = true;
+  //     this.itemService.getItemCommandesById(commande.id).subscribe(
+  //       (data: Iitem[]) => {
+  //         this.arrayItemCommande = data;
+  //         console.log(this.arrayItemCommande);
+  //       })
+  //   }
+
+  // toggleDetail(row: any) {
+  //   this.selectedCommande = commande;
+  //   this.isShowDetail = !this.isShowDetail;
+  //   console.log(row);
+  //   this.itemService.getItemCommandesById(row.id).subscribe(
+  //     (data: Iitem[]) => {
+  //       this.arrayItemCommande = data;
+  //       console.log(this.arrayItemCommande);
+  //     })
+  // }
+  /*
+    onCommandeSelect(event: any) {
+      console.log(this.selectedServicesId);
+    }
+     */
 }
+
