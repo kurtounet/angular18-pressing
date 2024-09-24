@@ -72,8 +72,6 @@ export class AuthService {
   }
 
 
-
-
   public getUserRoles(): Array<string> {
     return this.roles;
   }
@@ -99,11 +97,8 @@ export class AuthService {
   }
 
 
-  //  authentication(authRequest: AuthRequest): Observable<AuthResponse> {
-  //     return this.http.post<AuthResponse>(this.urlApiAuth, authRequest);
-  //   }
+
   login(credentials: { username: string; password: string }): Observable<IToken> {
-    //const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post<IToken>(`${this.urlApiAuth}`, credentials);
   }
 
@@ -113,16 +108,9 @@ export class AuthService {
     this.router.navigate(["/login"]);
   }
 
-  /*
-logout(): void {
-  localStorage.removeItem('token');
-  this.router.navigate(['login']);
-}
-*/
-
   private handleLoginError(error: HttpErrorResponse) {
     if (error.status === 0) {
-      console.error('An error occurred:', error.error);
+      console.error('Une erreur s\'est produite:', error.error);
     } else {
       console.error(
         `Backend returned code ${error.status}, body was: `, error.error);

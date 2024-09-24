@@ -16,7 +16,7 @@ import { IUser } from '../../models/user.model';
 })
 export class SignupFormComponent {
   router = inject(Router);
-  userService = inject(UserService);
+  clientService = inject(ClientService);
   serverErrorMessages: string = "";
 
   public signupForm: FormGroup = new FormGroup({
@@ -28,9 +28,9 @@ export class SignupFormComponent {
 
   onSubmit() {
     if (this.signupForm.valid) {
-      let user: IUser = this.signupForm.value;
-      this.userService.postUser(user).subscribe({
-        next: (data: IUser) => {
+      let client: IClient = this.signupForm.value;
+      this.clientService.postClient(client).subscribe({
+        next: (data: IClient) => {
           this.router.navigate(['/admin/dashboard']);
         },
         error: (error) => {

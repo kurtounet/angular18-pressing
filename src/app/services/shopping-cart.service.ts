@@ -18,7 +18,7 @@ export class ShoppingCartService {
   // INJECTION DEPENDENCIES
   constructor() { }
   serviceCommande = inject(CommandeService)
-  serviceAuth = inject(AuthService)
+  authService = inject(AuthService)
   isCommandeValidated: boolean = false;
 
   ngOnInit() {
@@ -92,8 +92,8 @@ export class ShoppingCartService {
   }
 
   validedOder(): boolean {
-
-    if (this.serviceAuth.validcoordanateClient()) {
+    
+    if (this.authService.validcoordanateClient()) {
       let body: IposteCommande = this.serviceCommande.prepareCommande(this.shoppingCart);
       this.serviceCommande.postCommandeClient(body).subscribe(data => {
         console.log(data);

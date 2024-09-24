@@ -39,7 +39,6 @@ export class LoginComponent {
   onSubmit() {
     if (this.loginForm.valid) {
       const { username, password } = this.loginForm.value.credentials;
-      console.log(this.loginForm.value);
       this.authService.login({ username, password }).subscribe(
         (token) => {
           this.authService.setLocalStorageToken(token.token);

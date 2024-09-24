@@ -38,18 +38,18 @@ export class ShoppingCartComponent {
     this.arrayShoppingCartItem = this.shoppingCartService.getCart();
   }
 
-  updateCart(): void {
+  getCart(): void {
     this.arrayShoppingCartItem = this.shoppingCartService.getCart();
   }
 
   removeItemCart(item: IshoppingCartItem) {
     this.shoppingCartService.removeItem(item);
-    this.updateCart();
+    this.getCart();
   }
 
   clearCart(): void {
     this.shoppingCartService.clearCart();
-    this.updateCart();
+    this.getCart();
     this.closeShoppingCart();
   }
 
@@ -61,7 +61,7 @@ export class ShoppingCartComponent {
         this.closeShoppingCart();
         this.message = "La commande a bien été validée"
       } else {
-        this.message = "Vérifiez votre panier vos informations personner et votre adresse."
+        this.message = "Vérifiez vos informations personnel"
       }
     }
 

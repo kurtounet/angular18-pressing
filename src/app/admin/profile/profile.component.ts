@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { NgIf } from '@angular/common';
+import { NgIf, DatePipe } from '@angular/common';
 import { IUser } from '../../models/user.model';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
@@ -28,19 +28,20 @@ export class ProfileComponent implements OnInit {
   client: IClient | null = null;
 
   // Injection dependencies
+  datePipe = inject(DatePipe);
   authService = inject(AuthService);
   userService = inject(UserService);
   clientService = inject(ClientService);
   router = inject(Router);
-
+  // Préremplit le formulaire
   // public profileForm: FormGroup = new FormGroup({
-  //   id: new FormControl(125),  // Optionnel, peut être généré automatiquement
-  //   firstname: new FormControl('Anthony', { validators: [Validators.required] }),
-  //   lastname: new FormControl('Moi', { validators: [Validators.required] }),
+  //   id: new FormControl(125),
+  //   firstname: new FormControl('John', { validators: [Validators.required] }),
+  //   lastname: new FormControl('Doe', { validators: [Validators.required] }),
   //   dateborn: new FormControl(this.today, { validators: [Validators.required] }),
-  //   email: new FormControl('anthony@gmail.com', { validators: [Validators.required, Validators.email] }),
-  //   mobilephone: new FormControl('0661972538', { validators: [Validators.required, Validators.pattern('^[0-9]*$')] }),
-  //   phone: new FormControl('0661972538', { validators: [Validators.pattern('^[0-9]*$')] }),
+  //   email: new FormControl('john.doe@gmail.com', { validators: [Validators.required, Validators.email] }),
+  //   mobilephone: new FormControl('0661886398', { validators: [Validators.required, Validators.pattern('^[0-9]*$')] }),
+  //   phone: new FormControl('0461886398', { validators: [Validators.pattern('^[0-9]*$')] }),
   //   numadrs: new FormControl(10, { validators: [Validators.required] }),
   //   adrs: new FormControl('chemin de la republique', { validators: [Validators.required] }),
   //   city: new FormControl('Dardilly', { validators: [Validators.required] }),
@@ -48,7 +49,7 @@ export class ProfileComponent implements OnInit {
   //   country: new FormControl('FRANCE', { validators: [Validators.required] })
   // });
   public profileForm: FormGroup = new FormGroup({
-    id: new FormControl(null),  // Optionnel, peut être généré automatiquement
+    id: new FormControl(null),
     firstname: new FormControl(null),
     lastname: new FormControl(null),
     dateborn: new FormControl(null),
@@ -64,32 +65,19 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProfileUser();
-
   }
-
   getProfileUser() {
     this.authService.getAuthCurrentUser().subscribe({
       next: (data: IUser) => {
-        this.userRoles = data.roles;
-        if (data.dateborn) {
-          let date = new Date(data.dateborn);
-          if (date) {
-            const formattedDate = date.toISOString().split('T')[0];
-          }
-        }
-        this.profileForm.patchValue(data);
-      },
-      error: (error) => {
-        // console.error(error);
+        let formattedDate = this.datePipe.transform(data.dateborn, 'yyyy-MM-dd');
+        this.profileForm.patchValue({ ...data, dateborn: formattedDate });
       }
     });
   }
 
   onSubmit() {
     if (this.profileForm.valid) {
-      this.user = this.profileForm.value;
-
-      this.userService.putUser(this.user).subscribe({
+      this.userService.putUser(this.profileForm.value).subscribe({
         next: (data: IUser) => {
           this.authService.setLocalStorageUser(data);
           this.router.navigate(['/admin/dashboard/home']);

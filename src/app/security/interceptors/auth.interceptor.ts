@@ -26,7 +26,7 @@ export function authInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn):
       }
     });
   }
-  console.log(req);
+  //console.log(req);
   return next(req).pipe(
     catchError(error => {
       if (error.status === 401) {
