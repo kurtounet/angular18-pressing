@@ -1,22 +1,19 @@
-import {Component, OnInit} from '@angular/core';
-import {ServiceService} from '../../services/service.service';
-import {IService} from '../../models/service.model';
-import {CommonModule, NgFor} from '@angular/common';
+import { Component, inject } from '@angular/core';
+import { IService } from '../../models/service.model';
+import { ServiceService } from '../../services/service.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-pagepresentation',
+  selector: 'app-services',
   standalone: true,
-  imports: [CommonModule, NgFor],
-  templateUrl: './pagepresentation.component.html',
-  styleUrl: './pagepresentation.component.css'
+  imports: [CommonModule],
+  templateUrl: './services.component.html',
+  styleUrl: './services.component.css'
 })
-export class PagepresentationComponent implements OnInit {
+export class ServicesComponent {
   arrayServices: IService[] = [];
+  serviceService = inject(ServiceService);
 
-  constructor(
-    private serviceService: ServiceService
-  ) {
-  }
   // oneService: Service | null = null;
   //categorySelectedService: Category[]=[];
   //categories: CategoryCollection | null = null;

@@ -11,6 +11,7 @@ import { ShoppingCartComponent } from "../shopping-cart/shopping-cart.component"
 import { IshoppingCartItem } from '../../models/shoppingCartItem.model';
 import { QuantitySelectorComponent } from '../quantity-selector/quantity-selector.component';
 import { map } from 'rxjs';
+import { Subscription } from '@lemonsqueezy/lemonsqueezy.js';
 
 @Component({
   standalone: true,
@@ -27,15 +28,13 @@ import { map } from 'rxjs';
   styleUrls: ['./page-depot.component.css']
 })
 export class PageDepotComponent implements OnInit {
+
   //VARIABLES
-
   baseUrlImageCategories = environment.baseUrl + environment.assertsImageCategories;
+  flowData!: Subscription;
   quantity: number = 0;
-
   selectedServiceCheck: boolean = false;
   selectedCategoryCheck: boolean = false;
-  popUpIsVisible: boolean = false;
-
   arrayServices: IService[] = [];
   arrayTempCategories: any[] = [];
   arrayCategories: ICategory[] = [];
@@ -44,63 +43,47 @@ export class PageDepotComponent implements OnInit {
   selectedCategory!: ICategory;
 
 
-
-  //INJECT DEPENDENCIES
+  // INJECTIONS DES DEPENDANCES
   serviceService = inject(ServiceService);
   categoryService = inject(CategoryService);
   serviceShoppingCart = inject(ShoppingCartService);
-  //serviceCommande = inject(CommandeService);
-  //authService = inject(AuthService);
 
-
-
-  //METHODS
+  // METHODS
   ngOnInit(): void {
     this.getAllServices();
-    //this.getAllCategories();
   }
 
   getAllServices() {
+    // Récupérer tous les services
     this.serviceService.getAllServices().subscribe(data => {
       this.serviceService.arrayServices = data;
-
     });
   }
 
   selectedService(event: any) {
+    // récupérer l'id du service selectionné
     this.selectedServicesId = Number(event.target.value);
-    //this.selectedServiceCheck = !this.selectedServiceCheck;
+    // Récuperer les catégories du service selectionné
     this.getCategoriesOfServiceById(this.selectedServicesId);
   }
-
   getCategoriesOfServiceById(id: number) {
     if (id != 0) {
+      // Appeler le service pour récuperer les catégories du service selectionné.
       this.serviceService.getServiceById(id).subscribe(data => {
+        // Mettre les catégories dans le tableau arrayCategoriesOfSelectedService.
         this.arrayCategoriesOfSelectedService = data["Category"];
-        this.arrayTempCategories = this.arrayCategoriesOfSelectedService.map(cat => ({ ...cat, quantity: 0 }))
+        // déstructurer les catégories pour leurs ajouter la propriété quantité.
+        this.arrayTempCategories = this.arrayCategoriesOfSelectedService
+          .map(cat => ({ ...cat, quantity: 0 }))
       });
-
     } else {
       this.categoryService.getAllCategories().subscribe(data => {
         this.arrayCategoriesOfSelectedService = data;
-        console.log(id)
       });
     }
-
-  }
-
-
-  // POPUP
-  openPopupSelectedCategory(category: ICategory) {
-    this.selectedCategory = category;
-    this.popUpIsVisible = true;
-    console.log(category);
-  }
-
-  closePopup() {
-    this.popUpIsVisible = false;
   }
   addToCart(category: any) {
+    // Construction d'un objet IshoppingCartItem
     if (category.quantity != 0) {
       let itemCart: IshoppingCartItem = {
         id: null,
@@ -109,26 +92,41 @@ export class PageDepotComponent implements OnInit {
         category: category.id,
         quantity: category.quantity
       }
+      // Envoyer le produit au service qui gère le panier
       this.serviceShoppingCart.addItem(itemCart, this.quantity);
     }
   }
-  abort() {
-    this.popUpIsVisible = false;
-  }
-  // updateQuantity(Id: number, newQuantity: number) {
-  //   this.quantity = newQuantity;
-  //   console.log('updateQuantity', categoryId, 'newQuantity:', newQuantity);
-  //   const category = this.arrayTempCategories.find(cat => cat.id === Id);
-  //   if (category) {
-  //     category.quantity = newQuantity;
-  //   }
-  // }
   updateQuantity(categoryId: number, newQuantity: number) {
+    // Récupérer l'objet catégorie d' id egale à categoryId
     let category = this.arrayTempCategories.find(cat => cat.id === categoryId);
+    // si l'objet existe
     if (category) {
+      // Mettre à jour la quantité
       category.quantity = newQuantity;
     }
-
   }
-
 }
+//serviceCommande = inject(CommandeService);
+//authService = inject(AuthService);
+//popUpIsVisible: boolean = false;
+// POPUP
+// openPopupSelectedCategory(category: ICategory) {
+//   this.selectedCategory = category;
+//   this.popUpIsVisible = true;
+//   console.log(category);
+// }
+
+// closePopup() {
+//   this.popUpIsVisible = false;
+// }
+// abort() {
+//   this.popUpIsVisible = false;
+// }
+// updateQuantity(Id: number, newQuantity: number) {
+//   this.quantity = newQuantity;
+//   console.log('updateQuantity', categoryId, 'newQuantity:', newQuantity);
+//   const category = this.arrayTempCategories.find(cat => cat.id === Id);
+//   if (category) {
+//     category.quantity = newQuantity;
+//   }
+// }

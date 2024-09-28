@@ -4,7 +4,7 @@ import { Routes } from '@angular/router';
 import { Error404Component } from './public/error404/error404.component';
 import { PublicContentComponent } from './public/public-content/public-content.component';
 import { LandingComponent } from './public/landing/landing.component';
-import { PagepresentationComponent } from './public/pagepresentation/pagepresentation.component';
+
 import { PagecontactComponent } from './public/pagecontact/pagecontact.component';
 import { LoginComponent } from './public/login/login.component';
 import { SignupFormComponent } from './public/signup-form/signup-form.component';
@@ -18,6 +18,7 @@ import { ProfileComponent } from './admin/profile/profile.component';
 import { ContactComponent } from './admin/contact/contact.component';
 import { authGuard } from './security/guards/admin.guard';
 import { ShoppingCartComponent } from './admin/shopping-cart/shopping-cart.component';
+import { ServicesComponent } from './public/services/services.component';
 
 
 export const routes: Routes = [
@@ -25,9 +26,9 @@ export const routes: Routes = [
     path: '', component: PublicContentComponent,
     children: [
       { path: '', component: LandingComponent }, // Root path should be empty
-      { path: 'accueil', component: LandingComponent },
-      { path: 'presentation', component: PagepresentationComponent },
-      { path: 'nous-contactez', component: PagecontactComponent },
+      { path: 'home', component: LandingComponent },
+      { path: 'services', component: ServicesComponent },
+      { path: 'contact', component: PagecontactComponent },
       { path: 'login', component: LoginComponent },
       { path: 'signup', component: SignupFormComponent },
     ]
