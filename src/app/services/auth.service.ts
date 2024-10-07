@@ -96,8 +96,6 @@ export class AuthService {
     }
   }
 
-
-
   login(credentials: { username: string; password: string }): Observable<IToken> {
     return this.http.post<IToken>(`${this.urlApiAuth}`, credentials);
   }

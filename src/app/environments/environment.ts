@@ -1,6 +1,11 @@
 import { createSecretKey } from "crypto";
 
 export const environment = {
+  //baseUrl: 'https://ab-web.fr:9000',
+  //baseApiUrl: 'https://ab-web.fr:9000/api',
+  //authUrl: 'https://ab-web.fr:9000/api/login_check',
+
+
   baseUrl: 'https://localhost:8000',
   assertsImageCategories: '/uploads/images/categories',
   assertsImageServices: '/uploads/images/services',

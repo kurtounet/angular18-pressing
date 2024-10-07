@@ -11,12 +11,9 @@ import { map, Observable } from "rxjs";
   providedIn: 'root'
 })
 export class ServiceService {
-
   arrayServices: IService[] = [];
-
   httpClient = inject(HttpClient);
   private routeApi = `${environment.baseApiUrl}/services`;
-
   // Obtenir tous les services
   getAllServices(): Observable<IService[]> {
     return this.httpClient.get<IHydraCollection<IService>>(this.routeApi).pipe(
@@ -26,33 +23,22 @@ export class ServiceService {
       }),
     );
   }
-
-
-  // fetchAll(): Observable<IService[]> {
-  //   return this.http.get<HydraCollection<IService>>(this.urlService + '/services').pipe(
-  //     map(response=> response['hydra:member'])
-  //   );
-
   // Obtenir un service par ID
   getServiceById(id: number): Observable<IService> {
     return this.httpClient.get<IService>(`${this.routeApi}/${id}`);
   }
-
   // Créer un nouveau service
   postService(body: IService): Observable<IService> {
     return this.httpClient.post<IService>(this.routeApi, body);
   }
-
   // Mettre à jour un service par ID
   patchService(id: string, body: IService): Observable<IService> {
     return this.httpClient.patch<IService>(`${this.routeApi}/${id}`, body);
   }
-
   // Supprimer un service par ID
   deleteService(id: string): Observable<void> {
     return this.httpClient.delete<void>(`${this.routeApi}/${id}`);
   }
-
   errorHandler(error: any) {
     let errorMessage = "";
     if (error.error instanceof ErrorEvent) {

@@ -28,7 +28,6 @@ import { Subscription } from '@lemonsqueezy/lemonsqueezy.js';
   styleUrls: ['./page-depot.component.css']
 })
 export class PageDepotComponent implements OnInit {
-
   //VARIABLES
   baseUrlImageCategories = environment.baseUrl + environment.assertsImageCategories;
   flowData!: Subscription;
@@ -41,25 +40,21 @@ export class PageDepotComponent implements OnInit {
   arrayCategoriesOfSelectedService: ICategory[] = [];
   selectedServicesId: number = 0;
   selectedCategory!: ICategory;
-
-
+  
   // INJECTIONS DES DEPENDANCES
   serviceService = inject(ServiceService);
   categoryService = inject(CategoryService);
   serviceShoppingCart = inject(ShoppingCartService);
-
   // METHODS
   ngOnInit(): void {
     this.getAllServices();
   }
-
   getAllServices() {
     // Récupérer tous les services
     this.serviceService.getAllServices().subscribe(data => {
       this.serviceService.arrayServices = data;
     });
   }
-
   selectedService(event: any) {
     // récupérer l'id du service selectionné
     this.selectedServicesId = Number(event.target.value);
