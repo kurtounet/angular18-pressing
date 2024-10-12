@@ -3,7 +3,6 @@ import { Iitem } from '../../models/item.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IitemStatus } from '../../models/itemStatus.model';
-import { ItemStatusService } from '../../services/item-status.service';
 import { ItemService } from '../../services/item.service';
 
 
