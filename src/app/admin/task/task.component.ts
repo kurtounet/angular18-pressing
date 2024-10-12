@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IitemStatus } from '../../models/itemStatus.model';
 import { ItemStatusService } from '../../services/item-status.service';
 import { ItemService } from '../../services/item.service';
-import { Item } from '../../interface/all.model';
+
 
 @Component({
   selector: 'app-task',
