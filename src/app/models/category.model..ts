@@ -1,4 +1,7 @@
 export interface ICategory {
+  '@context': string;
+  '@id': string;
+  '@type': string;
   id: number;
   name: string;
   parent: string,
@@ -8,7 +11,8 @@ export interface ICategory {
 
 export interface CategoryCollection {
   Categories: ICategory[]
-  /*'@context': string;
+  /*
+  '@context': string;
   '@id': string;
   '@type': string;
   'hydra:totalCategory': number;

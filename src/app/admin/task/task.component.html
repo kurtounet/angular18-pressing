@@ -1,8 +1,9 @@
 <div class="task-card">
   <div scope="task">{{ task.id }}</div>
-  <div class="text-center">{{ task.commande?.ref }}</div>
-  <div class="text-center">{{ task.service?.name }}</div>
-  <div class="text-center">{{ task.category?.name }}</div>
+  <div class="text-center">ref: {{ task.commande?.ref }}</div>
+  <div class="text-center">services {{ task.service?.name }}</div>
+  <div class="text-center">category {{ task.category?.name }}</div>
+  <div class="text-center">category id {{ task.category?.id }}</div>
   <div class="text-center">{{ task.quantity }}</div>
 
   <div class="text-center">

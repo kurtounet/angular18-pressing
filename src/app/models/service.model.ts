@@ -1,6 +1,9 @@
-import {ICategory} from "./category.model.";
+import { ICategory } from "./category.model.";
 
 export interface IService {
+  '@context': string;
+  '@id': string;
+  '@type': string;
   id: number;
   name: string;
   description: string;

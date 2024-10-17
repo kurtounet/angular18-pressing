@@ -14,13 +14,13 @@ import { ItemService } from '../../services/item.service';
   styleUrl: './task.component.css'
 })
 export class TaskComponent {
-  // Injection des services
-  // itemStatusService = inject(ItemStatusService);
-  itemService = inject(ItemService);
 
-  @Input() task!: Iitem; // Recevoir la tâche en tant qu'entrée
+  itemService = inject(ItemService);
+  // Recevoir la tâche en tant qu'entrée
+  @Input() task!: Iitem;
   @Input() arrayItemStatus: IitemStatus[] = [];
-  @Output() statusChange: EventEmitter<Iitem> = new EventEmitter(); // Émettre un événement lorsqu'un statut est validé
+  // Émettre un événement lorsqu'un statut est validé
+  @Output() statusChange: EventEmitter<Iitem> = new EventEmitter();
 
   selectedStatusId!: number; // Statut sélectionné
   //arrayItemStatus: IitemStatus[] = []; // Liste des statuts disponibles
@@ -44,9 +44,7 @@ export class TaskComponent {
 
   // Méthode pour capturer la sélection du statut
   selectedStatus(event: any) {
-
     this.selectedStatusId = Number(event.target.value);
-    console.log(`Selected status ID: ${this.selectedStatusId} for task ID: ${this.task.id}`);
   }
 
   // Méthode pour valider le changement de statut
@@ -54,11 +52,12 @@ export class TaskComponent {
     const newStatus = this.arrayItemStatus.find(status => status.id === this.selectedStatusId);
     if (newStatus) {
       this.task.itemStatus = newStatus; // Met à jour l'objet task avec le nouveau statut
-      this.itemService.patchItemStatus(this.task).subscribe(data => {
+      this.itemService.putItemStatus(this.task).subscribe(data => {
+        // Émettre un événement lorsqu'un statut est validé
         console.log(data);
+        this.statusChange.emit(data);
       });
-      //this.statusChange.emit(this.task); // Émet l'événement avec la tâche mise à jour
-      console.log(`Status updated to: ${newStatus.name} for task ID: ${this.task.id}`);
+
     }
   }
 }

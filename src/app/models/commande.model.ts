@@ -1,4 +1,7 @@
 export interface ICommande {
+  '@context': string;
+  '@id': string;
+  '@type': string;
   id: number | null;
   ref: string | null;
   client: string | null;

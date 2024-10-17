@@ -1,4 +1,7 @@
 export interface IitemStatus {
+  '@context': string;
+  '@id': string;
+  '@type': string;
   id: number;
   name: string;
 }

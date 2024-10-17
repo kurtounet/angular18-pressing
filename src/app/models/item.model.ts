@@ -4,6 +4,9 @@ import { IitemStatus } from "./itemStatus.model";
 import { IService } from "./service.model";
 
 export interface Iitem {
+  '@context': string;
+  '@id': string;
+  '@type': string;
   id: number | null;
   service: IService | null;
   commande: ICommande | null;

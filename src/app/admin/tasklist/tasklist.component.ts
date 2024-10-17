@@ -46,6 +46,7 @@ export class TasklistComponent implements OnInit {
   getIitemStatus(): void {
     this.itemStatusService.getAllItemStatus().subscribe(data => {
       this.arrayItemStatus = data;
+      console.log(this.arrayItemStatus);
     });
   }
 
@@ -62,12 +63,12 @@ export class TasklistComponent implements OnInit {
       this.arrayTasks = data.map(item => {
         return item.itemStatus ? item : { ...item, Status: 0 };
       });
-
       console.log(this.arrayTasks); // Affichage du tableau modifié
     });
-
   }
-
+  newStatus() {
+    this.ngOnInit();
+  }
   selectedStatus(event: any) {
     this.selectedStatusId = event.target.value;
     console.log(this.selectedStatusId);
