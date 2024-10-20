@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { environment } from '../environments/environment'; // Corriger le nom du chemin si nécessaire
 import { ICommande } from '../models/commande.model';
 import { DatePipe } from '@angular/common';
@@ -9,6 +9,7 @@ import { IClient } from '../models/client.model';
 import { IshoppingCartItem } from '../models/shoppingCartItem.model';
 import { IposteCommande } from '../models/postCommande.model';
 import { AuthService } from './auth.service';
+import { IHydraCollection } from '../models/hydraCollection.model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,11 @@ export class CommandeService {
   constructor(private datePipe: DatePipe) { }
   // Obtenir tous les Commandes
   getAllCommandes(): Observable<ICommande[]> {
-    return this.httpClient.get<ICommande[]>(this.routeApi);
+    return this.httpClient.get<IHydraCollection<ICommande>>(this.routeApi).pipe(
+      map(response => {
+        return response['hydra:member'];
+      }),
+    );
   }
 
   // Obtenir un Commande par ID
@@ -40,7 +45,7 @@ export class CommandeService {
   }
 
   // Supprimer un Commande par ID
-  deleteCommande(id: string): Observable<void> {
+  deleteCommande(id: number): Observable<void> {
     return this.httpClient.delete<void>(`${this.routeApi}/${id}`);
   }
 

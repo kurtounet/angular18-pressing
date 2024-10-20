@@ -70,10 +70,11 @@ export class ShoppingCartComponent {
   validedOrder(): void {
     if (this.arrayShoppingCartItem.length > 0) {
       let resp = this.shoppingCartService.validedOder();
+      console.log('ShoppingCartComponent', resp)
       if (resp) {
         this.shoppingCartService.clearCart();
         this.closeShoppingCart();
-        this.message = "La commande a bien été validée"
+
       } else {
         this.message = "Vérifiez vos informations personnel"
       }

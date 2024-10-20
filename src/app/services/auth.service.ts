@@ -43,7 +43,6 @@ export class AuthService {
     return user ? JSON.parse(user) : null;
   }
   public isMajor(dateborn: Date): boolean {
-
     const age = new Date().getFullYear() - new Date(dateborn).getFullYear();
     if (age >= 18) {
       return true;
@@ -57,7 +56,6 @@ export class AuthService {
       const user: IUser = JSON.parse(storedUser);
       // Vérifie si l'utilisateur est majeur
       if (this.isMajor(user.dateborn)) {
-
         // Vérifie si les coordonnées remplis
         if (
           user.firstname && user.lastname &&

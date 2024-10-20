@@ -7,7 +7,7 @@
 <!-- SECTION SERVICE-->
 <section id="services">
   <h2>Nos services</h2>
-  <ul class="d-flex justify-content-between align-items-center">
+  <ul class="list-services">
     <li *ngFor="let service of servicesList" class="card-service">
       <h4>{{ service.name }}</h4>
       <img alt="{{ service.name }}" src="{{baseUrlImageServices}}/{{service.image}}" />

@@ -114,10 +114,12 @@ export class ShoppingCartService {
   validedOder(): boolean {
     if (this.authService.validcoordanateClient()) {
       let body: IposteCommande = this.serviceCommande.prepareCommande(this.shoppingCart);
+      console.log('BODY', body);
       this.serviceCommande.postCommandeClient(body).subscribe(data => {
-
         if (data != null) {
+          console.log(data);
           this.isCommandeValidated = true;
+          
           this.clearCart();
         }
       });

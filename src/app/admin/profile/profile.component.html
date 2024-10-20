@@ -1,5 +1,8 @@
 <div class="container mt-4">
   <h3 class="mb-4">Mes informations</h3>
+  <button (click)="deleteUser()" class="btn btn-primary" type="submit">
+    supprimer mon compte
+  </button>
   <form (ngSubmit)="onSubmit()" [formGroup]="profileForm">
     <div class="form-group mb-3">
       <label for="firstname">Prénom</label>

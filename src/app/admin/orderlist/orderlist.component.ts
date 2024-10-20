@@ -44,6 +44,7 @@ export class OrderlistComponent {
 
   loadAllCommande() {
     this.commandeService.getAllCommandes().subscribe(data => {
+      console.log(data);
       this.arrayCommandes = data;
     });
   }
@@ -74,47 +75,23 @@ export class OrderlistComponent {
       this.itemService.getItemCommandesById(commande.id).subscribe(
         (data: Iitem[]) => {
           this.arrayItemCommande = data;
-          console.log(this.arrayItemCommande);
         }
       );
     }
   }
+  calculateTotalCommande() {
+    let total = this.arrayItemCommande.reduce((total, item) => {
+      return total + item.price!;
+    }, 0);
+    return total;
+  }
 
 
-  // toggleDetail(commande: any) {
-  //   if (this.selectedCommande?.id === commande.id) {
-  //     // Si on clique sur la même commande, on cache le détail
-  //     this.isShowDetail = !this.isShowDetail;
-  //     this.itemService.getItemCommandesById(commande.id).subscribe(
-  //       (data: Iitem[]) => {
-  //         this.arrayItemCommande = data;
-  //         console.log(this.arrayItemCommande);
-  //       })
-  //   } else {
-  //     // Si on clique sur une autre commande, on affiche le nouveau détail
-  //     this.selectedCommande = commande;
-  //     this.isShowDetail = true;
-  //     this.itemService.getItemCommandesById(commande.id).subscribe(
-  //       (data: Iitem[]) => {
-  //         this.arrayItemCommande = data;
-  //         console.log(this.arrayItemCommande);
-  //       })
-  //   }
-
-  // toggleDetail(row: any) {
-  //   this.selectedCommande = commande;
-  //   this.isShowDetail = !this.isShowDetail;
-  //   console.log(row);
-  //   this.itemService.getItemCommandesById(row.id).subscribe(
-  //     (data: Iitem[]) => {
-  //       this.arrayItemCommande = data;
-  //       console.log(this.arrayItemCommande);
-  //     })
-  // }
-  /*
-    onCommandeSelect(event: any) {
-      console.log(this.selectedServicesId);
-    }
-     */
+  deleteCommande(commande: ICommande) {
+    console.log('', typeof (commande.id));
+    this.commandeService.deleteCommande(commande.id!).subscribe(() => {
+      this.ngOnInit();
+    });
+  }
 }
 

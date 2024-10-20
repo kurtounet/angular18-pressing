@@ -6,9 +6,9 @@ export const environment = {
   // authUrl: 'https://ab-web.fr:9000/api/login_check',
 
 
-  baseUrl: 'http://localhost:8080',
-  baseApiUrl: 'http://localhost:8080/api',
-  authUrl: 'http://localhost:8080/api/login_check',
+  baseUrl: 'https://localhost:8001',
+  baseApiUrl: 'https://localhost:8001/api',
+  authUrl: 'https://localhost:8001/api/login_check',
   assertsImageCategories: '/uploads/images/categories',
   assertsImageServices: '/uploads/images/services',
   assertsImageSite: '/uploads/images/site',

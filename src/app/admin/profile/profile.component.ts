@@ -69,12 +69,20 @@ export class ProfileComponent implements OnInit {
   getProfileUser() {
     this.authService.getAuthCurrentUser().subscribe({
       next: (data: IUser) => {
+        this.user = data;
         let formattedDate = this.datePipe.transform(data.dateborn, 'yyyy-MM-dd');
         this.profileForm.patchValue({ ...data, dateborn: formattedDate });
       }
     });
   }
-
+  deleteUser() {
+    this.clientService.deleteClient(this.user.id).subscribe({
+      next: () => {
+        //this.authService.deleteLocalStorageUser();
+        this.router.navigate(['/login']);
+      }
+    })
+  }
   onSubmit() {
     if (this.profileForm.valid) {
       this.userService.putUser(this.profileForm.value).subscribe({

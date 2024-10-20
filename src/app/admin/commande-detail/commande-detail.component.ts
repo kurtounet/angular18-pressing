@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Iitem } from '../../models/item.model';
 
 @Component({
@@ -12,6 +12,19 @@ import { Iitem } from '../../models/item.model';
 export class CommandeDetailComponent {
 
   @Input() arrayItemCommande!: Iitem[];
+  @Output() totalCommande: EventEmitter<number> = new EventEmitter();
+
+  calculateTotalCommande() {
+    console.log(this.arrayItemCommande);
+    // let total = this.arrayItemCommande.reduce(
+    //   (a: number, b: Iitem) => a + b.price?, 0
+    // );
+    // this.totalCommande.emit(total);
+
+    return 5;
+
+  }
+
 
 
 

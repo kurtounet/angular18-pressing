@@ -49,7 +49,7 @@ export class ClientService {
   }
 
   // Supprimer un Client
-  deleteClient(id: string): Observable<void> {
+  deleteClient(id: number): Observable<void> {
     return this.httpClient.delete<void>(`${this.routeApi}/${id}`);
   }
 }
