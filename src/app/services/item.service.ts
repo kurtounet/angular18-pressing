@@ -33,7 +33,10 @@ export class ItemService {
   getItemById(id: number): Observable<Iitem> {
     return this.httpClient.get<Iitem>(`${this.routeApi}/${id}`);
   }
-
+  getAmount(items: any): Observable<any> {
+    console.log('POST AMOUNT', items);
+    return this.httpClient.post<any>(`${this.routeApi}${'/amount'}`, items);
+  }
   postItem(body: Iitem): Observable<Iitem> {
     //const headers = new HttpHeaders({ 'Content-Type': 'application/ld+json' });;
     return this.httpClient.post<Iitem>(this.routeApi, body);

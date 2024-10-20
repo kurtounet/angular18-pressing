@@ -37,10 +37,10 @@
     </div>
     <div class="card-footer">
       <div class="row justify-content-between align-items-center">
-        <h5 class="col-auto mb-0">Qte : {{ total }}</h5>
-        <h5 class="col-auto mb-0">Prix HT : {{ total }}</h5>
-        <h5 class="col-auto mb-0">Prix TTC : {{ total }}</h5>
-        <h5 class="col-auto mb-0">Total : {{ total }}</h5>
+        <h5 class="col-auto mb-0">Qte : {{ shoppingCartService.getQuantity() }}</h5>
+        <h5 class="col-auto mb-0">Prix HT : {{ this.amountTotalHT }}</h5>
+        <h5 class="col-auto mb-0">Prix TTC : {{ shoppingCartService.getAmountTotalTTC(amountTotalHT) }}</h5>
+
       </div>
     </div>
     <div class="d-flex justify-content-between p-3">

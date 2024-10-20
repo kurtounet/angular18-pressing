@@ -3,6 +3,8 @@ import { IshoppingCartItem } from '../models/shoppingCartItem.model';
 import { CommandeService } from './commande.service';
 import { AuthService } from './auth.service';
 import { IposteCommande } from '../models/postCommande.model';
+import { ItemService } from './item.service';
+import { Iitem } from '../models/item.model';
 
 
 @Injectable({
@@ -14,18 +16,62 @@ export class ShoppingCartService {
   lastIdIshoppinCartItem: number = 0;
   shoppingCart: IshoppingCartItem[] = [];
   isCartVisible: boolean = false;
+  tva: number = 20;
+  totalServicesQty: number = 0;
+  amountTotalTTC: number = 0;
+  amountTotalHT: number = 0;
   // INJECTION DEPENDENCIES
   constructor() { }
   serviceCommande = inject(CommandeService)
+  serviceItem = inject(ItemService)
   authService = inject(AuthService)
   isCommandeValidated: boolean = false;
+  amount: number = 0; // amount
   ngOnInit() {
     this.shoppingCart = this.getCart();
+
   }
+  getAmount(): any {
+    let items = this.shoppingCart.map(item => {
+      return {
+        service: item.service,
+        quantity: item.quantity
+      }
+    }
+    );
+    this.serviceItem.getAmount(items).subscribe(data => {
+
+      this.amount = Number(data.amount);
+    })
+
+    return this.amount;
+
+  }
+  getQuantity(): any {
+    //this.getAmount();
+    return this.shoppingCart.length;
+  }
+
+  getAmountTotalTTC(amountTotalHT: number): any {
+    return this.round(amountTotalHT + (amountTotalHT * this.tva / 100));
+  }
+  round(num: number) {
+    let precision = 2;
+    return Math.round(num * Math.pow(10, precision)) / Math.pow(10, precision); // Résultat : 4.57
+  }
+  // getshoppingTotal() {
+  //   this.amountTotalHT = this.round(this.getAmount());
+  //   this.totalServicesQty = this.getQuantity();
+  //   this.amountTotalTTC = this.getAmountTotalTTC(this.amountTotalHT)  // Le montant total TTC (déjà avec la TVA)
+  //   console.log('Montant total TTC:', this.amountTotalTTC);
+  //   console.log('Montant total HT:', this.amountTotalHT);
+  //   console.log('Quantité totale:', this.totalServicesQty);
+  // }
   getCart(): IshoppingCartItem[] {
     let cart = localStorage.getItem(this.CART_KEY);
     if (cart != null) {
       this.shoppingCart = JSON.parse(cart);
+      this.amount = this.getAmount();
       return this.shoppingCart;
     }
     return [];
@@ -72,7 +118,7 @@ export class ShoppingCartService {
 
         if (data != null) {
           this.isCommandeValidated = true;
-          console.log(data);
+          this.clearCart();
         }
       });
       return this.isCommandeValidated;

@@ -18,28 +18,42 @@ import { environment } from '../../environments/environment';
   styleUrl: './shopping-cart.component.css'
 })
 export class ShoppingCartComponent {
-  // VARIABLES
-  baseUrlImageCategories = environment.baseUrl + environment.assertsImageCategories;
-  message: string = '';
-  total: number = 0;
-  isVisible: boolean = false;
-  arrayShoppingCartItem: IshoppingCartItem[] = [];
-
   // INJECTION DEPENDENCIES
   //constructor(private app: AppComponent) { }
   shoppingCartService = inject(ShoppingCartService);
-
-
+  // VARIABLES
+  baseUrlImageCategories = environment.baseUrl + environment.assertsImageCategories;
+  message: string = '';
+  tva: number = 20;
+  totalServicesQty: number = 0;
+  amountTotalTTC: number = 0;
+  amountTotalHT: number = 0;
+  isVisible: boolean = false;
+  arrayShoppingCartItem: IshoppingCartItem[] = [];
   ngOnInit(): void {
-    this.getItemsCart();
+    this.getCart();
   }
 
-  getItemsCart() {
-    this.arrayShoppingCartItem = this.shoppingCartService.getCart();
-  }
+  // getshoppingTotal() {
+  //   this.amountTotalHT = this.round(this.shoppingCartService.getAmount());
+  //   this.totalServicesQty = this.shoppingCartService.getQuantity();
+  //   this.amountTotalTTC = this.round(this.amountTotalHT + (this.amountTotalHT * this.tva / 100));  // Le montant total TTC (déjà avec la TVA)
+  //   console.log('Montant total TTC:', this.amountTotalTTC);
+  //   console.log('Montant total HT:', this.amountTotalHT);
+  //   console.log('Quantité totale:', this.totalServicesQty);
+  // }
+
+
+  // getItemsCart() {
+  //   this.arrayShoppingCartItem = this.shoppingCartService.getCart();
+  //   console.log('this.arrayShoppingCartItem')
+  // }
 
   getCart(): void {
+    console.log("getCart")
     this.arrayShoppingCartItem = this.shoppingCartService.getCart();
+    this.amountTotalHT = this.shoppingCartService.getAmount();
+
   }
 
   removeItemCart(item: IshoppingCartItem) {
