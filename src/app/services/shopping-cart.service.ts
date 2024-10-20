@@ -5,6 +5,7 @@ import { AuthService } from './auth.service';
 import { IposteCommande } from '../models/postCommande.model';
 import { ItemService } from './item.service';
 import { Iitem } from '../models/item.model';
+import { UserService } from './user.service';
 
 
 @Injectable({
@@ -24,7 +25,8 @@ export class ShoppingCartService {
   constructor() { }
   serviceCommande = inject(CommandeService)
   serviceItem = inject(ItemService)
-  authService = inject(AuthService)
+  userService = inject(UserService)
+  //authService = inject(AuthService)
   isCommandeValidated: boolean = false;
   amount: number = 0; // amount
   ngOnInit() {
@@ -112,14 +114,14 @@ export class ShoppingCartService {
     console.log('postShoppingCart', itemCart);
   }
   validedOder(): boolean {
-    if (this.authService.validcoordanateClient()) {
+    if (this.userService.validcoordanateClient()) {
       let body: IposteCommande = this.serviceCommande.prepareCommande(this.shoppingCart);
       console.log('BODY', body);
       this.serviceCommande.postCommandeClient(body).subscribe(data => {
         if (data != null) {
           console.log(data);
           this.isCommandeValidated = true;
-          
+
           this.clearCart();
         }
       });

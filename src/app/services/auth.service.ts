@@ -7,6 +7,8 @@ import { IUser } from '../models/user.model';
 import { IToken } from '../models/auth';
 import { jwtDecode } from 'jwt-decode';
 import { IClient } from '../models/client.model';
+import { StorageService } from './storage.service';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,78 +18,55 @@ export class AuthService {
   urlApiAuth: string = environment.authUrl;
 
   http = inject(HttpClient);
+  userService = inject(UserService);
+  StorageService = inject(StorageService);
   router = inject(Router);
   isLoggedIn: boolean = false;
 
 
   public roles: Array<string> = [];
 
-  public setLocalStorageToken(token: string): void {
-    localStorage.setItem("token", token);
-  }
-
-  public getLocalStorageToken(): string | null {
-    return localStorage.getItem("token");
-  }
-
-  //  getToken(): string | null {
-  //   return localStorage.getItem('token');
+  // public setLocalStorageToken(token: string): void {
+  //   localStorage.setItem("token", token);
   // }
 
-  public setLocalStorageUser(user: IUser): void {
-    localStorage.setItem("user", JSON.stringify(user));
-  }
+  // public getLocalStorageToken(): string | null {
+  //   return localStorage.getItem("token");
+  // }
 
-  public getLocalStorageUser(): IUser {
-    const user = localStorage.getItem("user");
-    return user ? JSON.parse(user) : null;
-  }
-  public isMajor(dateborn: Date): boolean {
-    const age = new Date().getFullYear() - new Date(dateborn).getFullYear();
-    if (age >= 18) {
-      return true;
-    }
-    return false;
-  }
-  public validcoordanateClient(): boolean {
-    const storedUser = localStorage.getItem("user");
-    // Vérifie si l'utilisateur est stocké dans le localStorage
-    if (storedUser) {
-      const user: IUser = JSON.parse(storedUser);
-      // Vérifie si l'utilisateur est majeur
-      if (this.isMajor(user.dateborn)) {
-        // Vérifie si les coordonnées remplis
-        if (
-          user.firstname && user.lastname &&
-          user.dateborn && user.numadrs && user.adrs && user.city &&
-          user.zipcode && user.country
-        ) {
-          return true; // Toutes les informations sont valides
-        }
-      }
-    }
-    return false;
-  }
+  // //  getToken(): string | null {
+  // //   return localStorage.getItem('token');
+  // // }
 
+  // public setLocalStorageUser(user: IUser): void {
+  //   localStorage.setItem("user", JSON.stringify(user));
+  // }
 
-  public getUserRoles(): Array<string> {
-    return this.roles;
-  }
+  // public getLocalStorageUser(): IUser {
+  //   const user = localStorage.getItem("user");
+  //   return user ? JSON.parse(user) : null;
+  // }
+ 
 
-  public setUserRoles(roles: Array<string>): void {
-    this.roles = roles;
-  }
+  // public getUserRoles(): Array<string> {
+  //   return this.roles;
+  // }
 
-  getAuthCurrentUser(): Observable<IUser> {
-    return this.http.get<IUser>(`${environment.baseApiUrl}/currentuser`);
-  }
+  // public setUserRoles(roles: Array<string>): void {
+  //   this.roles = roles;
+  // }
+
+  // getAuthCurrentUser(): Observable<IUser> {
+  //   return this.http.get<IUser>(`${environment.baseApiUrl}/currentuser`);
+  // }
 
   isLogged(): boolean {
-    const token = this.getLocalStorageToken();
-    if (!token) return false;
+    const token = this.StorageService.getLocalStorageToken();
+    if (!token)
+      return false;
     try {
       const decodedToken = jwtDecode<IToken>(token);
-      this.setUserRoles(decodedToken.roles);
+      this.userService.setUserRoles(decodedToken.roles);
       return decodedToken.exp > Date.now() / 1000;
     } catch (error) {
       return false;
@@ -100,7 +79,7 @@ export class AuthService {
 
   logOut() {
     localStorage.removeItem('token');
-    this.setUserRoles([]);
+    this.userService.setUserRoles([]);
     this.router.navigate(["/login"]);
   }
 

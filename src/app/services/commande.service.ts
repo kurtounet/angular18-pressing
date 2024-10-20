@@ -10,6 +10,7 @@ import { IshoppingCartItem } from '../models/shoppingCartItem.model';
 import { IposteCommande } from '../models/postCommande.model';
 import { AuthService } from './auth.service';
 import { IHydraCollection } from '../models/hydraCollection.model';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,7 @@ export class CommandeService {
   private routeApi = `${environment.baseApiUrl}/commandes`; // Utiliser un slash à la fin pour les chemins
   httpClient = inject(HttpClient);
   serviceAuth = inject(AuthService);
+  storageService = inject(StorageService);
   constructor(private datePipe: DatePipe) { }
   // Obtenir tous les Commandes
   getAllCommandes(): Observable<ICommande[]> {
@@ -55,7 +57,7 @@ export class CommandeService {
   }
 
   prepareCommande(arrayShoppingCartItem: IshoppingCartItem[]) {
-    let clientId = this.serviceAuth.getLocalStorageUser().id;
+    let clientId = this.storageService.getLocalStorageUser().id;
     let today = new Date();
     let commande: IposteCommande = {
       id: null,

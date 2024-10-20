@@ -7,6 +7,7 @@ import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { ClientService } from '../../services/client.service';
 import { IClient } from '../../models/client.model';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   standalone: true,
@@ -29,7 +30,8 @@ export class ProfileComponent implements OnInit {
 
   // Injection dependencies
   datePipe = inject(DatePipe);
-  authService = inject(AuthService);
+  //authService = inject(AuthService);
+  storageService = inject(StorageService);
   userService = inject(UserService);
   clientService = inject(ClientService);
   router = inject(Router);
@@ -67,7 +69,7 @@ export class ProfileComponent implements OnInit {
     this.getProfileUser();
   }
   getProfileUser() {
-    this.authService.getAuthCurrentUser().subscribe({
+    this.userService.getAuthCurrentUser().subscribe({
       next: (data: IUser) => {
         this.user = data;
         let formattedDate = this.datePipe.transform(data.dateborn, 'yyyy-MM-dd');
@@ -87,7 +89,7 @@ export class ProfileComponent implements OnInit {
     if (this.profileForm.valid) {
       this.userService.putUser(this.profileForm.value).subscribe({
         next: (data: IUser) => {
-          this.authService.setLocalStorageUser(data);
+          this.storageService.setLocalStorageUser(data);
           this.router.navigate(['/admin/dashboard/home']);
         },
         error: (error) => {

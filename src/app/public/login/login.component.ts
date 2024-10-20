@@ -9,6 +9,8 @@ import {
 import { CommonModule, NgIf } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +23,8 @@ export class LoginComponent {
   title = 'Login';
 
   authService = inject(AuthService);
+  userService = inject(UserService);
+  storageService = inject(StorageService);
   router = inject(Router);
   serverErrorMessages: string = '';
 
@@ -41,9 +45,9 @@ export class LoginComponent {
       const { username, password } = this.loginForm.value.credentials;
       this.authService.login({ username, password }).subscribe(
         (token) => {
-          this.authService.setLocalStorageToken(token.token);
-          this.authService.getAuthCurrentUser().subscribe((data) => {
-            this.authService.setLocalStorageUser(data);
+          this.storageService.setLocalStorageToken(token.token);
+          this.userService.getAuthCurrentUser().subscribe((data) => {
+            this.storageService.setLocalStorageUser(data);
           });
 
           this.router.navigate(['/admin/dashboard']);

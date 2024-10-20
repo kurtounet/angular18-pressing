@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { IdCommandeToRefPipe } from '../../pipes/id-commande-to-ref.pipe';
 import { IitemStatus } from '../../models/itemStatus.model';
 import { TaskComponent } from '../task/task.component';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-tasklist',
@@ -18,10 +19,10 @@ import { TaskComponent } from '../task/task.component';
 })
 export class TasklistComponent implements OnInit {
   itemService = inject(ItemService);
-  //userService = inject(UserService);
+  userService = inject(UserService);
   itemStatusService = inject(ItemStatusService);
   //commandeService = inject(CommandeService);
-  authService = inject(AuthService);
+ // authService = inject(AuthService);
 
   arrayTasks: Iitem[] = [];
   userRoles: Array<string> = [];
@@ -31,7 +32,7 @@ export class TasklistComponent implements OnInit {
   ngOnInit(): void {
     this.getIitemStatus();
 
-    this.userRoles = this.authService.getUserRoles();
+    this.userRoles = this.userService.getUserRoles();
     if (this.userRoles.includes('ROLE_ADMIN')) {
       this.getAllItemsNoAssigned();
     }

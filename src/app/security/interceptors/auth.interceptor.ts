@@ -2,10 +2,12 @@ import { HttpEvent, HttpHandlerFn, HttpRequest } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { catchError, Observable, throwError } from 'rxjs';
+import { StorageService } from '../../services/storage.service';
 
 export function authInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> {
   const authService = inject(AuthService);
-  const token = authService.getLocalStorageToken();
+  const storageService = inject(StorageService);
+  const token = storageService.getLocalStorageToken();
   // let contentType: string = "";
   // console.log(req.method);
   // // Vérifier quelle opération CRUD est en cours

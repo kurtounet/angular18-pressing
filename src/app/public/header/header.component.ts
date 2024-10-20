@@ -1,7 +1,8 @@
-import {Component, inject, OnInit} from '@angular/core';
-import {RouterModule} from '@angular/router';
-import {AuthService} from '../../services/auth.service';
-import {NgIf} from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { NgIf } from '@angular/common';
+import { StorageService } from '../../services/storage.service';
 
 
 @Component({
@@ -14,7 +15,7 @@ import {NgIf} from '@angular/common';
 export class HeaderComponent implements OnInit {
   menuOpen: boolean = false;
   isLoggedIn: boolean = false;
-  authService = inject(AuthService);
+  storageService = inject(StorageService);
 
   ngOnInit(): void {
     this.testIsloggind();
@@ -25,7 +26,7 @@ export class HeaderComponent implements OnInit {
   }
 
   testIsloggind() {
-    if (this.authService.getLocalStorageToken() === "") {
+    if (this.storageService.getLocalStorageToken() === "") {
       this.isLoggedIn = false;
     } else {
       this.isLoggedIn = true;

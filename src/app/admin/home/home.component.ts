@@ -7,6 +7,7 @@ import { ItemService } from '../../services/item.service';
 import { Iitem } from '../../models/item.model';
 import { ServiceService } from '../../services/service.service';
 import { CategoryService } from '../../services/category.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +21,7 @@ import { CategoryService } from '../../services/category.service';
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit {
-  authService = inject(AuthService);
+  userService = inject(UserService);
   serviceService = inject(ServiceService);
   categoryService = inject(CategoryService);
 
@@ -34,7 +35,7 @@ export class HomeComponent implements OnInit {
   }
 
   getAuthCurrentUser() {
-    this.authService.getAuthCurrentUser().subscribe(data => {
+    this.userService.getAuthCurrentUser().subscribe(data => {
       this.user = data;
       console.log(this.user);
     });

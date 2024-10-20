@@ -8,6 +8,9 @@ import { IUser, User } from '../models/user.model';
   providedIn: 'root'
 })
 export class UserService {
+
+  public roles: Array<string> = [];
+
   httpClient = inject(HttpClient);
   private routeApi = `${environment.baseApiUrl}/users`;
 
@@ -29,5 +32,44 @@ export class UserService {
   optionUser(id: string): Observable<void> {
     return this.httpClient.options<void>(`${this.routeApi}/${id}`);
   }
+  public getUserRoles(): Array<string> {
+    return this.roles;
+  }
+
+  public setUserRoles(roles: Array<string>): void {
+    this.roles = roles;
+  }
+
+  getAuthCurrentUser(): Observable<IUser> {
+    return this.httpClient.get<IUser>(`${environment.baseApiUrl}/currentuser`);
+  }
+
+  public isMajor(dateborn: Date): boolean {
+    const age = new Date().getFullYear() - new Date(dateborn).getFullYear();
+    if (age >= 18) {
+      return true;
+    }
+    return false;
+  }
+  public validcoordanateClient(): boolean {
+    const storedUser = localStorage.getItem("user");
+    // Vérifie si l'utilisateur est stocké dans le localStorage
+    if (storedUser) {
+      const user: IUser = JSON.parse(storedUser);
+      // Vérifie si l'utilisateur est majeur
+      if (this.isMajor(user.dateborn)) {
+        // Vérifie si les coordonnées remplis
+        if (
+          user.firstname && user.lastname &&
+          user.dateborn && user.numadrs && user.adrs && user.city &&
+          user.zipcode && user.country
+        ) {
+          return true; // Toutes les informations sont valides
+        }
+      }
+    }
+    return false;
+  }
+
 }
 

@@ -6,6 +6,7 @@ import { CommonModule, NgClass } from '@angular/common';
 import { HeaderDashboardComponent } from '../header-dashboard/header-dashboard.component';
 import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
 import { SidebarService } from '../../services/sidebar.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   standalone: true,
@@ -26,12 +27,12 @@ import { SidebarService } from '../../services/sidebar.service';
 export class DashboardComponent {
   isDesktop: boolean = false;
   sidebarService = inject(SidebarService);
-  authService = inject(AuthService);
+  userService = inject(UserService);
 
   roles: Array<string> = [];
 
   ngOnInit(): void {
-    this.authService.getAuthCurrentUser().subscribe(data => {
+    this.userService.getAuthCurrentUser().subscribe(data => {
       this.roles = data.roles;
     });
   }
