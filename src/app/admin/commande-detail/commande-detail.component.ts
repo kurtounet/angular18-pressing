@@ -15,7 +15,7 @@ export class CommandeDetailComponent {
   @Output() totalCommande: EventEmitter<number> = new EventEmitter();
 
   calculateTotalCommande() {
-    console.log(this.arrayItemCommande);
+    
     // let total = this.arrayItemCommande.reduce(
     //   (a: number, b: Iitem) => a + b.price?, 0
     // );

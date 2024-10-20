@@ -42,10 +42,8 @@ export class ShoppingCartService {
     }
     );
     this.serviceItem.getAmount(items).subscribe(data => {
-
       this.amount = Number(data.amount);
     })
-
     return this.amount;
 
   }
@@ -61,14 +59,7 @@ export class ShoppingCartService {
     let precision = 2;
     return Math.round(num * Math.pow(10, precision)) / Math.pow(10, precision); // Résultat : 4.57
   }
-  // getshoppingTotal() {
-  //   this.amountTotalHT = this.round(this.getAmount());
-  //   this.totalServicesQty = this.getQuantity();
-  //   this.amountTotalTTC = this.getAmountTotalTTC(this.amountTotalHT)  // Le montant total TTC (déjà avec la TVA)
-  //   console.log('Montant total TTC:', this.amountTotalTTC);
-  //   console.log('Montant total HT:', this.amountTotalHT);
-  //   console.log('Quantité totale:', this.totalServicesQty);
-  // }
+  
   getCart(): IshoppingCartItem[] {
     let cart = localStorage.getItem(this.CART_KEY);
     if (cart != null) {
@@ -93,7 +84,7 @@ export class ShoppingCartService {
   }
   udpateItem(id: number) {
     let indexItem = this.shoppingCart.findIndex(item => item.id === id);
-    console.log(this.shoppingCart[indexItem]);
+
     //this.cart.push(IshoppinCartItem);
     this.saveCart();
   }
@@ -111,15 +102,15 @@ export class ShoppingCartService {
     localStorage.setItem(this.CART_KEY, JSON.stringify(this.shoppingCart));
   }
   postShoppingCart(itemCart: IshoppingCartItem[]) {
-    console.log('postShoppingCart', itemCart);
+
   }
   validedOder(): boolean {
     if (this.userService.validcoordanateClient()) {
       let body: IposteCommande = this.serviceCommande.prepareCommande(this.shoppingCart);
-      console.log('BODY', body);
+
       this.serviceCommande.postCommandeClient(body).subscribe(data => {
         if (data != null) {
-          console.log(data);
+
           this.isCommandeValidated = true;
 
           this.clearCart();

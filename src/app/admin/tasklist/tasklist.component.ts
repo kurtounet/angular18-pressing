@@ -22,7 +22,7 @@ export class TasklistComponent implements OnInit {
   userService = inject(UserService);
   itemStatusService = inject(ItemStatusService);
   //commandeService = inject(CommandeService);
- // authService = inject(AuthService);
+  // authService = inject(AuthService);
 
   arrayTasks: Iitem[] = [];
   userRoles: Array<string> = [];
@@ -39,23 +39,19 @@ export class TasklistComponent implements OnInit {
     if (this.userRoles.includes('ROLE_EMPLOYEE')) {
       this.getItemsEmployee();
     }
-    //console.log(this.userRoles);
-    //this.getAllItems();
-    // console.log('Item employee', this.getItemsEmployee());
   }
 
   getIitemStatus(): void {
     this.itemStatusService.getAllItemStatus().subscribe(data => {
       this.arrayItemStatus = data;
-      console.log(this.arrayItemStatus);
+
     });
   }
 
   getAllItemsNoAssigned(): void {
     this.itemService.getAllItemsNoAssigned().subscribe(data => {
       this.arrayTasks = data;
-      console.log(this.arrayTasks);
-      // console.log(this.arrayItems.map(item => item.quantity));
+
     });
   }
 
@@ -64,7 +60,7 @@ export class TasklistComponent implements OnInit {
       this.arrayTasks = data.map(item => {
         return item.itemStatus ? item : { ...item, Status: 0 };
       });
-      console.log(this.arrayTasks); // Affichage du tableau modifié
+
     });
   }
   newStatus() {
@@ -72,7 +68,7 @@ export class TasklistComponent implements OnInit {
   }
   selectedStatus(event: any) {
     this.selectedStatusId = event.target.value;
-    console.log(this.selectedStatusId);
+
   }
   vstatusValidated() {
     const newStatus = this.arrayItemStatus.find(status => status.id === this.selectedStatusId);

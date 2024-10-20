@@ -8,17 +8,7 @@ export function authInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn):
   const authService = inject(AuthService);
   const storageService = inject(StorageService);
   const token = storageService.getLocalStorageToken();
-  // let contentType: string = "";
-  // console.log(req.method);
-  // // Vérifier quelle opération CRUD est en cours
-  // switch (req.method) {
-  //   case 'POST':
-  //     contentType = "'Content-Type': 'application/json'";
-  //     break;
-  //   case 'PATCH':
-  //     contentType = "'Content-Type': 'application/merge-patch + json'";
-  //     break;
-  // }
+
 
   if (token) {
     req = req.clone({
@@ -28,7 +18,7 @@ export function authInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn):
       }
     });
   }
-  //console.log(req);
+  
   return next(req).pipe(
     catchError(error => {
       if (error.status === 401) {

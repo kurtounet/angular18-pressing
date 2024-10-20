@@ -34,7 +34,7 @@ export class ItemService {
     return this.httpClient.get<Iitem>(`${this.routeApi}/${id}`);
   }
   getAmount(items: any): Observable<any> {
-    console.log('POST AMOUNT', items);
+
     return this.httpClient.post<any>(`${this.routeApi}${'/amount'}`, items);
   }
   postItem(body: Iitem): Observable<Iitem> {
@@ -42,23 +42,17 @@ export class ItemService {
     return this.httpClient.post<Iitem>(this.routeApi, body);
   }
 
-  // patchItem(item: Iitem): Observable<Iitem> {
-  //   const headers = new HttpHeaders({ 'Content-Type': 'application/merge-patch+json' });
-  //   console.log('PATCH ITEM', item)
-  //   console.log('PATCH JSON ITEM', JSON.stringify(item))
-  //   return this.httpClient.patch<Iitem>(`${this.routeApi}/${item.id}`, JSON.stringify(item), { headers });
-  // }
   patchItemStatus(item: Iitem): Observable<Iitem> {
     //const headers = new HttpHeaders({ 'Content-Type': 'application/merge-patch+json' });
 
-    //console.log('PATCH JSON ITEM', JSON.stringify(item.itemStatus))
+
 
     const patchPayload = {
       "itemStatus": item.itemStatus?.['@id']
     };
-    console.log('Payload', patchPayload);
+
     const headers = new HttpHeaders({ 'Content-Type': 'application/merge-patch+json' });
-    //  "/api/item_statuses/5"
+   
     return this.httpClient.patch<Iitem>(`${this.routeApi}/${item.id}`, patchPayload, { headers });
   }
   putItemStatus(item: Iitem): Observable<Iitem> {

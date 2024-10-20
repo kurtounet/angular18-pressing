@@ -35,15 +35,11 @@ export class ClientService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.httpClient.post<IClient>(this.routeApi, client);
   }
-  // patchUser(user: IUser | null): Observable<IUser> {
-  //   const headers = new HttpHeaders({ 'Content-Type': 'application/merge-patch+json' });
-  //   console.log(user)
-  //   return this.httpClient.patch<IUser>(`${this.routeApi}/${user?.id}`, user, { headers });
-  // }
+
 
   // Mettre à jour un Client
   patchClient(client: IClient | null): Observable<IClient> {
-    console.log('SERVICE CLIENT', client)
+   
     const headers = new HttpHeaders({ 'Content-Type': 'application/merge-patch+json' });
     return this.httpClient.patch<IClient>(`${this.routeApi}/${client?.user.id}`, client, { headers });
   }

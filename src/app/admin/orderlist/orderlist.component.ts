@@ -44,7 +44,7 @@ export class OrderlistComponent {
 
   loadAllCommande() {
     this.commandeService.getAllCommandes().subscribe(data => {
-      console.log(data);
+
       this.arrayCommandes = data;
     });
   }
@@ -60,7 +60,7 @@ export class OrderlistComponent {
   loadEmployeeCommande() {
     this.clientService.getClientById(this.user.id).subscribe(data => {
       // this.arrayCommandes = data['commande'];
-      console.log(data);
+
     });
   }
   toggleDetail(commande: any) {
@@ -88,7 +88,6 @@ export class OrderlistComponent {
 
 
   deleteCommande(commande: ICommande) {
-    console.log('', typeof (commande.id));
     this.commandeService.deleteCommande(commande.id!).subscribe(() => {
       this.ngOnInit();
     });

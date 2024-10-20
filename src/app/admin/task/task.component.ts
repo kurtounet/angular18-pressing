@@ -54,7 +54,7 @@ export class TaskComponent {
       this.task.itemStatus = newStatus; // Met à jour l'objet task avec le nouveau statut
       this.itemService.putItemStatus(this.task).subscribe(data => {
         // Émettre un événement lorsqu'un statut est validé
-        console.log(data);
+     
         this.statusChange.emit(data);
       });
 

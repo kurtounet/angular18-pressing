@@ -34,23 +34,7 @@ export class ShoppingCartComponent {
     this.getCart();
   }
 
-  // getshoppingTotal() {
-  //   this.amountTotalHT = this.round(this.shoppingCartService.getAmount());
-  //   this.totalServicesQty = this.shoppingCartService.getQuantity();
-  //   this.amountTotalTTC = this.round(this.amountTotalHT + (this.amountTotalHT * this.tva / 100));  // Le montant total TTC (déjà avec la TVA)
-  //   console.log('Montant total TTC:', this.amountTotalTTC);
-  //   console.log('Montant total HT:', this.amountTotalHT);
-  //   console.log('Quantité totale:', this.totalServicesQty);
-  // }
-
-
-  // getItemsCart() {
-  //   this.arrayShoppingCartItem = this.shoppingCartService.getCart();
-  //   console.log('this.arrayShoppingCartItem')
-  // }
-
   getCart(): void {
-    console.log("getCart")
     this.arrayShoppingCartItem = this.shoppingCartService.getCart();
     this.amountTotalHT = this.shoppingCartService.getAmount();
 
@@ -70,11 +54,9 @@ export class ShoppingCartComponent {
   validedOrder(): void {
     if (this.arrayShoppingCartItem.length > 0) {
       let resp = this.shoppingCartService.validedOder();
-      console.log('ShoppingCartComponent', resp)
       if (resp) {
         this.shoppingCartService.clearCart();
         this.closeShoppingCart();
-
       } else {
         this.message = "Vérifiez vos informations personnel"
       }
@@ -83,7 +65,6 @@ export class ShoppingCartComponent {
   }
 
   changeQuantity(event: any) {
-    console.log("changeQuantity")
     let qty = event.target.value;
   }
   //FUNCTIONS

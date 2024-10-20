@@ -40,7 +40,7 @@ export class PageDepotComponent implements OnInit {
   arrayCategoriesOfSelectedService: ICategory[] = [];
   selectedServicesId: number = 0;
   selectedCategory!: ICategory;
-  
+
   // INJECTIONS DES DEPENDANCES
   serviceService = inject(ServiceService);
   categoryService = inject(CategoryService);
@@ -101,27 +101,3 @@ export class PageDepotComponent implements OnInit {
     }
   }
 }
-//serviceCommande = inject(CommandeService);
-//authService = inject(AuthService);
-//popUpIsVisible: boolean = false;
-// POPUP
-// openPopupSelectedCategory(category: ICategory) {
-//   this.selectedCategory = category;
-//   this.popUpIsVisible = true;
-//   console.log(category);
-// }
-
-// closePopup() {
-//   this.popUpIsVisible = false;
-// }
-// abort() {
-//   this.popUpIsVisible = false;
-// }
-// updateQuantity(Id: number, newQuantity: number) {
-//   this.quantity = newQuantity;
-//   console.log('updateQuantity', categoryId, 'newQuantity:', newQuantity);
-//   const category = this.arrayTempCategories.find(cat => cat.id === Id);
-//   if (category) {
-//     category.quantity = newQuantity;
-//   }
-// }

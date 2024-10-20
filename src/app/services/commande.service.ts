@@ -71,32 +71,3 @@ export class CommandeService {
     return commande;
   }
 }
-
-/*
-
-
-addCommande() {
-    let formattedDate = this.formatDateTime(new Date());
-    //console.log(formattedDate); // Affiche la date au format PHP: '2024-08-13 10:45:00'
-    let clientId = this.authService.getLocalStorageUser().id;
-    console.log(clientId);
-
-    let commande: ICommande = {
-      id: null,
-      ref: '',
-      client: '/api/clients/' + clientId,
-      filingDate: this.formatDateTime(new Date()) ?? '',
-      paymentDate: this.formatDateTime(new Date()) ?? '',
-      returnDate: this.formatDateTime(new Date()) ?? ''
-    }
-    console.log(commande);
-    /*
-    this.serviceCommande.postCommande(commande).subscribe(data => {
-      console.log(data);
-      if (data) {
-        this.serviceShoppingCart.postShoppingCart(this.arrayItemsCart).subscribe(data => console.log(data)); //clearCart();
-      }
-    });
-
-*/
-

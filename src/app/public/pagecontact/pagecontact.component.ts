@@ -28,7 +28,7 @@ export class PagecontactComponent {
   onSubmit() {
     if (this.contactForm.valid) {
       const formData = this.contactForm.value;
-      console.log(formData);
+     
       // this.contactForm.reset();
 
     }
