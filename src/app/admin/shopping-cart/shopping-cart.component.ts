@@ -37,7 +37,6 @@ export class ShoppingCartComponent {
   getCart(): void {
     this.arrayShoppingCartItem = this.shoppingCartService.getCart();
     this.amountTotalHT = this.shoppingCartService.getAmount();
-
   }
 
   removeItemCart(item: IshoppingCartItem) {
@@ -53,7 +52,7 @@ export class ShoppingCartComponent {
 
   validedOrder(): void {
     if (this.arrayShoppingCartItem.length > 0) {
-      let resp = this.shoppingCartService.validedOder();
+      let resp = this.shoppingCartService.validedOrder();
       if (resp) {
         this.shoppingCartService.clearCart();
         this.closeShoppingCart();
@@ -61,7 +60,6 @@ export class ShoppingCartComponent {
         this.message = "Vérifiez vos informations personnel"
       }
     }
-
   }
 
   changeQuantity(event: any) {

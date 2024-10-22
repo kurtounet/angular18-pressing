@@ -3,7 +3,6 @@ import { ItemService } from '../../services/item.service';
 import { CommonModule } from '@angular/common';
 import { Iitem } from '../../models/item.model';
 import { ItemStatusService } from '../../services/item-status.service';
-import { AuthService } from '../../services/auth.service';
 import { FormsModule } from '@angular/forms';
 import { IdCommandeToRefPipe } from '../../pipes/id-commande-to-ref.pipe';
 import { IitemStatus } from '../../models/itemStatus.model';
@@ -18,11 +17,10 @@ import { UserService } from '../../services/user.service';
   styleUrl: './tasklist.component.css'
 })
 export class TasklistComponent implements OnInit {
+  // Injection des services
   itemService = inject(ItemService);
   userService = inject(UserService);
   itemStatusService = inject(ItemStatusService);
-  //commandeService = inject(CommandeService);
-  // authService = inject(AuthService);
 
   arrayTasks: Iitem[] = [];
   userRoles: Array<string> = [];
@@ -44,14 +42,12 @@ export class TasklistComponent implements OnInit {
   getIitemStatus(): void {
     this.itemStatusService.getAllItemStatus().subscribe(data => {
       this.arrayItemStatus = data;
-
     });
   }
 
   getAllItemsNoAssigned(): void {
     this.itemService.getAllItemsNoAssigned().subscribe(data => {
       this.arrayTasks = data;
-
     });
   }
 
@@ -60,7 +56,6 @@ export class TasklistComponent implements OnInit {
       this.arrayTasks = data.map(item => {
         return item.itemStatus ? item : { ...item, Status: 0 };
       });
-
     });
   }
   newStatus() {
@@ -68,7 +63,6 @@ export class TasklistComponent implements OnInit {
   }
   selectedStatus(event: any) {
     this.selectedStatusId = event.target.value;
-
   }
   vstatusValidated() {
     const newStatus = this.arrayItemStatus.find(status => status.id === this.selectedStatusId);
@@ -76,7 +70,7 @@ export class TasklistComponent implements OnInit {
       this.arrayTasks.forEach(task => {
         if (task.id === task.id) {
           task.itemStatus = newStatus;
-        } // Met à jour l'objet task avec le nouveau statut
+        }
       });
     }
   }

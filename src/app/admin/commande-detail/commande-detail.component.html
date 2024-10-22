@@ -1,24 +1,23 @@
-<div class="table-responsive">
+<div class="table-responsive responsive-table">
   <table class="table table-bordered">
     <thead class="thead-light">
       <tr>
-        <th class="text-center" scope="col">Service</th>
-        <th class="text-center" scope="col">Catégorie</th>
-        <th class="text-center" scope="col">Status</th>
-        <th class="text-center" scope="col">Prix</th>
-        <th class="text-center" scope="col">Quantité</th>
-        <th class="text-center" scope="col">Détail</th>
+        <th class="text" scope="col">Service</th>
+        <th class="text" scope="col">Catégorie</th>
+        <th class="text" scope="col">Status</th>
+        <th class="text" scope="col">Prix</th>
+        <th class="text" scope="col">Quantité</th>
+        <th class="text" scope="col">Détail</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let item of arrayItemCommande; let i = index">
-
-        <td class="text-center">{{ item.service?.name }}</td>
-        <td class="text-center">{{ item.category?.name }}</td>
-        <td class="text-center">{{ item.itemStatus?.name }}</td>
-        <td class="text-center">{{ item.service?.price}} <span>€</span></td>
-        <td class="text-center">{{ item.quantity }}</td>
-        <td class="text-center">{{ item.detailItem || 'Aucun détail' }}</td>
+        <td class="text" data-label="Service">{{ item.service?.name }}</td>
+        <td class="text" data-label="Catégorie">{{ item.category?.name }}</td>
+        <td class="text" data-label="Status">{{ item.itemStatus?.name }}</td>
+        <td class="text" data-label="Prix">{{ item.service?.price}} <span>€</span></td>
+        <td class="text" data-label="Quantité">{{ item.quantity }}</td>
+        <td class="text" data-label="Détail">{{ item.detailItem || 'Aucun détail' }}</td>
       </tr>
     </tbody>
   </table>

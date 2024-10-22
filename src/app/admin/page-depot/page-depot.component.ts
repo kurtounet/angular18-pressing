@@ -42,12 +42,14 @@ export class PageDepotComponent implements OnInit {
   selectedCategory!: ICategory;
 
   // INJECTIONS DES DEPENDANCES
+
   serviceService = inject(ServiceService);
   categoryService = inject(CategoryService);
   serviceShoppingCart = inject(ShoppingCartService);
   // METHODS
   ngOnInit(): void {
     this.getAllServices();
+    this.getAllCategories();
   }
   getAllServices() {
     // Récupérer tous les services
@@ -61,6 +63,11 @@ export class PageDepotComponent implements OnInit {
     // Récuperer les catégories du service selectionné
     this.getCategoriesOfServiceById(this.selectedServicesId);
   }
+  getAllCategories() {
+    this.categoryService.getAllCategories().subscribe(data => {
+      this.categoryService.arrayCategories = data;
+    });
+  }
   getCategoriesOfServiceById(id: number) {
     if (id != 0) {
       // Appeler le service pour récuperer les catégories du service selectionné.
@@ -72,9 +79,10 @@ export class PageDepotComponent implements OnInit {
           .map(cat => ({ ...cat, quantity: 0 }))
       });
     } else {
-      this.categoryService.getAllCategories().subscribe(data => {
-        this.arrayCategoriesOfSelectedService = data;
-      });
+      this.getAllCategories();
+      // this.categoryService.getAllCategories().subscribe(data => {
+      //   this.arrayCategoriesOfSelectedService = data;
+      // });
     }
   }
   addToCart(category: any) {
@@ -100,4 +108,6 @@ export class PageDepotComponent implements OnInit {
       category.quantity = newQuantity;
     }
   }
+
+
 }

@@ -13,16 +13,12 @@ import { environment } from '../environments/environment';
 export class LemonsqueezyService {
   urlApi: string = "https://api.lemonsqueezy.com/v1/";
   apiKey: string = environment.LEMONSQUEEZY_API_KEY;
-
   constructor() { }
-
   //   lemonSqueezySetup({
   //     apiKey,
   //     onError: (error) => console.error("Error!", error),
   // });
-
   // const { data, error } = await getAuthenticatedUser();
-
   // if (error) {
   //   console.log(error.message);
   // } else {

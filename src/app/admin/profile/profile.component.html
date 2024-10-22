@@ -3,6 +3,9 @@
   <button (click)="deleteUser()" class="btn btn-primary" type="submit">
     supprimer mon compte
   </button>
+  <button (click)="loadUser()" class="btn btn-primary" type="submit">
+    Charger  pour gagner du temps pour la soutenance
+  </button>
   <form (ngSubmit)="onSubmit()" [formGroup]="profileForm">
     <div class="form-group mb-3">
       <label for="firstname">Prénom</label>
@@ -55,6 +58,11 @@
         Le numéro d'adresse est requis.
       </div>
     </div>
+    <select>
+      <option *ngFor="let adresse of arrayAdresses, let i = index" [value]="adresse">
+        {{ adresse }}
+      </option>
+    </select>
     <div class="form-group mb-3">
       <label for="adrs">Rue</label>
       <input class="form-control" formControlName="adrs" id="adrs" type="text" />

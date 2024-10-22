@@ -1,20 +1,25 @@
-<div *ngIf="user.roles?.includes('ROLE_ADMIN')">ADMIN</div>
+<!-- <div *ngIf="user.roles?.includes('ROLE_ADMIN')">ADMIN</div>
 <div *ngIf="user.roles?.includes('ROLE_EMPLOYEE')">EMPLOYEE</div>
-<div *ngIf="user.roles?.includes('ROLE_CLIENT')">CLIENT</div>
+<div *ngIf="user.roles?.includes('ROLE_CLIENT')">CLIENT</div> -->
+<div class="roles d-flex flex-wrap mb-3">
+  <div *ngIf="user.roles?.includes('ROLE_ADMIN')" class="badge badge-primary m-1">ADMIN</div>
+  <div *ngIf="user.roles?.includes('ROLE_EMPLOYEE')" class="badge badge-info m-1">EMPLOYEE</div>
+  <div *ngIf="user.roles?.includes('ROLE_CLIENT')" class="badge badge-secondary m-1">CLIENT</div>
+</div>
 
 
 <div class="table-responsive">
   <table class="table table-striped table-bordered">
     <thead>
       <tr>
-        <th class="text-center">ID</th>
-        <th class="text-center">Référence</th>
-        <th class="text-center">Date de dépôt</th>
-        <th class="text-center">Date de paiement</th>
-        <th class="text-center">Date de retour</th>
-        <th class="text-center">Prix</th>
-        <th class="text-center">Statut</th>
-        <th class="text-center">Actions</th>
+        <th class="text">ID</th>
+        <th class="text">Référence</th>
+        <th class="text d-none d-sm-table-cell">Date de dépôt</th>
+        <th class="text d-none d-md-table-cell">Date de paiement</th>
+        <th class="text d-none d-md-table-cell">Date de retour</th>
+        <th class="text">Prix</th>
+        <th class="text">Statut</th>
+        <th class="text">Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -22,24 +27,46 @@
       <ng-container *ngFor="let commande of arrayCommandes; let i = index">
         <tr>
           <!-- Utilisation de 'commande' à l'intérieur de la boucle -->
-          <td class="text-center">{{ commande.id }}</td>
-          <td class="text-center">{{ commande.ref }}</td>
-          <td class="text-center">{{ commande.filingDate | date : 'shortDate' }}</td>
-          <td class="text-center">{{ commande.paymentDate | date : 'shortDate' }}</td>
-          <td class="text-center">{{ commande.returnDate | date : 'shortDate' }}</td>
-          <td class="text-center">{{ calculateTotalCommande() }} <span>€</span></td>
-          <td class="text-center">En cours</td>
-          <td class="text-center">
+          <td class="text">{{ commande.id }}</td>
+          <td class="text">{{ commande.ref }}</td>
+          <td class="text d-none d-sm-table-cell">{{ commande.filingDate | date : 'shortDate' }}</td>
+          <td class="text d-none d-md-table-cell">{{ commande.paymentDate | date : 'shortDate' }}</td>
+          <td class="text d-none d-md-table-cell">{{ commande.returnDate | date : 'shortDate' }}</td>
+          <td class="text">{{ calculateTotalCommande() }} <span>€</span></td>
+          <td class="text">En cours</td>
+          <td class="text">
             <button class="btn btn-success btn-sm mx-1" type="button" (click)="toggleDetail(commande)">Détail</button>
             <button class="btn btn-danger btn-sm mx-1" type="button">Facture</button>
-            <button class="btn btn-danger btn-sm mx-1" type="button" (click)="deleteCommande(commande)" >supprimer</button>
+            <button class="btn btn-danger btn-sm mx-1" type="button"
+              (click)="deleteCommande(commande)">supprimer</button>
           </td>
+          <!-- <td class="text">
+            <div class="btn-group d-block d-md-none">
+              <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                Actions
+              </button>
+              <div class="dropdown-menu">
+                <button class="dropdown-item" type="button" (click)="toggleDetail(commande)">Détail</button>
+                <button class="dropdown-item" type="button">Facture</button>
+                <button class="dropdown-item" type="button" (click)="deleteCommande(commande)">Supprimer</button>
+              </div>
+            </div>
+            <div class="d-none d-md-flex">
+              <button class="btn btn-success btn-sm mx-1" type="button" (click)="toggleDetail(commande)">Détail</button>
+              <button class="btn btn-danger btn-sm mx-1" type="button">Facture</button>
+              <button class="btn btn-danger btn-sm mx-1" type="button"
+                (click)="deleteCommande(commande)">Supprimer</button>
+            </div>
+          </td> -->
+
         </tr>
 
         <!-- Détails de la commande dans la boucle -->
         <tr *ngIf="isShowDetail && selectedCommande?.id === commande.id">
           <td colspan="8">
-            <app-commande-detail [arrayItemCommande]="arrayItemCommande" (totalCommande)="calculateTotalCommande()"></app-commande-detail>
+            <app-commande-detail [arrayItemCommande]="arrayItemCommande"
+              (totalCommande)="calculateTotalCommande()"></app-commande-detail>
           </td>
         </tr>
       </ng-container>

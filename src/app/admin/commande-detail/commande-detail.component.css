@@ -1,0 +1,33 @@
+.text {
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .responsive-table {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .responsive-table thead {
+    display: none;
+  }
+
+  .responsive-table tr {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+  }
+
+  .responsive-table td {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+  }
+
+  .responsive-table td::before {
+    content: attr(data-label);
+    flex: 1;
+    font-weight: bold;
+  }
+}

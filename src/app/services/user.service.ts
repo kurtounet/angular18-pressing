@@ -9,9 +9,11 @@ import { IUser, User } from '../models/user.model';
 })
 export class UserService {
 
-  public roles: Array<string> = [];
 
+  // INJECTION DEPENDENCIES
   httpClient = inject(HttpClient);
+  // VARIABLES
+  public roles: Array<string> = [];
   private routeApi = `${environment.baseApiUrl}/users`;
 
   getAllUsers(): Observable<IUser> {
@@ -35,15 +37,12 @@ export class UserService {
   public getUserRoles(): Array<string> {
     return this.roles;
   }
-
   public setUserRoles(roles: Array<string>): void {
     this.roles = roles;
   }
-
   getAuthCurrentUser(): Observable<IUser> {
-    return this.httpClient.get<IUser>(`${environment.baseApiUrl}/currentuser`);
+    return this.httpClient.get<IUser>(`${this.routeApi}/currentuser`);
   }
-
   public isMajor(dateborn: Date): boolean {
     const age = new Date().getFullYear() - new Date(dateborn).getFullYear();
     if (age >= 18) {
@@ -59,9 +58,7 @@ export class UserService {
       // Vérifie si l'utilisateur est majeur
       if (this.isMajor(user.dateborn)) {
         // Vérifie si les coordonnées remplis
-        if (
-          user.firstname && user.lastname &&
-          user.dateborn && user.numadrs && user.adrs && user.city &&
+        if (user.firstname && user.lastname && user.dateborn && user.numadrs && user.adrs && user.city &&
           user.zipcode && user.country
         ) {
           return true; // Toutes les informations sont valides

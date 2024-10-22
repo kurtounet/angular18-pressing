@@ -59,7 +59,7 @@ export class ShoppingCartService {
     let precision = 2;
     return Math.round(num * Math.pow(10, precision)) / Math.pow(10, precision); // Résultat : 4.57
   }
-  
+
   getCart(): IshoppingCartItem[] {
     let cart = localStorage.getItem(this.CART_KEY);
     if (cart != null) {
@@ -104,15 +104,13 @@ export class ShoppingCartService {
   postShoppingCart(itemCart: IshoppingCartItem[]) {
 
   }
-  validedOder(): boolean {
+  validedOrder(): boolean {
     if (this.userService.validcoordanateClient()) {
       let body: IposteCommande = this.serviceCommande.prepareCommande(this.shoppingCart);
 
       this.serviceCommande.postCommandeClient(body).subscribe(data => {
         if (data != null) {
-
           this.isCommandeValidated = true;
-
           this.clearCart();
         }
       });

@@ -4,8 +4,6 @@ import { map, Observable } from 'rxjs';
 import { environment } from '../environments/environment'; // Corriger le nom du chemin si nécessaire
 import { ICommande } from '../models/commande.model';
 import { DatePipe } from '@angular/common';
-
-import { IClient } from '../models/client.model';
 import { IshoppingCartItem } from '../models/shoppingCartItem.model';
 import { IposteCommande } from '../models/postCommande.model';
 import { AuthService } from './auth.service';
