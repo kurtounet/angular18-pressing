@@ -23,7 +23,7 @@ export class SignupFormComponent {
     email: new FormControl('anthony@gmail.com', { validators: [Validators.required, Validators.email] }),
     password: new FormControl('nirvana', { validators: [Validators.required] }),
     secondpassword: new FormControl('nirvana', { validators: [Validators.required] }),
-    roles: new FormControl(["ROLE_CLIENT"], { validators: [Validators.required] }),
+    roles: new FormControl(["ROLE_CLIENT", "ROLE_USER"], { validators: [Validators.required] }),
   });
 
   onSubmit() {
