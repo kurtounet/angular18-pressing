@@ -23,7 +23,9 @@
           </div>
           <div class="col-3 text-center">
             <div class="col">
-              <app-quantity-selector [inQuantity]="quantity" (outQuantity)="updateQuantity(category.id, $event)">
+              <app-quantity-selector
+              [inQuantity]="quantity"
+              (outQuantity)="updateQuantity(category.id, $event)">
               </app-quantity-selector>
             </div>
             <div class="col">

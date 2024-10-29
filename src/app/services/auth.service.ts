@@ -16,50 +16,12 @@ import { UserService } from './user.service';
 export class AuthService {
 
   urlApiAuth: string = environment.authUrl;
-
   http = inject(HttpClient);
   userService = inject(UserService);
   StorageService = inject(StorageService);
   router = inject(Router);
   isLoggedIn: boolean = false;
-
-
   public roles: Array<string> = [];
-
-  // public setLocalStorageToken(token: string): void {
-  //   localStorage.setItem("token", token);
-  // }
-
-  // public getLocalStorageToken(): string | null {
-  //   return localStorage.getItem("token");
-  // }
-
-  // //  getToken(): string | null {
-  // //   return localStorage.getItem('token');
-  // // }
-
-  // public setLocalStorageUser(user: IUser): void {
-  //   localStorage.setItem("user", JSON.stringify(user));
-  // }
-
-  // public getLocalStorageUser(): IUser {
-  //   const user = localStorage.getItem("user");
-  //   return user ? JSON.parse(user) : null;
-  // }
-
-
-  // public getUserRoles(): Array<string> {
-  //   return this.roles;
-  // }
-
-  // public setUserRoles(roles: Array<string>): void {
-  //   this.roles = roles;
-  // }
-
-  // getAuthCurrentUser(): Observable<IUser> {
-  //   return this.http.get<IUser>(`${environment.baseApiUrl}/currentuser`);
-  // }
-
   isLogged(): boolean {
     const token = this.StorageService.getLocalStorageToken();
     if (!token)
@@ -72,11 +34,9 @@ export class AuthService {
       return false;
     }
   }
-
   login(credentials: { username: string; password: string }): Observable<IToken> {
     return this.http.post<IToken>(`${this.urlApiAuth}`, credentials);
   }
-
   logOut() {
     localStorage.removeItem('token');
     this.userService.setUserRoles([]);

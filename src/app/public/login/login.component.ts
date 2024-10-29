@@ -21,7 +21,6 @@ import { StorageService } from '../../services/storage.service';
 })
 export class LoginComponent {
   title = 'Login';
-
   authService = inject(AuthService);
   userService = inject(UserService);
   storageService = inject(StorageService);
@@ -30,11 +29,11 @@ export class LoginComponent {
 
   public loginForm: FormGroup = new FormGroup({
     credentials: new FormGroup({
-      username: new FormControl('anthony@gmail.com', [
+      username: new FormControl(null, [
         Validators.required,
         Validators.email,
       ]),
-      password: new FormControl('nirvana', [
+      password: new FormControl(null, [
         Validators.required,
         Validators.minLength(2),
       ]),
@@ -49,13 +48,11 @@ export class LoginComponent {
           this.userService.getAuthCurrentUser().subscribe((data) => {
             this.storageService.setLocalStorageUser(data);
           });
-
           this.router.navigate(['/admin/dashboard']);
         },
         (error) => {
           this.serverErrorMessages = error.error.message;
           console.error('Login failed', error.error.message);
-
         }
       );
     }
