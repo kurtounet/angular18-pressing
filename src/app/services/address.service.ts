@@ -14,7 +14,7 @@ export class AddressService {
 
   getFeatureCollection(number: number, ville: string): Observable<IFeatureCollection> {
     const query = encodeURIComponent(number + ' ' + 'chemin' + ville + ' ' + '&postcode=69570');
-    console.log(query);
+    //console.log(query);
     return this.http.get<IFeatureCollection>(`${this.urlApiAddress}?q=${query}&autocomplete=1`);
   }
 

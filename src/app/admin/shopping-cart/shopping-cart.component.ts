@@ -9,6 +9,7 @@ import { NameServiceByIdPipe } from '../../pipes/name-service-by-id.pipe';
 import { ServiceService } from '../../services/service.service';
 import { AppComponent } from '../../app.component';
 import { environment } from '../../environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -21,6 +22,7 @@ export class ShoppingCartComponent {
   // INJECTION DEPENDENCIES
   //constructor(private app: AppComponent) { }
   shoppingCartService = inject(ShoppingCartService);
+  router = inject(Router);
   // VARIABLES
   baseUrlImageCategories = environment.baseUrl + environment.assertsImageCategories;
   message: string = '';
@@ -56,6 +58,7 @@ export class ShoppingCartComponent {
       if (resp) {
         this.shoppingCartService.clearCart();
         this.closeShoppingCart();
+        //this.router.navigate(['/admin/dashboard/orderlist']);
       } else {
         this.message = "Vérifiez vos informations personnel"
       }

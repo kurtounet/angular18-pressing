@@ -37,7 +37,6 @@ export class HomeComponent implements OnInit {
   getAuthCurrentUser() {
     this.userService.getAuthCurrentUser().subscribe(data => {
       this.user = data;
-      
     });
   }
   getAllServices() {

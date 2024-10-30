@@ -12,6 +12,7 @@ import { IshoppingCartItem } from '../../models/shoppingCartItem.model';
 import { QuantitySelectorComponent } from '../quantity-selector/quantity-selector.component';
 import { map } from 'rxjs';
 import { Subscription } from '@lemonsqueezy/lemonsqueezy.js';
+import { Router } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -40,11 +41,12 @@ export class PageDepotComponent implements OnInit {
   arrayCategoriesOfSelectedService: ICategory[] = [];
   selectedServicesId: number = 0;
   selectedCategory!: ICategory;
-
+  message: string = "";
   // INJECTIONS DES DEPENDANCES
 
   serviceService = inject(ServiceService);
   categoryService = inject(CategoryService);
+  router = inject(Router);
   serviceShoppingCart = inject(ShoppingCartService);
   // METHODS
   ngOnInit(): void {
@@ -108,6 +110,19 @@ export class PageDepotComponent implements OnInit {
       category.quantity = newQuantity;
     }
   }
-
+  validedOrder(): void {
+    if (this.serviceShoppingCart.shoppingCart.length > 0) {
+      let resp = this.serviceShoppingCart.validedOrder();
+      if (resp) {
+        this.message = "Commande validee"
+        this.serviceShoppingCart.clearCart();
+        this.router.navigate(['/admin/dashboard/orderlist']);
+      } else {
+        this.message = "Vérifiez vos informations personnel"
+      }
+    } else {
+      this.message = "Votre panier est vide"
+    }
+  }
 
 }

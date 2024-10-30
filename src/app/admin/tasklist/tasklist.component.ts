@@ -37,6 +37,7 @@ export class TasklistComponent implements OnInit {
     if (this.userRoles.includes('ROLE_EMPLOYEE')) {
       this.getItemsEmployee();
     }
+
   }
 
   getIitemStatus(): void {
@@ -48,14 +49,18 @@ export class TasklistComponent implements OnInit {
   getAllItemsNoAssigned(): void {
     this.itemService.getAllItemsNoAssigned().subscribe(data => {
       this.arrayTasks = data;
+      console.log(this.arrayTasks)
     });
   }
 
   getItemsEmployee(): void {
+    console.log(this.userRoles);
     this.itemService.getItemsEmployee().subscribe(data => {
-      this.arrayTasks = data.map(item => {
-        return item.itemStatus ? item : { ...item, Status: 0 };
-      });
+      this.arrayTasks = data;
+      console.log(this.arrayTasks);
+      // this.arrayTasks = data.map(item => {
+      //   return item.itemStatus ? item : { ...item, Status: 0 };
+      // });
     });
   }
   newStatus() {

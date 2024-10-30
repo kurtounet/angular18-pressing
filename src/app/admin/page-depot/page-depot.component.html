@@ -23,9 +23,7 @@
           </div>
           <div class="col-3 text-center">
             <div class="col">
-              <app-quantity-selector
-              [inQuantity]="quantity"
-              (outQuantity)="updateQuantity(category.id, $event)">
+              <app-quantity-selector [inQuantity]="quantity" (outQuantity)="updateQuantity(category.id, $event)">
               </app-quantity-selector>
             </div>
             <div class="col">
@@ -36,7 +34,8 @@
           </div>
         </li>
       </ul>
-      <button (click)="serviceShoppingCart.validedOrder()" class="btn btn-primary mt-2">
+      <p>{{ message }}</p>
+      <button (click)="validedOrder()" class="btn btn-primary mt-2">
         Valider la commande
       </button>
     </section>

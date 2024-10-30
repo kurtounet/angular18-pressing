@@ -6,6 +6,7 @@ import { IposteCommande } from '../models/postCommande.model';
 import { ItemService } from './item.service';
 import { Iitem } from '../models/item.model';
 import { UserService } from './user.service';
+import { Router } from 'express';
 
 
 @Injectable({
@@ -23,6 +24,7 @@ export class ShoppingCartService {
   amountTotalHT: number = 0;
   // INJECTION DEPENDENCIES
   constructor() { }
+
   serviceCommande = inject(CommandeService)
   serviceItem = inject(ItemService)
   userService = inject(UserService)
@@ -109,6 +111,7 @@ export class ShoppingCartService {
       let body: IposteCommande = this.serviceCommande.prepareCommande(this.shoppingCart);
 
       this.serviceCommande.postCommandeClient(body).subscribe(data => {
+        console.log(data);
         if (data != null) {
           this.isCommandeValidated = true;
           this.clearCart();

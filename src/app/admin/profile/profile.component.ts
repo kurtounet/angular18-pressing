@@ -65,11 +65,11 @@ export class ProfileComponent implements OnInit {
     this.addressService.getFeatureCollection(10, this.city).subscribe({
       next: (data: any) => {
         this.arrayFeatureCollection = data;
-        console.log('DATA', data.features);
+        //console.log('DATA', data.features);
         this.arrayAdresses = data.features.map((feature: IFeature) => {
           return feature.properties.label;
         })
-        console.log(this.arrayAdresses);
+        //console.log(this.arrayAdresses);
       }
     })
   }
