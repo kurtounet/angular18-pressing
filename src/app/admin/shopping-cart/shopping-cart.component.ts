@@ -58,7 +58,7 @@ export class ShoppingCartComponent {
       if (resp) {
         this.shoppingCartService.clearCart();
         this.closeShoppingCart();
-        //this.router.navigate(['/admin/dashboard/orderlist']);
+        this.router.navigate(['/admin/dashboard/orderlist']);
       } else {
         this.message = "Vérifiez vos informations personnel"
       }

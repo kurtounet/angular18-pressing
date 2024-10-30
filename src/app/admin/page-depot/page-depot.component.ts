@@ -112,7 +112,8 @@ export class PageDepotComponent implements OnInit {
   }
   validedOrder(): void {
     if (this.shoppingCartService.shoppingCart.length > 0) {
-      let resp = this.shoppingCartService.validedOrder();
+      const resp = this.shoppingCartService.validedOrder();
+      console.log(resp);
       if (resp) {
         this.message = "Commande validée"
         this.router.navigate(['/admin/dashboard/orderlist']);

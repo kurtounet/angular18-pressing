@@ -23,6 +23,7 @@ export class ShoppingCartService {
   totalServicesQty: number = 0;
   amountTotalTTC: number = 0;
   amountTotalHT: number = 0;
+  commandeCreate?: ICommande;
   // INJECTION DEPENDENCIES
   constructor() { }
 
@@ -110,15 +111,15 @@ export class ShoppingCartService {
   validedOrder(): boolean {
     if (this.userService.validcoordanateClient()) {
       let body: IposteCommande = this.serviceCommande.prepareCommande(this.shoppingCart);
-      this.serviceCommande.postCommandeClient(body).subscribe(data => {
-        console.log(data);
-        if (data != null) {
-          this.isCommandeValidated = true;
+      this.serviceCommande.postCommandeClient(body).subscribe({
+        next: (data: ICommande) => {
           this.clearCart();
+        },
+        error: (err) => {
+          console.error("Erreur lors de la création de la commande :", err);
         }
       });
-      console.log(this.isCommandeValidated);
-      return this.isCommandeValidated;
+      return true;
     } else {
       return false;
     }
