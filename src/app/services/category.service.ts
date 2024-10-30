@@ -28,7 +28,6 @@ export class CategoryService {
     return this.httpClient.get<IHydraCollection<ICategory>>(this.routeApi).pipe(
       map(response => {
         this.arrayCategories = response['hydra:member'];
-        console.log(response['hydra:member']);
         return response['hydra:member'];
       }),
     );
