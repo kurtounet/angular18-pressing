@@ -41,13 +41,13 @@ export class PageDepotComponent implements OnInit {
   arrayCategoriesOfSelectedService: ICategory[] = [];
   selectedServicesId: number = 0;
   selectedCategory!: ICategory;
-  message: string = "";
+  message: string = '';
   // INJECTIONS DES DEPENDANCES
 
   serviceService = inject(ServiceService);
   categoryService = inject(CategoryService);
+  shoppingCartService = inject(ShoppingCartService);
   router = inject(Router);
-  serviceShoppingCart = inject(ShoppingCartService);
   // METHODS
   ngOnInit(): void {
     this.getAllServices();
@@ -98,7 +98,7 @@ export class PageDepotComponent implements OnInit {
         quantity: category.quantity
       }
       // Envoyer le produit au service qui gère le panier
-      this.serviceShoppingCart.addItem(itemCart, this.quantity);
+      this.shoppingCartService.addItem(itemCart, this.quantity);
     }
   }
   updateQuantity(categoryId: number, newQuantity: number) {
@@ -111,17 +111,16 @@ export class PageDepotComponent implements OnInit {
     }
   }
   validedOrder(): void {
-    if (this.serviceShoppingCart.shoppingCart.length > 0) {
-      let resp = this.serviceShoppingCart.validedOrder();
+    if (this.shoppingCartService.shoppingCart.length > 0) {
+      let resp = this.shoppingCartService.validedOrder();
       if (resp) {
-        this.message = "Commande validee"
-        this.serviceShoppingCart.clearCart();
+        this.message = "Commande validée"
         this.router.navigate(['/admin/dashboard/orderlist']);
       } else {
         this.message = "Vérifiez vos informations personnel"
       }
     } else {
-      this.message = "Votre panier est vide"
+      this.message = "Veuillez choisir au moins un service"
     }
   }
 

@@ -5,6 +5,7 @@ import { AuthService } from './auth.service';
 import { IposteCommande } from '../models/postCommande.model';
 import { ItemService } from './item.service';
 import { Iitem } from '../models/item.model';
+import { ICommande } from '../models/commande.model';
 import { UserService } from './user.service';
 import { Router } from 'express';
 
@@ -109,7 +110,6 @@ export class ShoppingCartService {
   validedOrder(): boolean {
     if (this.userService.validcoordanateClient()) {
       let body: IposteCommande = this.serviceCommande.prepareCommande(this.shoppingCart);
-
       this.serviceCommande.postCommandeClient(body).subscribe(data => {
         console.log(data);
         if (data != null) {
@@ -117,6 +117,7 @@ export class ShoppingCartService {
           this.clearCart();
         }
       });
+      console.log(this.isCommandeValidated);
       return this.isCommandeValidated;
     } else {
       return false;
