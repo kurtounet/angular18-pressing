@@ -23,6 +23,7 @@
     "@angular/router": "^18.1.4",
     "@angular/ssr": "^18.1.4",
     "@lemonsqueezy/lemonsqueezy.js": "^3.2.0",
+    "@nguniversal/express-engine": "^7.0.1",
     "bootstrap": "^5.3.3",
     "cors": "^2.8.5",
     "express": "^4.18.2",

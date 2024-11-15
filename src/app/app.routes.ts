@@ -16,6 +16,7 @@ import { authGuard } from './security/guards/admin.guard';
 import { ShoppingCartComponent } from './admin/shopping-cart/shopping-cart.component';
 import { ServicesComponent } from './public/services/services.component';
 import { RedirectToWebStaticComponent } from './public/redirect-to-web-static/redirect-to-web-static.component';
+import { PresentationComponent } from './public/presentation/presentation.component';
 
 
 export const routes: Routes = [
@@ -24,7 +25,8 @@ export const routes: Routes = [
     children: [
       { path: '', component: LandingComponent },
       { path: 'home', component: LandingComponent },
-      { path: 'presentation', component: RedirectToWebStaticComponent },
+      { path: 'presentation', component: PresentationComponent },
+      //{ path: 'presentation', component: RedirectToWebStaticComponent },
       { path: 'services', component: ServicesComponent },
       { path: 'contact', component: PagecontactComponent },
       { path: 'login', component: LoginComponent },

@@ -2,14 +2,12 @@
   <div class="col-12">
     <section class="services-list">
       <h4>1 - Choisissez un service</h4>
-      <!-- SELECT POUR LES SERVICES -->
       <select (change)="selectedService($event)" [(ngModel)]="selectedServicesId">
-        <option *ngFor="let service of serviceService.arrayServices" [value]="service.id">
+        <option *ngFor="let service of arrayServices" [value]="service.id">
           {{ service.name }}
         </option>
       </select>
     </section>
-    <!-- SECTION DES CATEGORES -->
     <section class="section-categories-list">
       <h4>2 - Séléctionner une catégorie de vêtement</h4>
       <ul class="categories-list">

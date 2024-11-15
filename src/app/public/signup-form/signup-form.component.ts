@@ -19,13 +19,19 @@ export class SignupFormComponent {
   clientService = inject(ClientService);
   serverErrorMessages: string = "";
 
+  // public signupForm: FormGroup = new FormGroup({
+  //   email: new FormControl('anthony@gmail.com', { validators: [Validators.required, Validators.email] }),
+  //   password: new FormControl('nirvana', { validators: [Validators.required] }),
+  //   secondpassword: new FormControl('nirvana', { validators: [Validators.required] }),
+  //   roles: new FormControl(["ROLE_CLIENT", "ROLE_USER"], { validators: [Validators.required] }),
+  // });
+
   public signupForm: FormGroup = new FormGroup({
-    email: new FormControl('anthony@gmail.com', { validators: [Validators.required, Validators.email] }),
-    password: new FormControl('nirvana', { validators: [Validators.required] }),
-    secondpassword: new FormControl('nirvana', { validators: [Validators.required] }),
+    email: new FormControl('', { validators: [Validators.required, Validators.email] }),
+    password: new FormControl('', { validators: [Validators.required] }),
+    secondpassword: new FormControl('', { validators: [Validators.required] }),
     roles: new FormControl(["ROLE_CLIENT", "ROLE_USER"], { validators: [Validators.required] }),
   });
-
   onSubmit() {
     if (this.signupForm.valid) {
       let client: IClient = this.signupForm.value;

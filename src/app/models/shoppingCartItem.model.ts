@@ -4,5 +4,4 @@ export interface IshoppingCartItem {
   detailItem: string;
   service: number;
   quantity: number;
-
 }
