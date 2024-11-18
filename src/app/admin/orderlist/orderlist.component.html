@@ -40,28 +40,7 @@
             <!-- <button class="btn btn-danger btn-sm mx-1" type="button"
               (click)="deleteCommande(commande)">supprimer</button> -->
           </td>
-          <!-- <td class="text">
-            <div class="btn-group d-block d-md-none">
-              <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                Actions
-              </button>
-              <div class="dropdown-menu">
-                <button class="dropdown-item" type="button" (click)="toggleDetail(commande)">Détail</button>
-                <button class="dropdown-item" type="button">Facture</button>
-                <button class="dropdown-item" type="button" (click)="deleteCommande(commande)">Supprimer</button>
-              </div>
-            </div>
-            <div class="d-none d-md-flex">
-              <button class="btn btn-success btn-sm mx-1" type="button" (click)="toggleDetail(commande)">Détail</button>
-              <button class="btn btn-danger btn-sm mx-1" type="button">Facture</button>
-              <button class="btn btn-danger btn-sm mx-1" type="button"
-                (click)="deleteCommande(commande)">Supprimer</button>
-            </div>
-          </td> -->
-
         </tr>
-
         <!-- Détails de la commande dans la boucle -->
         <tr *ngIf="isShowDetail && selectedCommande?.id === commande.id">
           <td colspan="8">
