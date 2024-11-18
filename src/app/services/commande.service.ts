@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
-import { environment } from '../environments/environment'; // Corriger le nom du chemin si nécessaire
+import { environment } from '../environments/environment';
 import { ICommande } from '../models/commande.model';
 import { DatePipe } from '@angular/common';
 import { IshoppingCartItem } from '../models/shoppingCartItem.model';
@@ -14,12 +14,12 @@ import { StorageService } from './storage.service';
   providedIn: 'root'
 })
 export class CommandeService {
-  private routeApi = `${environment.baseApiUrl}/commandes`; // Utiliser un slash à la fin pour les chemins
+  private routeApi = `${environment.baseApiUrl}/commandes`;
   httpClient = inject(HttpClient);
   serviceAuth = inject(AuthService);
   storageService = inject(StorageService);
   constructor(private datePipe: DatePipe) { }
-  // Obtenir tous les Commandes
+  // Obtenir toutes les Commandes
   getAllCommandes(): Observable<ICommande[]> {
     return this.httpClient.get<IHydraCollection<ICommande>>(this.routeApi).pipe(
       map(response => {
@@ -28,23 +28,23 @@ export class CommandeService {
     );
   }
 
-  // Obtenir un Commande par ID
+  // Obtenir une commande par ID
   getCommandeById(id: string): Observable<ICommande> {
     return this.httpClient.get<ICommande>(`${this.routeApi}/${id}`);
   }
 
-  // Créer un nouveau Commande
+  // Créer une nouvelle commande
   postCommandeClient(body: IposteCommande): Observable<ICommande> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.httpClient.post<ICommande>(`${this.routeApi}/client`, body, { headers });
   }
 
-  // Mettre à jour un Commande par ID
+  // Mettre à jour une commande par ID
   patchCommande(id: string, body: ICommande): Observable<ICommande> {
     return this.httpClient.patch<ICommande>(`${this.routeApi}/${id}`, body);
   }
 
-  // Supprimer un Commande par ID
+  // Supprimer une commande
   deleteCommande(id: number): Observable<void> {
     return this.httpClient.delete<void>(`${this.routeApi}/${id}`);
   }
