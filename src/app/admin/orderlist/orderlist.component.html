@@ -29,9 +29,9 @@
           <!-- Utilisation de 'commande' à l'intérieur de la boucle -->
           <td class="text">{{ commande.id }}</td>
           <td class="text">{{ commande.ref }}</td>
-          <td class="text d-none d-sm-table-cell">{{ commande.filingDate | date : 'shortDate' }}</td>
-          <td class="text d-none d-md-table-cell">{{ commande.paymentDate | date : 'shortDate' }}</td>
-          <td class="text d-none d-md-table-cell">{{ commande.returnDate | date : 'shortDate' }}</td>
+          <td class="text d-none d-sm-table-cell">{{ commande.filingDate | date:'dd/MM/yyyy' }}</td>
+          <td class="text d-none d-md-table-cell">{{ commande.paymentDate | date:'dd/MM/yyyy' }}</td>
+          <td class="text d-none d-md-table-cell">{{ commande.returnDate | date:'dd/MM/yyyy' }}</td>
           <td class="text">{{ calculateTotalCommande() }} <span>€</span></td>
           <td class="text">En cours</td>
           <td class="text">
@@ -44,8 +44,8 @@
         <!-- Détails de la commande dans la boucle -->
         <tr *ngIf="isShowDetail && selectedCommande?.id === commande.id">
           <td colspan="8">
-            <app-commande-detail [arrayItemCommande]="arrayItemCommande"
-              (totalCommande)="calculateTotalCommande()"></app-commande-detail>
+            <app-commande-detail [arrayItemCommande]="arrayItemCommande" (totalCommande)="calculateTotalCommande()">
+            </app-commande-detail>
           </td>
         </tr>
       </ng-container>
