@@ -13,7 +13,7 @@ import { IUser } from '../models/user.model';
 export class ClientService {
 
   httpClient = inject(HttpClient);
-  private routeApi = `${environment.baseApiUrl}/clients`; // Utiliser un slash à la fin pour les chemins
+  private routeApi = `${environment.baseApiUrl}/clients`; 
 
   // Obtenir tous les Clients
   getAllClients(): Observable<ClientCollection> {
